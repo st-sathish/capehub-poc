@@ -1,0 +1,12 @@
+# ignore maven target directories
+target/
+
+# ignore Eclipse project data
+.project
+.classpath
+.metadata/
+.settings/
+.recommenders/
+work/
+capehub/**
+logs/

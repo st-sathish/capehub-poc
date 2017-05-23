@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
+
+  <scr:component name="com.capehub.kernel.rest.RestPublisher" activate="activate" deactivate="deactivate" immediate="true">
+    <implementation class="com.capehub.kernel.rest.RestPublisher" />
+    <property name="service.description" value="Capehub REST Endpoint Publisher" />
+  </scr:component>
+
+</scr:components>
