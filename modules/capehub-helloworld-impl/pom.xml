@@ -4,7 +4,7 @@
   <packaging>bundle</packaging>
   <name>capehub-helloworld-impl</name>
   <parent>
-    <groupId>com.capehub</groupId>
+    <groupId>com.capestartproject</groupId>
     <artifactId>capehub</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
@@ -53,8 +53,8 @@
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package>
-              com.capehub.helloworld.impl;version=${project.version},
-              com.capehub.helloworld.impl.endpoint;version=${project.version}
+              com.capestartproject.helloworld.impl;version=${project.version},
+              com.capestartproject.helloworld.impl.endpoint;version=${project.version}
             </Export-Package>
             <Service-Component>
               OSGI-INF/helloworld.xml

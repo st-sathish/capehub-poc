@@ -4,7 +4,7 @@
   <packaging>bundle</packaging>
   <name>capehub-helloworld-api</name>
   <parent>
-    <groupId>com.capehub</groupId>
+    <groupId>com.capestartproject</groupId>
     <artifactId>capehub</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
@@ -28,7 +28,7 @@
         <configuration>
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Export-Package>com.capehub.helloworld.api;version=${project.version}</Export-Package>
+            <Export-Package>com.capestartproject.helloworld.api;version=${project.version}</Export-Package>
           </instructions>
         </configuration>
       </plugin>

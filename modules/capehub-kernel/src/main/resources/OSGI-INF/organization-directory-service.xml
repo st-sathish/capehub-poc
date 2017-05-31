@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
+
+  <scr:component name="com.capestartproject.kernel.security.OrganizationDirectoryServiceImpl" immediate="true">
+    <implementation class="com.capestartproject.kernel.security.OrganizationDirectoryServiceImpl" />
+    <property name="service.pid" value="com.capestartproject.common.organization" />
+    <property name="service.description" value="Organization Directory Service" />
+    <service>
+      <provide interface="com.capestartproject.common.security.api.OrganizationDirectoryService" />
+      <provide interface="org.osgi.service.cm.ManagedServiceFactory" />
+    </service>
+    <reference name="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin"
+      cardinality="1..1" policy="static" bind="setConfigurationAdmin" />
+    <reference name="persistence" interface="com.capestartproject.kernel.security.persistence.OrganizationDatabase"
+      cardinality="0..1" policy="dynamic" bind="setOrgPersistence" />
+  </scr:component>
+
+  <scr:component name="com.capestartproject.kernel.security.OrganizationEndpoint" immediate="true">
+    <implementation class="com.capestartproject.kernel.security.OrganizationEndpoint" />
+    <property name="service.description" value="Organization listing REST endpoint" />
+    <property name="capestart.service.type" value="com.capestartproject.common.organization" />
+    <property name="capestart.service.path" value="/org" />
+    <property name="capestart.service.jobproducer" value="false" />
+    <service>
+      <provide interface="com.capestartproject.kernel.security.OrganizationEndpoint" />
+    </service>
+    <reference name="orgDirectoryService" interface="com.capestartproject.common.security.api.OrganizationDirectoryService"
+      cardinality="1..1" policy="static" bind="setOrgDirectoryService" />
+  </scr:component>
+
+</scr:components>

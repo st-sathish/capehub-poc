@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.capehub</groupId>
+    <groupId>com.capestartproject</groupId>
     <artifactId>capehub</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
@@ -17,7 +17,7 @@
 
   <dependencies>
   	<dependency>
-      <groupId>com.capehub</groupId>
+      <groupId>com.capestartproject</groupId>
       <artifactId>capehub-common</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -33,10 +33,9 @@
     </dependency>
     
     <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
     </dependency>
-    
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
@@ -118,6 +117,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>javax.persistence</artifactId>
+    </dependency>
+    
     <!-- Logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -224,21 +229,22 @@
               org.springframework.security.web.authentication.www,
               org.springframework.security.web.authentication.logout,
               org.springframework.util,
-              com.capehub.common.rest;version=${project.version},
-              com.capehub.common.util;version=${project.version},
+              com.capestartproject.common.rest;version=${project.version},
+              com.capestartproject.common.util;version=${project.version},
               *;resolution:=optional
             </Import-Package>
             <_exportcontents>
               org.springframework.security.oauth.*
             </_exportcontents>
             <Export-Package>
-              com.capehub.kernel.rest;version=${project.version}
+              com.capestartproject.kernel.rest;version=${project.version}
             </Export-Package>
             <Service-Component>
-              OSGI-INF/rest.xml
+              OSGI-INF/rest.xml,
+              OSGI-INF/security-service.xml
             </Service-Component>
             <JPA-PersistenceUnits>
-              com.capehub.kernel
+              com.capestartproject.kernel
             </JPA-PersistenceUnits>
           </instructions>
         </configuration>

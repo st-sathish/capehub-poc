@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.capehub.kernel.security.SecurityServiceSpringImpl">
+  <implementation class="com.capestartproject.kernel.security.SecurityServiceSpringImpl" />
+  <property name="service.description" value="Provides username and role information for the current user" />
+  <service>
+    <provide interface="com.capestartproject.common.security.api.SecurityService" />
+  </service>
+</scr:component>

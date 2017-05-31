@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   	<modelVersion>4.0.0</modelVersion>
 
-  	<groupId>com.capehub</groupId>
+  	<groupId>com.capestartproject</groupId>
   	<artifactId>capehub</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
   	<packaging>pom</packaging>
@@ -556,6 +556,37 @@
         <version>2.4.1</version>
       </dependency>
 
+	  <!-- JPA -->
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>org.eclipse.persistence.core</artifactId>
+        <version>2.0.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>org.eclipse.persistence.jpa</artifactId>
+        <version>2.0.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>org.eclipse.persistence.asm</artifactId>
+        <version>2.0.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>org.eclipse.persistence.antlr</artifactId>
+        <version>2.0.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>javax.persistence</artifactId>
+        <version>2.0.3</version>
+      </dependency>
+      
       <!-- logging -->
       <dependency>
         <groupId>org.slf4j</groupId>
@@ -608,11 +639,17 @@
       </dependency>
 
       <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.4</version>
+      </dependency>
+
+	 <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
         <version>2.6</version>
       </dependency>
-
+      
       <dependency>
         <groupId>commons-pool</groupId>
         <artifactId>commons-pool</artifactId>
@@ -709,6 +746,28 @@
       <id>jose.vignesh</id>
       <name>Jose Vignesh</name>
       <email>jose.vignesh@capestart.com</email>
+      <organization>Capestart</organization>
+      <organizationUrl>http://www.capestart.com</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+5:30</timezone>
+    </developer>
+	<developer>
+      <id>arul.raj</id>
+      <name>Arul Raj</name>
+      <email>arul.raj@capestart.com</email>
+      <organization>Capestart</organization>
+      <organizationUrl>http://www.capestart.com</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+5:30</timezone>
+    </developer>
+	<developer>
+      <id>shibu.kumar</id>
+      <name>Shibukumar</name>
+      <email>shibukumar.b@capestart.com</email>
       <organization>Capestart</organization>
       <organizationUrl>http://www.capestart.com</organizationUrl>
       <roles>
