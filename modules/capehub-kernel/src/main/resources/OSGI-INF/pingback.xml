@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+  name="com.capestartproject.kernel.pingback.PingBackService" 
+  activate="activate"
+  deactivate="deactivate" 
+  immediate="true">
+  
+  <implementation class="com.capestartproject.kernel.pingback.PingBackService" />
+  <property name="service.description" value="Capehub Pingback Service" />
+  <reference name="trustedHttpClient" interface="com.capestartproject.common.security.api.TrustedHttpClient"
+    cardinality="1..1" policy="static" bind="setTrustedHttpClient" />
+
+</scr:component>
+  

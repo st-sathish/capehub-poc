@@ -36,7 +36,7 @@ public abstract class Option<A> implements Iterable<A> {
   /** Monadic bind operation <code>m a -> (a -> m b) -> m b</code>. */
   public abstract <B> Option<B> bind(Function<A, Option<B>> f);
 
-  /** @see org.opencastproject.util.data.functions.Functions#bind(Function) */
+  /** @see com.capestartproject.util.data.functions.Functions#bind(Function) */
   public <B> Option<B> flatMap(Function<A, Option<B>> f) {
     return bind(f);
   }

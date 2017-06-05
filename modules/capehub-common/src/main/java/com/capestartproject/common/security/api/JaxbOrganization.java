@@ -116,7 +116,7 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * @see org.opencastproject.security.api.Organization#getId()
+   * @see com.capestartproject.common.security.api.Organization#getId()
    */
   @Override
   public String getId() {
@@ -124,7 +124,7 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * @see org.opencastproject.security.api.Organization#getName()
+   * @see com.capestartproject.common.security.api.Organization#getName()
    */
   @Override
   public String getName() {
@@ -132,7 +132,7 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * @see org.opencastproject.security.api.Organization#getServers()
+   * @see com.capestartproject.common.security.api.Organization#getServers()
    */
   @Override
   public Map<String, Integer> getServers() {
@@ -146,7 +146,7 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * @see org.opencastproject.security.api.Organization#getId()
+   * @see com.capestartproject.common.security.api.Organization#getId()
    */
   @Override
   public String getAdminRole() {
@@ -154,7 +154,7 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * @see org.opencastproject.security.api.Organization#getId()
+   * @see com.capestartproject.common.security.api.Organization#getId()
    */
   @Override
   public String getAnonymousRole() {
@@ -162,7 +162,7 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * @see org.opencastproject.security.api.Organization#getProperties()
+   * @see com.capestartproject.common.security.api.Organization#getProperties()
    */
   @Override
   public Map<String, String> getProperties() {
@@ -206,10 +206,10 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * An organization property. To read about why this class is necessary, see http://java.net/jira/browse/JAXB-223
+   * An organization property
    */
   @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "server", namespace = "http://org.opencastproject.security")
+  @XmlType(name = "server", namespace = "http://com.capestartproject.security")
   public static class OrgServer {
 
     /** The server name */
@@ -255,10 +255,10 @@ public class JaxbOrganization implements Organization {
   }
 
   /**
-   * An organization property. To read about why this class is necessary, see http://java.net/jira/browse/JAXB-223
+   * An organization property
    */
   @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "property", namespace = "http://org.opencastproject.security")
+  @XmlType(name = "property", namespace = "http://com.capesartproject.security")
   public static class OrgProperty {
 
     /** The property key */

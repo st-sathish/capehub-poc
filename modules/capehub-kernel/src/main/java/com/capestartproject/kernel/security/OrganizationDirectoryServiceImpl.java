@@ -40,7 +40,7 @@ public class OrganizationDirectoryServiceImpl implements OrganizationDirectorySe
   private static final Logger logger = LoggerFactory.getLogger(OrganizationDirectoryServiceImpl.class);
 
   /** The organization service PID */
-  public static final String PID = "org.opencastproject.organization";
+  public static final String PID = "com.capestartproject.organization";
 
   /** The prefix for configurations to use for arbitrary organization properties */
   public static final String ORG_PROPERTY_PREFIX = "prop.";

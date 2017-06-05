@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
+  
+  <scr:component name="com.capestartproject.kernel.userdirectory.UserAndRoleDirectoryServiceImpl" immediate="true">
+    <implementation class="com.capestartproject.kernel.userdirectory.UserAndRoleDirectoryServiceImpl" />
+    <property name="service.description" value="Provides a user directory" />
+    <service>
+      <provide interface="com.capestartproject.common.security.api.UserDirectoryService" />
+      <provide interface="com.capestartproject.common.security.api.RoleDirectoryService" />
+      <provide interface="org.springframework.security.core.userdetails.UserDetailsService" />
+    </service>
+    <reference name="userProviders" interface="com.capestartproject.common.security.api.UserProvider"
+      cardinality="1..n" policy="dynamic" bind="addUserProvider" unbind="removeUserProvider" />
+    <reference name="roleProviders" interface="com.capestartproject.common.security.api.RoleProvider"
+      cardinality="1..n" policy="dynamic" bind="addRoleProvider" unbind="removeRoleProvider" />
+    <reference name="securityService" interface="com.capestartproject.common.security.api.SecurityService"
+      cardinality="1..1" policy="static" bind="setSecurityService" />
+  </scr:component>
+
+  <scr:component name="com.capestartproject.kernel.userdirectory.InMemoryUserAndRoleProvider" immediate="true"
+    activate="activate">
+    <implementation class="com.capestartproject.kernel.userdirectory.InMemoryUserAndRoleProvider" />
+    <property name="service.description" value="A user and role provider" />
+    <service>
+      <provide interface="com.capestartproject.common.security.api.UserProvider" />
+      <provide interface="com.capestartproject.common.security.api.RoleProvider" />
+    </service>
+    <reference name="securityService" interface="com.capestartproject.common.security.api.SecurityService"
+      cardinality="1..1" policy="static" bind="setSecurityService" />
+    <reference name="orgDirectory" interface="com.capestartproject.common.security.api.OrganizationDirectoryService"
+      cardinality="1..1" policy="static" bind="setOrganizationDirectoryService" />
+  </scr:component>
+
+  <scr:component name="com.capestartproject.kernel.userdirectory.RoleEndpoint" immediate="true">
+    <implementation class="com.capestartproject.kernel.userdirectory.RoleEndpoint" />
+    <property name="service.description" value="Role listing REST endpoint" />
+    <property name="capestart.service.type" value="com.capestartproject.common.userdirectory.roles" />
+    <property name="capestart.service.path" value="/roles" />
+    <property name="capestart.service.jobproducer" value="false" />
+    <service>
+      <provide interface="com.capestartproject.kernel.userdirectory.RoleEndpoint" />
+    </service>
+    <reference name="roleDirectoryService" interface="com.capestartproject.common.security.api.RoleDirectoryService"
+      cardinality="1..1" policy="static" bind="setRoleDirectoryService" />
+	<reference name="orgDirectory" interface="com.capestartproject.common.security.api.OrganizationDirectoryService"
+	  cardinality="1..1" policy="static" bind="setOrganizationDirectoryService" />
+  </scr:component>
+  
+  <scr:component name="com.capestartproject.kernel.userdirectory.UserEndpoint" immediate="true">
+    <implementation class="com.capestartproject.kernel.userdirectory.UserEndpoint" />
+    <property name="service.description" value="User listing REST endpoint" />
+    <property name="capestart.service.type" value="com.capestartproject.common.userdirectory.users" />
+    <property name="capestart.service.path" value="/users" />
+    <property name="capestart.service.jobproducer" value="false" />
+    <service>
+      <provide interface="com.capestartproject.kernel.userdirectory.UserEndpoint" />
+    </service>
+    <reference name="userDirectoryService" interface="com.capestartproject.common.security.api.UserDirectoryService"
+      cardinality="1..1" policy="static" bind="setUserDirectoryService" />
+  </scr:component>
+
+</scr:components>
+

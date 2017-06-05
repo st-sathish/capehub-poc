@@ -43,7 +43,7 @@ public class JpaOrganization implements Organization {
   @ElementCollection
   @MapKeyColumn(name = "name")
   @Column(name = "port")
-  @CollectionTable(name = "mh_organization_node", joinColumns = @JoinColumn(name = "organization"))
+  @CollectionTable(name = "ch_organization_node", joinColumns = @JoinColumn(name = "organization"))
   protected Map<String, Integer> servers;
 
   /** The local admin role name */
@@ -57,7 +57,7 @@ public class JpaOrganization implements Organization {
   @ElementCollection
   @MapKeyColumn(name = "name")
   @Column(name = "value")
-  @CollectionTable(name = "mh_organization_property", joinColumns = @JoinColumn(name = "organization"))
+  @CollectionTable(name = "ch_organization_property", joinColumns = @JoinColumn(name = "organization"))
   protected Map<String, String> properties;
 
   /**

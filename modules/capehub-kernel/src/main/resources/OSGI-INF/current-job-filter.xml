@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
+
+  <scr:component name="com.capestartproject.kernel.rest.CurrentJobFilter" immediate="true">
+    <implementation class="com.capestartproject.kernel.rest.CurrentJobFilter" />
+    <property name="service.description" value="Current Job Filter" />
+    <property name="contextId" value="capestart.httpcontext" />
+    <!-- The CleanSessionsFilter must have the highest service.ranking value. See CleanSessionsFilter.java for details. -->
+    <property name="service.ranking" value="6" />
+    <property name="pattern" value=".*" />
+    <service>
+      <provide interface="javax.servlet.Filter" />
+    </service>
+    <reference name="serviceRegistry" interface="com.capestartproject.common.serviceregistry.api.ServiceRegistry"
+      cardinality="1..1" policy="static" bind="setServiceRegistry" />
+  </scr:component>
+
+</scr:components>

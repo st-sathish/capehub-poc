@@ -45,7 +45,7 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
    */
   public void activate(ComponentContext cc) {
     logger.info("Activating persistence manager for kernel");
-    emf = persistenceProvider.createEntityManagerFactory("org.opencastproject.kernel", persistenceProperties);
+    emf = persistenceProvider.createEntityManagerFactory("com.capestartproject.kernel", persistenceProperties);
   }
 
   /**
@@ -217,7 +217,7 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
   }
 
   /**
-   * @see org.opencastproject.kernel.security.persistence.OrganizationDatabase#getOrganizations()
+   * @see com.capestartproject.kernel.security.persistence.OrganizationDatabase#getOrganizations()
    */
   @Override
   @SuppressWarnings("unchecked")

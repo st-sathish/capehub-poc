@@ -73,7 +73,7 @@ public final class JaxbRole implements Role {
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.Role#getName()
+   * @see com.capestartproject.common.security.api.Role#getName()
    */
   @Override
   public String getName() {
@@ -83,7 +83,7 @@ public final class JaxbRole implements Role {
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.Role#getDescription()
+   * @see com.capestartproject.common.security.api.Role#getDescription()
    */
   @Override
   public String getDescription() {
@@ -93,7 +93,7 @@ public final class JaxbRole implements Role {
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.Role#getOrganization()
+   * @see com.capestartproject.common.security.api.Role#getOrganization()
    */
   public Organization getOrganization() {
     return organization;
