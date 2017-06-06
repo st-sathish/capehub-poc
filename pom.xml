@@ -41,6 +41,7 @@
         <module>modules/capehub-helloworld-impl</module>
         <module>modules/capehub-runtime-dependencies</module>
         <module>modules/capehub-db</module>
+        <module>modules/capehub-runtime-info-ui</module>
 	</modules>
 
 	<build>
