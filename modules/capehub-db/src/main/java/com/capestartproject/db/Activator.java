@@ -70,8 +70,8 @@ public class Activator implements BundleActivator {
             "org.h2.Driver");
     String jdbcUrl = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.url"), "jdbc:h2:"
             + rootDir);
-    String jdbcUser = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.user"), "sa");
-    String jdbcPass = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.pass"), "sa");
+    String jdbcUser = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.user"), "capehub");
+    String jdbcPass = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.pass"), "capehub");
     pooledDataSource = new ComboPooledDataSource();
     pooledDataSource.setDriverClass(jdbcDriver);
     pooledDataSource.setJdbcUrl(jdbcUrl);
