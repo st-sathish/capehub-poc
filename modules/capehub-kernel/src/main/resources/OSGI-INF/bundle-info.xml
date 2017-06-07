@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
+  <scr:component name="com.capestartproject.kernel.bundleinfo.BundleInfoLogger"
+                 activate="activate" deactivate="deactivate"
+                 immediate="true">
+    <implementation class="com.capestartproject.kernel.bundleinfo.BundleInfoLogger" />
+    <reference name="bundleInfoDb"
+               interface="com.capestartproject.kernel.bundleinfo.BundleInfoDb"
+               cardinality="1..1"
+               policy="static"
+               bind="setDb"
+               unbind="unsetDb" />
+  </scr:component>
+
+  <scr:component name="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoDb" activate="activate" immediate="true">
+    <implementation class="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoDb" />
+    <service>
+      <provide interface="com.capestartproject.kernel.bundleinfo.BundleInfoDb" />
+    </service>
+    <reference name="persistenceProvider"
+               interface="javax.persistence.spi.PersistenceProvider"
+               cardinality="1..1"
+               policy="static"
+               bind="setPersistenceProvider" />
+    <reference name="persistenceProperties"
+               interface="java.util.Map"
+               cardinality="1..1"
+               policy="static"
+               target="(type=persistence)"
+               bind="setPersistenceProperties" />
+  </scr:component>
+
+  <scr:component name="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoRestEndpoint" immediate="true">
+    <implementation class="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoRestEndpoint" />
+    <property name="service.description" value="BundleInfo REST Endpoint" />
+    <property name="capehub.service.type" value="com.capestartproject.kernel.bundleinfo" />
+    <property name="capehub.service.path" value="/sysinfo" />
+    <service>
+      <!-- Needed for the RestPublisher to pick up the service. -->
+      <provide interface="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoRestEndpoint" />
+    </service>
+    <reference name="bundleInfoDb"
+               interface="com.capestartproject.kernel.bundleinfo.BundleInfoDb"
+               cardinality="1..1"
+               policy="static"
+               bind="setDb" />
+  </scr:component>
+</scr:components>

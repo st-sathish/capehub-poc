@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+  name="com.capestartproject.kernel.userdirectory.OrganizationRoleProvider" immediate="true">
+  <implementation class="com.capestartproject.kernel.userdirectory.OrganizationRoleProvider" />
+  <property name="service.description" value="Provides the organizations role" />
+  <service>
+    <provide interface="com.capestartproject.common.security.api.RoleProvider" />
+  </service>
+  <reference name="security-service" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+</scr:component>

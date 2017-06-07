@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+  name="com.capestarttproject.kernel.security.TrustedHttpClientImpl"
+  immediate="true" activate="activate" deactivate="deactivate">
+  <implementation class="com.capestartproject.kernel.security.TrustedHttpClientImpl" />
+  <property name="service.description" value="Provides Trusted Http Clients (for use with digest authentication)" />
+  <service>
+    <provide interface="com.capestartproject.common.security.api.TrustedHttpClient" />
+  </service>
+   <reference name="service-impl" interface="com.capestartproject.kernel.http.impl.HttpClientFactory"
+    cardinality="1..1" policy="static" bind="setHttpClientFactory" />
+   <reference name="serviceRegistry" interface="com.capestartproject.common.serviceregistry.api.ServiceRegistry"
+    cardinality="0..1" policy="dynamic" bind="setServiceRegistry" />
+   <reference name="securityService" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+</scr:component>

@@ -38,25 +38,25 @@ public class HttpClientImpl implements HttpClient {
   /** client used for all http requests. */
   private DefaultHttpClient defaultHttpClient = makeHttpClient();
 
-  /** See org.opencastproject.kernel.http.api.HttpClient */
+  /** See com.capestartproject.kernel.http.api.HttpClient */
   @Override
   public HttpParams getParams() {
     return defaultHttpClient.getParams();
   }
 
-  /** See org.opencastproject.kernel.http.api.HttpClient */
+  /** See com.capestartproject.kernel.http.api.HttpClient */
   @Override
   public CredentialsProvider getCredentialsProvider() {
     return defaultHttpClient.getCredentialsProvider();
   }
 
-  /** See org.opencastproject.kernel.http.api.HttpClient */
+  /** See com.capestartproject.kernel.http.api.HttpClient */
   @Override
   public HttpResponse execute(HttpUriRequest httpUriRequest) throws IOException {
     return defaultHttpClient.execute(httpUriRequest);
   }
 
-  /** See org.opencastproject.kernel.http.api.HttpClient */
+  /** See com.capestartproject.kernel.http.api.HttpClient */
   @Override
   public ClientConnectionManager getConnectionManager() {
     return defaultHttpClient.getConnectionManager();

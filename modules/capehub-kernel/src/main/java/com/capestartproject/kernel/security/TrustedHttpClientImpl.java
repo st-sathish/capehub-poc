@@ -54,25 +54,25 @@ public class TrustedHttpClientImpl implements TrustedHttpClient, HttpConnectionM
   private static final Logger logger = LoggerFactory.getLogger(TrustedHttpClientImpl.class);
 
   /** The configuration property specifying the digest authentication user */
-  public static final String DIGEST_AUTH_USER_KEY = "org.opencastproject.security.digest.user";
+  public static final String DIGEST_AUTH_USER_KEY = "com.capestartproject.security.digest.user";
 
   /** The configuration property specifying the digest authentication password */
-  public static final String DIGEST_AUTH_PASS_KEY = "org.opencastproject.security.digest.pass";
+  public static final String DIGEST_AUTH_PASS_KEY = "com.capestartproject.security.digest.pass";
 
   /** The configuration property specifying the number of times to retry after the nonce timesouts on a request. */
-  public static final String NONCE_TIMEOUT_RETRY_KEY = "org.opencastproject.security.digest.nonce.retries";
+  public static final String NONCE_TIMEOUT_RETRY_KEY = "com.capestartproject.security.digest.nonce.retries";
 
   /**
    * The configuration property specifying the minimum amount of time in seconds wait before retrying a request after a
    * nonce timeout.
    */
-  public static final String NONCE_TIMEOUT_RETRY_BASE_TIME_KEY = "org.opencastproject.security.digest.nonce.base.time";
+  public static final String NONCE_TIMEOUT_RETRY_BASE_TIME_KEY = "com.capestartproject.security.digest.nonce.base.time";
 
   /**
    * The configuration property specifying the maximum for a random amount of time in seconds above the base time to
    * wait.
    */
-  public static final String NONCE_TIMEOUT_RETRY_MAXIMUM_VARIABLE_TIME_KEY = "org.opencastproject.security.digest.nonce.variable.time";
+  public static final String NONCE_TIMEOUT_RETRY_MAXIMUM_VARIABLE_TIME_KEY = "com.capestartproject.security.digest.nonce.variable.time";
 
   /** The default time until a connection attempt fails */
   public static final int DEFAULT_CONNECTION_TIMEOUT = 60 * 1000;
@@ -137,7 +137,7 @@ public class TrustedHttpClientImpl implements TrustedHttpClient, HttpConnectionM
     try {
       MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
       ObjectName name;
-      name = new ObjectName("org.opencastproject.security.api.TrustedHttpClient:type=HttpConnections");
+      name = new ObjectName("com.capestartproject.common.security.api.TrustedHttpClient:type=HttpConnections");
       Object mbean = this;
       mbs.registerMBean(mbean, name);
     } catch (Exception e) {
@@ -259,7 +259,7 @@ public class TrustedHttpClientImpl implements TrustedHttpClient, HttpConnectionM
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.TrustedHttpClient#execute(org.apache.http.client.methods.HttpUriRequest)
+   * @see com.capestartproject.common.security.api.TrustedHttpClient#execute(org.apache.http.client.methods.HttpUriRequest)
    */
   @Override
   public HttpResponse execute(HttpUriRequest httpUriRequest) throws TrustedHttpClientException {
@@ -443,7 +443,7 @@ public class TrustedHttpClientImpl implements TrustedHttpClient, HttpConnectionM
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.TrustedHttpClient#close(org.apache.http.HttpResponse)
+   * @see com.capestartproject.common.security.api.TrustedHttpClient#close(org.apache.http.HttpResponse)
    */
   @Override
   public void close(HttpResponse response) {
@@ -460,7 +460,7 @@ public class TrustedHttpClientImpl implements TrustedHttpClient, HttpConnectionM
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.TrustedHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
+   * @see com.capestartproject.common.security.api.TrustedHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
    * org.apache.http.client.ResponseHandler)
    */
   @Override
