@@ -1,15 +1,15 @@
 package com.capestartproject.common.serviceregistry.api;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 import com.capestartproject.common.job.api.Incident;
 import com.capestartproject.common.job.api.IncidentTree;
 import com.capestartproject.common.job.api.Job;
 import com.capestartproject.common.util.NotFoundException;
 import com.capestartproject.common.util.data.Tuple;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /** Manages storing and retrieving of job incidents. */
 public interface IncidentService {
@@ -51,7 +51,7 @@ public interface IncidentService {
    * @param cascade
    *          if true, return the incidents of the given job and those of of its descendants; if false, just return the
    *          incidents of the given job, which means that the list returned by
-   *          {@link org.opencastproject.job.api.IncidentTree#getDescendants()} will always be empty
+   *          {@link com.capestartproject.common.job.api.IncidentTree#getDescendants()} will always be empty
    * @return the list of incidents
    * @throws NotFoundException
    *           if there is no incident with this job identifier

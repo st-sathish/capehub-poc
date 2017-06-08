@@ -3,11 +3,10 @@ package com.capestartproject.common.security.util;
 import static com.capestartproject.common.util.data.Either.left;
 import static com.capestartproject.common.util.data.Either.right;
 
-import com.capestartproject.common.security.api.TrustedHttpClient;
-import com.capestartproject.common.security.api.TrustedHttpClientException;
-import com.capestartproject.common.util.data.Either;
-import com.capestartproject.common.util.data.Function;
-import com.capestartproject.common.util.data.Option;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
@@ -25,10 +24,11 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
+import com.capestartproject.common.security.api.TrustedHttpClient;
+import com.capestartproject.common.security.api.TrustedHttpClientException;
+import com.capestartproject.common.util.data.Either;
+import com.capestartproject.common.util.data.Function;
+import com.capestartproject.common.util.data.Option;
 
 /**
  * An http client that executes secure (though not necessarily encrypted) http requests. Unlike the original
@@ -177,12 +177,12 @@ public final class StandAloneTrustedHttpClientImpl implements TrustedHttpClient 
    * Retries a request if the nonce timed out during the request.
    *
    * @param httpUriRequest
-   *         The request to be made that isn't a GET, those are handled automatically.
+   *          The request to be made that isn't a GET, those are handled automatically.
    * @param response
-   *         The response with the bad nonce timeout in it.
+   *          The response with the bad nonce timeout in it.
    * @return A new response for the request if it was successful without the nonce timing out again or just the same
-   * response it got if it ran out of attempts.
-   * @throws org.opencastproject.security.api.TrustedHttpClientException
+   *         response it got if it ran out of attempts.
+   * @throws com.capestartproject.common.security.api.TrustedHttpClientException
    * @throws java.io.IOException
    * @throws org.apache.http.client.ClientProtocolException
    */
@@ -236,11 +236,11 @@ public final class StandAloneTrustedHttpClientImpl implements TrustedHttpClient 
    * Handles the necessary handshake for digest authenticaion in the case where it isn't a GET operation.
    *
    * @param httpUriRequest
-   *         The request location to get the digest authentication for.
+   *          The request location to get the digest authentication for.
    * @param httpClient
-   *         The client to send the request through.
-   * @throws org.opencastproject.security.api.TrustedHttpClientException
-   *         Thrown if the client cannot be shutdown.
+   *          The client to send the request through.
+   * @throws com.capestartproject.common.security.api.TrustedHttpClientException
+   *           Thrown if the client cannot be shutdown.
    */
   private void manuallyHandleDigestAuthentication(HttpUriRequest httpUriRequest, HttpClient httpClient)
           throws TrustedHttpClientException {
@@ -287,7 +287,7 @@ public final class StandAloneTrustedHttpClientImpl implements TrustedHttpClient 
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.TrustedHttpClient#close(org.apache.http.HttpResponse)
+   * @see com.capestartproject.common.security.api.TrustedHttpClient#close(org.apache.http.HttpResponse)
    */
   @Override
   public void close(HttpResponse response) {
@@ -304,8 +304,8 @@ public final class StandAloneTrustedHttpClientImpl implements TrustedHttpClient 
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.TrustedHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
-   * org.apache.http.client.ResponseHandler)
+   * @see com.capestartproject.common.security.api.TrustedHttpClient#execute(org.apache.http.client.methods.HttpUriRequest,
+   *      org.apache.http.client.ResponseHandler)
    */
   @Override
   public <T> T execute(HttpUriRequest httpUriRequest, ResponseHandler<T> responseHandler)

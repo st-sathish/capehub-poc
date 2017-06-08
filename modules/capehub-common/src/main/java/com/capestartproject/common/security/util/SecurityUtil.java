@@ -7,6 +7,11 @@ import static com.capestartproject.common.util.data.Option.option;
 import static com.capestartproject.common.util.data.Option.some;
 import static com.capestartproject.common.util.data.Tuple.tuple;
 
+import java.net.URL;
+
+import org.apache.commons.lang.StringUtils;
+import org.osgi.service.component.ComponentContext;
+
 import com.capestartproject.common.security.api.JaxbOrganization;
 import com.capestartproject.common.security.api.JaxbRole;
 import com.capestartproject.common.security.api.JaxbUser;
@@ -21,18 +26,13 @@ import com.capestartproject.common.util.data.Function0;
 import com.capestartproject.common.util.data.Option;
 import com.capestartproject.common.util.data.Tuple;
 
-import org.apache.commons.lang.StringUtils;
-import org.osgi.service.component.ComponentContext;
-
-import java.net.URL;
-
-/** Matterhorn security helpers. */
+/** Capehub security helpers. */
 public final class SecurityUtil {
   private SecurityUtil() {
   }
 
   /** The name of the key used to store the name of the system user in the global config. */
-  public static final String PROPERTY_KEY_SYS_USER = "org.opencastproject.security.digest.user";
+  public static final String PROPERTY_KEY_SYS_USER = "com.capehub.security.digest.user";
 
   /**
    * Run function <code>f</code> in the context described by the given organization and user.
