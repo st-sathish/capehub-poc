@@ -4,11 +4,11 @@
   <implementation class="com.capestartproject.runtimeinfo.RuntimeInfo" />
   <property name="service.description" value="Runtime Information REST Endpoint" />
 
-  <property name="capestart.service.type" value="com.capestartproject.info" />
-  <property name="capestart.service.path" value="/info" />
+  <property name="capehub.service.type" value="com.capestartproject.info" />
+  <property name="capehub.service.path" value="/info" />
 
   <service>
-    <provide interface="org.capestartproject.runtimeinfo.RuntimeInfo" />
+    <provide interface="com.capestartproject.runtimeinfo.RuntimeInfo" />
   </service>
   <reference name="security-service" interface="com.capestartproject.common.security.api.SecurityService"
     cardinality="1..1" policy="static" bind="setSecurityService" />

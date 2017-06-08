@@ -210,11 +210,23 @@
             <Import-Package>
               *;resolution:=optional
             </Import-Package>
+            <Embed-Dependency>
+              truezip;inline=true,
+              freemarker;inline=true
+            </Embed-Dependency>
+            <Private-Package>
+              freemarker.core, freemarker.template
+            </Private-Package>
             <Export-Package>
-              com.capestartproject.common.util.*;version=${project.version};-split-package:=merge-first,
-              com.capestartproject.common.rest.*;version=${project.version},
-              com.capestartproject.common.security.api.*;version=${project.version},
-              com.capestartproject.common.systems.*;version=${project.version}
+              com.capestartproject.common.util.*;version=${project.version};-split-package:=merge-first,           
+              com.capestartproject.common.fn;version=${project.version},
+              com.capestartproject.common.fn.juc;version=${project.version},
+              com.capestartproject.common.job.api;version=${project.version},
+              com.capestartproject.common.rest;version=${project.version},
+              com.capestartproject.common.serviceregistry.api;version=${project.version},
+              com.capestartproject.common.security.api;version=${project.version},
+              com.capestartproject.common.systems;version=${project.version},
+              com.capestartproject.common.security.util;version=${project.version}
             </Export-Package>
           </instructions>
         </configuration>

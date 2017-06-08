@@ -192,6 +192,10 @@
               json-simple;inline=true,
               javax.activation-mail;inline=true
             </Embed-Dependency>
+            <Private-Package>
+              org.jboss.security.xacml.core,
+              org.jboss.security.xacml.core.model.policy,
+            </Private-Package>
             <Import-Package>
               javax.activation,
               javax.mail;version=1.4,
@@ -276,15 +280,34 @@
               org.springframework.security.web.authentication.www,
               org.springframework.security.web.authentication.logout,
               org.springframework.util,
-              com.capestartproject.common.rest;version=${project.version},
-              com.capestartproject.common.util;version=${project.version},
+              com.capestartprject.common.job.api;version=${project.version},
+              com.capestartprject.common.rest;version=${project.version},
+              com.capestartprject.common.serviceregistry.api;version=${project.version},
+              com.capestartprject.common.security.api;version=${project.version},
+              com.capestartprject.common.util;version=${project.version},
               *;resolution:=optional
             </Import-Package>
             <_exportcontents>
               org.springframework.security.oauth.*
             </_exportcontents>
             <Export-Package>
-              com.capestartproject.kernel.rest;version=${project.version}
+              com.capestartproject.kernel.http;version=${project.version},
+              com.capestartproject.kernel.http.api;version=${project.version},
+              com.capestartproject.kernel.http.impl;version=${project.version},
+              com.capestartproject.kernel.filter.https;version=${project.version},
+              com.capestartproject.kernel.filter.proxy;version=${project.version},
+              com.capestartproject.kernel.mail;version=${project.version},
+              com.capestartproject.kernel.pingback;version=${project.version},
+              com.capestartproject.kernel.rest;version=${project.version},
+              com.capestartproject.kernel.security;version=${project.version},
+              com.capestartproject.kernel.security.persistence;version=${project.version},
+              com.capestartproject.kernel.userdirectory;version=${project.version},
+              org.springframework.security.oauth;version=1.0.0.M1,
+              org.springframework.security.oauth.common;version=1.0.0.M1,
+              org.springframework.security.oauth.config;version=1.0.0.M1,
+              org.springframework.security.oauth.consumer;version=1.0.0.M1,
+              org.springframework.security.oauth.provider;version=1.0.0.M1,
+              org.springframework.security.oauth.provider.token;version=1.0.0.M1
             </Export-Package>
             <Service-Component>
               OSGI-INF/cleansessions.xml,

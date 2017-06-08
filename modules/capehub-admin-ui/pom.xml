@@ -7,8 +7,8 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
   <artifactId>capehub-admin-ui</artifactId>
-  <name>Capehub Admin UI</name>
-  <description>Capehub Admin User Interface</description>
+  <name>capehub-admin-ui</name>
+  <description>Capehub Admin potal user interface</description>
   <packaging>bundle</packaging>
   
   <properties>
@@ -16,9 +16,9 @@
     <checkstyle.skip>true</checkstyle.skip>
   </properties>
 
-<dependencies>
+ <dependencies>
     <dependency>
-      <groupId>com.capehub</groupId>
+      <groupId>com.capestartproject</groupId>
       <artifactId>capehub-common</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>

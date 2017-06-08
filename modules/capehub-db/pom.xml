@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>capehub-db</artifactId>
   <packaging>bundle</packaging>
-  <name>Capehub DB</name>
+  <name>capehub-db</name>
   
   <parent>
     <groupId>com.capestartproject</groupId>

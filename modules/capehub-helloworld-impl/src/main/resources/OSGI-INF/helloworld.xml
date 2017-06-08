@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
-  <scr:component name="com.capehub.helloworld.impl.HelloWorldServiceImpl" immediate="true">
-    <implementation class="com.capehub.helloworld.impl.HelloWorldServiceImpl" />
+  <scr:component name="com.capestartproject.helloworld.impl.HelloWorldServiceImpl" immediate="true">
+    <implementation class="com.capestartproject.helloworld.impl.HelloWorldServiceImpl" />
     <property name="service.description" value="Hello World Service" />
     <service>
-      <provide interface="com.capehub.helloworld.api.HelloWorldService" />
+      <provide interface="com.capestartproject.helloworld.api.HelloWorldService" />
     </service>
   </scr:component>
-  <scr:component name="com.capehub.helloworld.impl.endpoint.HelloWorldRestEndpoint" immediate="true">
-    <implementation class="com.capehub.helloworld.impl.endpoint.HelloWorldRestEndpoint" />
+  <scr:component name="com.capestartproject.helloworld.impl.endpoint.HelloWorldRestEndpoint" immediate="true">
+    <implementation class="com.capestartproject.helloworld.impl.endpoint.HelloWorldRestEndpoint" />
     <property name="service.description" value="Hello World REST Endpoint" />
-    <property name="capehub.service.type" value="com.capehub.helloworld" />
+    <property name="capehub.service.type" value="com.capestartproject.helloworld" />
     <property name="capehub.service.path" value="/helloworld" />
     <service>
-      <provide interface="com.capehub.helloworld.impl.endpoint.HelloWorldRestEndpoint" />
+      <provide interface="com.capestartproject.helloworld.impl.endpoint.HelloWorldRestEndpoint" />
     </service>
-    <reference name="helloworld-service" interface="com.capehub.helloworld.api.HelloWorldService"
+    <reference name="helloworld-service" interface="com.capestartproject.helloworld.api.HelloWorldService"
       cardinality="1..1" policy="static" bind="setHelloWorldService" />
   </scr:component>
 </scr:components>

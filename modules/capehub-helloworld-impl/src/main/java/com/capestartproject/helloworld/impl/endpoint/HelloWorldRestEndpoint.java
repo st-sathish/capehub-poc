@@ -9,6 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.capestartproject.common.util.doc.rest.RestParameter;
 import com.capestartproject.common.util.doc.rest.RestQuery;
 import com.capestartproject.common.util.doc.rest.RestResponse;
@@ -28,6 +31,9 @@ import com.capestartproject.helloworld.api.HelloWorldService;
         "A status code 500 means a general failure has occurred which is not recoverable and was not anticipated."
                 + "In other words, there is a bug! You should file an error report with your server logs from the time" })
 public class HelloWorldRestEndpoint {
+
+  /** The logger */
+  private static final Logger logger = LoggerFactory.getLogger(HelloWorldRestEndpoint.class);
 
   /** The rest docs */
   protected String docs;
@@ -50,7 +56,7 @@ public class HelloWorldRestEndpoint {
             responseCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR) },
       returnDescription = "The text that the service returns.")
   public Response helloWorld() throws Exception {
-	  System.out.println("REST call for Hello World");
+    logger.info("REST call for Hello World");
       return Response.ok().entity(helloWorldService.helloWorld()).build();
   }
 
@@ -73,7 +79,7 @@ public class HelloWorldRestEndpoint {
               responseCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR) },
       returnDescription = "The text that the service returns.")
   public Response helloName(@FormParam("name") String name) throws Exception {
-    System.out.println("REST call for Hello Name");
+    logger.info("REST call for Hello World");
     return Response.ok().entity(helloWorldService.helloName(name)).build();
   }
 
