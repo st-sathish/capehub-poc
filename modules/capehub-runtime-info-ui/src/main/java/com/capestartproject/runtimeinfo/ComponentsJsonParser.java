@@ -1,8 +1,5 @@
 package com.capestartproject.runtimeinfo;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -11,6 +8,9 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  * Parses a text dump of components.json reports

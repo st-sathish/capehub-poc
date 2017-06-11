@@ -29,7 +29,6 @@
 	    <osgi.core.version>6.0.0</osgi.core.version>
 	    <osgi.enterprise.version>6.0.0</osgi.enterprise.version>
 	    <jackson.version>2.7.0</jackson.version>
-	    <json-simple.version>1.1.1</json-simple.version>
   	</properties>
 
 	<modules>
@@ -42,6 +41,7 @@
         <module>modules/capehub-runtime-dependencies</module>
         <module>modules/capehub-db</module>
         <module>modules/capehub-runtime-info-ui</module>
+        <module>modules/capehub-json</module>
 	</modules>
 
 	<build>
@@ -217,10 +217,80 @@
           <artifactId>maven-dependency-plugin</artifactId>
           <version>2.1</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-eclipse-plugin</artifactId>
+          <version>2.10</version>
+        </plugin>
 		<plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>2.2-beta-2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.7</version>
+          <configuration>
+            <sources>
+              <source>${basedir}/src/main/resources/</source>
+            </sources>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>add-source</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>3.6</version>
+          <configuration>
+            <!--<includeTests>true</includeTests> -->
+            <typeResolution>true</typeResolution>
+            <targetJdk>1.7</targetJdk>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>validate</phase>
+              <goals>
+                <goal>pmd</goal>
+                <goal>cpd</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>de.empulse.eclipselink</groupId>
+          <artifactId>staticweave-maven-plugin</artifactId>
+          <version>1.0.0</version>
+          <executions>
+            <execution>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>weave</goal>
+              </goals>
+              <configuration>
+                <persistenceXMLLocation>META-INF/persistence.xml</persistenceXMLLocation>
+                <logLevel>FINE</logLevel>
+              </configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.persistence</groupId>
+              <artifactId>org.eclipse.persistence.jpa</artifactId>
+              <version>${eclipselink.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -239,7 +309,7 @@
 		        <artifactId>slf4j-simple</artifactId>
 		        <version>1.6.4</version>
       		</dependency>
-      		
+      
 	    	<dependency>
 		        <groupId>javax.servlet</groupId>
 		        <artifactId>servlet-api</artifactId>

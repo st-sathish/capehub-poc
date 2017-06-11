@@ -5,22 +5,6 @@ import static com.capestartproject.common.rest.RestConstants.SERVICE_PATH_PROPER
 import static com.capestartproject.common.util.data.Option.none;
 import static com.capestartproject.common.util.data.Option.some;
 
-import com.capestartproject.runtimeinfo.rest.RestDocData;
-import com.capestartproject.common.systems.CapehubConstans;
-import com.capestartproject.common.util.data.Option;
-import com.capestartproject.common.util.doc.DocUtil;
-import com.capestartproject.common.util.doc.rest.RestQuery;
-import com.capestartproject.common.util.doc.rest.RestService;
-
-import org.apache.commons.lang.StringUtils;
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.framework.ServiceReference;
-import org.osgi.framework.ServiceRegistration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -37,6 +21,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+
+import org.apache.commons.lang.StringUtils;
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
+import org.osgi.framework.ServiceRegistration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.capestartproject.common.systems.CapehubConstans;
+import com.capestartproject.common.util.data.Option;
+import com.capestartproject.common.util.doc.DocUtil;
+import com.capestartproject.common.util.doc.rest.RestQuery;
+import com.capestartproject.common.util.doc.rest.RestService;
+import com.capestartproject.runtimeinfo.rest.RestDocData;
 
 /** A bundle activator that registers the REST documentation servlet. */
 public class Activator extends HttpServlet implements BundleActivator {
@@ -71,9 +71,9 @@ public class Activator extends HttpServlet implements BundleActivator {
   /** Add a list of global information, such as the server URL, to the globalMacro map. */
   private void prepareMacros() {
     globalMacro = new HashMap<String, String>();
-    globalMacro.put("PING_BACK_URL", bundleContext.getProperty("com.capestartproject.anonymous.feedback.url"));
+    globalMacro.put("PING_BACK_URL", bundleContext.getProperty("com.capehub.anonymous.feedback.url"));
     globalMacro.put("HOST_URL", bundleContext.getProperty(CapehubConstans.SERVER_URL_PROPERTY));
-    globalMacro.put("LOCAL_STORAGE_DIRECTORY", bundleContext.getProperty("org.opencastproject.storage.dir"));
+    globalMacro.put("LOCAL_STORAGE_DIRECTORY", bundleContext.getProperty("com.capehub.storage.dir"));
   }
 
   @Override

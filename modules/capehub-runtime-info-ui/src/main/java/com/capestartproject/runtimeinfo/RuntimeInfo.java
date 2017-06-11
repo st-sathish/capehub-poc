@@ -2,28 +2,6 @@ package com.capestartproject.runtimeinfo;
 
 import static com.capestartproject.common.rest.RestConstants.SERVICES_FILTER;
 
-import com.capestartproject.common.rest.RestConstants;
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.security.api.Role;
-import com.capestartproject.common.security.api.SecurityService;
-import com.capestartproject.common.security.api.User;
-import com.capestartproject.common.systems.CapehubConstans;
-import com.capestartproject.common.util.UrlSupport;
-import com.capestartproject.common.util.doc.rest.RestQuery;
-import com.capestartproject.common.util.doc.rest.RestResponse;
-import com.capestartproject.common.util.doc.rest.RestService;
-
-import org.apache.commons.lang.StringUtils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.Constants;
-import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.component.ComponentContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -41,6 +19,28 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang.StringUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.component.ComponentContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.capestartproject.common.rest.RestConstants;
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.security.api.Role;
+import com.capestartproject.common.security.api.SecurityService;
+import com.capestartproject.common.security.api.User;
+import com.capestartproject.common.systems.CapehubConstans;
+import com.capestartproject.common.util.UrlSupport;
+import com.capestartproject.common.util.doc.rest.RestQuery;
+import com.capestartproject.common.util.doc.rest.RestResponse;
+import com.capestartproject.common.util.doc.rest.RestService;
+
 /**
  * This REST endpoint provides information about the runtime environment, including the services and user interfaces
  * deployed and the current login context.
@@ -55,8 +55,8 @@ public class RuntimeInfo {
   private static final Logger logger = LoggerFactory.getLogger(RuntimeInfo.class);
 
   /** Configuration properties id */
-  private static final String ADMIN_URL_PROPERTY = "com.capestartproject.admin.ui.url";
-  private static final String ENGAGE_URL_PROPERTY = "com.capestartproject.engage.ui.url";
+  private static final String ADMIN_URL_PROPERTY = "com.capehub.admin.ui.url";
+  private static final String ENGAGE_URL_PROPERTY = "com.capehub.engage.ui.url";
 
   /**
    * The rest publisher looks for any non-servlet with the 'capestart.service.path' property
