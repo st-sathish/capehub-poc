@@ -1,7 +1,12 @@
 package com.capestartproject.kernel.security;
 
-import com.capestartproject.common.rest.RestConstants;
-import com.capestartproject.common.security.api.SecurityService;
+import java.io.File;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
+import javax.servlet.Filter;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.felix.fileinstall.ArtifactInstaller;
@@ -12,13 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
 
-import java.io.File;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-
-import javax.servlet.Filter;
+import com.capestartproject.common.rest.RestConstants;
+import com.capestartproject.common.security.api.SecurityService;
 
 /**
  * Registers a security filter, which delegates to the spring filter chain appropriate for the current request's

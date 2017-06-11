@@ -5,22 +5,6 @@ import static com.capestartproject.common.util.data.Collections.map;
 import static com.capestartproject.common.util.data.Collections.toList;
 import static com.capestartproject.common.util.data.Tuple.tuple;
 
-import com.capestartproject.kernel.security.persistence.JpaOrganization;
-import com.capestartproject.kernel.security.persistence.OrganizationDatabase;
-import com.capestartproject.kernel.security.persistence.OrganizationDatabaseException;
-import com.capestartproject.common.security.api.DefaultOrganization;
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.security.api.OrganizationDirectoryService;
-import com.capestartproject.common.util.NotFoundException;
-import com.capestartproject.common.util.data.Tuple;
-
-import org.apache.commons.lang.StringUtils;
-import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedServiceFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -29,6 +13,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.apache.commons.lang.StringUtils;
+import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.cm.ManagedServiceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.capestartproject.common.security.api.DefaultOrganization;
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.security.api.OrganizationDirectoryService;
+import com.capestartproject.common.util.NotFoundException;
+import com.capestartproject.common.util.data.Tuple;
+import com.capestartproject.kernel.security.persistence.JpaOrganization;
+import com.capestartproject.kernel.security.persistence.OrganizationDatabase;
+import com.capestartproject.kernel.security.persistence.OrganizationDatabaseException;
 
 /**
  * Implements the organizational directory. As long as no organizations are published in the service registry, the

@@ -4,19 +4,14 @@ import static com.capestartproject.kernel.rest.CurrentJobFilter.CURRENT_JOB_HEAD
 import static com.capestartproject.kernel.security.DelegatingAuthenticationEntryPoint.DIGEST_AUTH;
 import static com.capestartproject.kernel.security.DelegatingAuthenticationEntryPoint.REQUESTED_AUTH_HEADER;
 
-import com.capestartproject.kernel.http.api.HttpClient;
-import com.capestartproject.kernel.http.impl.HttpClientFactory;
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.security.api.SecurityConstants;
-import com.capestartproject.common.security.api.SecurityService;
-import com.capestartproject.common.security.api.TrustedHttpClient;
-import com.capestartproject.common.security.api.TrustedHttpClientException;
-import com.capestartproject.common.security.api.User;
-import com.capestartproject.common.security.util.HttpResponseWrapper;
-import com.capestartproject.common.security.util.StandAloneTrustedHttpClientImpl;
-import com.capestartproject.common.serviceregistry.api.ServiceRegistry;
-import com.capestartproject.common.util.data.Either;
-import com.capestartproject.common.util.data.Function;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.Header;
@@ -34,14 +29,19 @@ import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.lang.management.ManagementFactory;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.security.api.SecurityConstants;
+import com.capestartproject.common.security.api.SecurityService;
+import com.capestartproject.common.security.api.TrustedHttpClient;
+import com.capestartproject.common.security.api.TrustedHttpClientException;
+import com.capestartproject.common.security.api.User;
+import com.capestartproject.common.security.util.HttpResponseWrapper;
+import com.capestartproject.common.security.util.StandAloneTrustedHttpClientImpl;
+import com.capestartproject.common.serviceregistry.api.ServiceRegistry;
+import com.capestartproject.common.util.data.Either;
+import com.capestartproject.common.util.data.Function;
+import com.capestartproject.kernel.http.api.HttpClient;
+import com.capestartproject.kernel.http.impl.HttpClientFactory;
 
 /**
  * An http client that executes secure (though not necessarily encrypted) http requests.
@@ -54,25 +54,25 @@ public class TrustedHttpClientImpl implements TrustedHttpClient, HttpConnectionM
   private static final Logger logger = LoggerFactory.getLogger(TrustedHttpClientImpl.class);
 
   /** The configuration property specifying the digest authentication user */
-  public static final String DIGEST_AUTH_USER_KEY = "com.capestartproject.security.digest.user";
+  public static final String DIGEST_AUTH_USER_KEY = "com.capehub.security.digest.user";
 
   /** The configuration property specifying the digest authentication password */
-  public static final String DIGEST_AUTH_PASS_KEY = "com.capestartproject.security.digest.pass";
+  public static final String DIGEST_AUTH_PASS_KEY = "com.capehub.security.digest.pass";
 
   /** The configuration property specifying the number of times to retry after the nonce timesouts on a request. */
-  public static final String NONCE_TIMEOUT_RETRY_KEY = "com.capestartproject.security.digest.nonce.retries";
+  public static final String NONCE_TIMEOUT_RETRY_KEY = "com.capehub.security.digest.nonce.retries";
 
   /**
    * The configuration property specifying the minimum amount of time in seconds wait before retrying a request after a
    * nonce timeout.
    */
-  public static final String NONCE_TIMEOUT_RETRY_BASE_TIME_KEY = "com.capestartproject.security.digest.nonce.base.time";
+  public static final String NONCE_TIMEOUT_RETRY_BASE_TIME_KEY = "com.capehub.security.digest.nonce.base.time";
 
   /**
    * The configuration property specifying the maximum for a random amount of time in seconds above the base time to
    * wait.
    */
-  public static final String NONCE_TIMEOUT_RETRY_MAXIMUM_VARIABLE_TIME_KEY = "com.capestartproject.security.digest.nonce.variable.time";
+  public static final String NONCE_TIMEOUT_RETRY_MAXIMUM_VARIABLE_TIME_KEY = "com.capehub.security.digest.nonce.variable.time";
 
   /** The default time until a connection attempt fails */
   public static final int DEFAULT_CONNECTION_TIMEOUT = 60 * 1000;

@@ -3,7 +3,7 @@
 
   <scr:component name="com.capestartproject.kernel.security.OrganizationDirectoryServiceImpl" immediate="true">
     <implementation class="com.capestartproject.kernel.security.OrganizationDirectoryServiceImpl" />
-    <property name="service.pid" value="com.capestartproject.common.organization" />
+    <property name="service.pid" value="com.capestartproject.organization" />
     <property name="service.description" value="Organization Directory Service" />
     <service>
       <provide interface="com.capestartproject.common.security.api.OrganizationDirectoryService" />
@@ -18,7 +18,7 @@
   <scr:component name="com.capestartproject.kernel.security.OrganizationEndpoint" immediate="true">
     <implementation class="com.capestartproject.kernel.security.OrganizationEndpoint" />
     <property name="service.description" value="Organization listing REST endpoint" />
-    <property name="capestart.service.type" value="com.capestartproject.common.organization" />
+    <property name="capestart.service.type" value="com.capestartproject.organization" />
     <property name="capestart.service.path" value="/org" />
     <property name="capestart.service.jobproducer" value="false" />
     <service>
