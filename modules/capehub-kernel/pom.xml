@@ -53,11 +53,6 @@
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-bundle-jaxrs</artifactId>
     </dependency>
-    
-    <dependency>
-      <groupId>com.googlecode.json-simple</groupId>
-      <artifactId>json-simple</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
@@ -97,16 +92,6 @@
     </dependency>
     
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-bundle-jaxrs</artifactId>
-    </dependency>
-    
-    <dependency>
       <groupId>org.sakaiproject.nakamura</groupId>
       <artifactId>javax.activation-mail</artifactId>
       <version>1.1.1.1.4.2-1.4.2</version>
@@ -130,18 +115,6 @@
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>javax.persistence</artifactId>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.jboss.security</groupId>
-      <artifactId>jboss-xacml</artifactId>
-      <version>2.0.5.final</version>
-      <exclusions>
-        <exclusion>
-          <groupId>apache-xerces</groupId>
-          <artifactId>xml-apis</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     
     <dependency>
@@ -324,6 +297,7 @@
               com.capestartproject.kernel.security;version=${project.version},
               com.capestartproject.kernel.security.persistence;version=${project.version},
               com.capestartproject.kernel.userdirectory;version=${project.version},
+              com.capestartproject.kernel.bundleinfo;version=${project.version},
               org.springframework.security.oauth;version=1.0.0.M1,
               org.springframework.security.oauth.common;version=1.0.0.M1,
               org.springframework.security.oauth.config;version=1.0.0.M1,
@@ -332,6 +306,7 @@
               org.springframework.security.oauth.provider.token;version=1.0.0.M1
             </Export-Package>
             <Service-Component>
+              OSGI-INF/bundle-info.xml,
               OSGI-INF/cleansessions.xml,
               OSGI-INF/http-client-factory.xml,
               OSGI-INF/http-client.xml,

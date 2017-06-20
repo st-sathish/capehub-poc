@@ -1,13 +1,5 @@
 package com.capestartproject.kernel.security.persistence;
 
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.security.api.SecurityService;
-import com.capestartproject.common.util.NotFoundException;
-
-import org.osgi.service.component.ComponentContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +9,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.spi.PersistenceProvider;
+
+import org.osgi.service.component.ComponentContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.security.api.SecurityService;
+import com.capestartproject.common.util.NotFoundException;
 
 /**
  * Implements {@link OrganizationDatabase}. Defines permanent storage for series.
@@ -45,7 +45,12 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
    */
   public void activate(ComponentContext cc) {
     logger.info("Activating persistence manager for kernel");
-    emf = persistenceProvider.createEntityManagerFactory("com.capestartproject.kernel", persistenceProperties);
+		try {
+			emf = persistenceProvider.createEntityManagerFactory("com.capestartproject.kernel", persistenceProperties);
+			logger.info("Kernel Entity manager factory created");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
   }
 
   /**

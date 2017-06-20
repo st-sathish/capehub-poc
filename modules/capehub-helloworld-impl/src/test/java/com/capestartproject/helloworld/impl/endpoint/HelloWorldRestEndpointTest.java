@@ -1,13 +1,13 @@
-package com.capehub.helloworld.impl.endpoint;
+package com.capestartproject.helloworld.impl.endpoint;
 
-import com.capehub.helloworld.api.HelloWorldService;
-import com.capehub.helloworld.impl.HelloWorldServiceImpl;
+import javax.ws.rs.core.Response;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.ws.rs.core.Response;
+import com.capestartproject.helloworld.api.HelloWorldService;
+import com.capestartproject.helloworld.impl.HelloWorldServiceImpl;
 
 /**
  * Test class for Hello World Tutorial

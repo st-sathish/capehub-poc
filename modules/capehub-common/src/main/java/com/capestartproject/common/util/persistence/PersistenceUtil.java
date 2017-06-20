@@ -1,21 +1,11 @@
 package com.capestartproject.common.util.persistence;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.capestartproject.common.fn.juc.Immutables;
-import com.capestartproject.common.util.data.Either;
-import com.capestartproject.common.util.data.Function;
-import com.capestartproject.common.util.data.Option;
-import com.capestartproject.common.util.data.Tuple;
-import org.osgi.service.component.ComponentContext;
+import static com.capestartproject.common.util.data.Monadics.mlist;
+import static com.capestartproject.common.util.data.Option.none;
+import static com.capestartproject.common.util.data.Option.option;
+import static com.capestartproject.common.util.data.Option.some;
+import static com.capestartproject.common.util.data.Tuple.tuple;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.Query;
-import javax.persistence.TemporalType;
-import javax.persistence.spi.PersistenceProvider;
-import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,11 +15,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.capestartproject.common.util.data.Monadics.mlist;
-import static com.capestartproject.common.util.data.Option.none;
-import static com.capestartproject.common.util.data.Option.option;
-import static com.capestartproject.common.util.data.Option.some;
-import static com.capestartproject.common.util.data.Tuple.tuple;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import javax.persistence.spi.PersistenceProvider;
+import javax.sql.DataSource;
+
+import org.osgi.service.component.ComponentContext;
+
+import com.capestartproject.common.fn.juc.Immutables;
+import com.capestartproject.common.util.data.Either;
+import com.capestartproject.common.util.data.Function;
+import com.capestartproject.common.util.data.Option;
+import com.capestartproject.common.util.data.Tuple;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 /** Functions supporting persistence. */
 
 /**
@@ -388,8 +390,7 @@ public final class PersistenceUtil {
             "Auto",
             "org.h2.Driver",
             "jdbc:h2:./target/db" + System.currentTimeMillis(),
-            "sa",
-            "sa",
+				"capehub", "capehub",
             Immutables.map(tuple("eclipselink.ddl-generation", "create-tables"),
                            tuple("eclipselink.ddl-generation.output-mode", "database")),
             testPersistenceProvider());

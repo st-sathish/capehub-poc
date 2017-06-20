@@ -1,14 +1,11 @@
 package com.capestartproject.kernel.bundleinfo;
 
-import static com.capestartproject.kernel.bundleinfo.BundleInfoImpl.bundleInfo;
 import static com.capestartproject.common.util.data.Collections.toArray;
 import static com.capestartproject.common.util.data.Monadics.mlist;
 import static com.capestartproject.common.util.data.Option.option;
 import static com.capestartproject.common.util.data.Tuple.tuple;
 import static com.capestartproject.common.util.persistence.Queries.named;
-
-import com.capestartproject.common.util.data.Effect;
-import com.capestartproject.common.util.data.Function;
+import static com.capestartproject.kernel.bundleinfo.BundleInfoImpl.bundleInfo;
 
 import java.util.List;
 
@@ -27,9 +24,12 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.capestartproject.common.util.data.Effect;
+import com.capestartproject.common.util.data.Function;
+
 @Entity(name = "BundleInfo")
-@Table(name = "ch_bundleinfo", uniqueConstraints = { @UniqueConstraint(columnNames = { "host", "bundle_name",
-        "bundle_version" }) })
+@Table(name = "ch_bundleinfo", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "host", "bundle_name", "bundle_version" }) })
 @NamedQueries({
         @NamedQuery(name = "BundleInfo.findAll", query = "select a from BundleInfo a order by a.host, a.bundleSymbolicName"),
         @NamedQuery(name = "BundleInfo.findAllMh", query = "select a from BundleInfo a where a.bundleSymbolicName like 'capehub-%' order by a.host, a.bundleSymbolicName"),

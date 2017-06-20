@@ -10,3 +10,4 @@ target/
 work/
 capehub/**
 logs/
+.checkstyle

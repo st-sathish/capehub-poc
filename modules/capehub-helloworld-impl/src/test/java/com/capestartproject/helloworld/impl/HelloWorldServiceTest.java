@@ -1,11 +1,10 @@
-package com.capehub.helloworld.impl;
-
-import com.capehub.helloworld.api.HelloWorldService;
+package com.capestartproject.helloworld.impl;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.capestartproject.helloworld.api.HelloWorldService;
 /**
  * Test class for Hello World Tutorial
  */

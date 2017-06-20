@@ -25,7 +25,7 @@ public class BundleInfoImpl implements BundleInfo {
   }
 
   public static BundleInfo bundleInfo(String host, String bundleSymbolicName, long bundleId, String bundleVersion,
-          Option<String> buildNumber) {
+			Option<String> buildNumber) {
     return new BundleInfoImpl(host, bundleSymbolicName, bundleId, bundleVersion, buildNumber, none(""));
   }
 

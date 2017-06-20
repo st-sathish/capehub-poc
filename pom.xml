@@ -61,13 +61,13 @@
     </testResources>
     <!-- This defines what plugins run on a global basis.  Plugins defined here run for all child poms without needing to reference them from the child pom.  Note that configuration data goes in the pluginManagement stanza below -->
     <plugins>
-      <!-- Require Java 6 or higher for building -->
+      <!-- Require Java 7 or higher for building -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
@@ -389,37 +389,6 @@
 	        <artifactId>cxf-bundle-jaxrs</artifactId>
 	        <version>2.2.9</version>
 	      </dependency>
-
-	     <!-- JPA -->
-      <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>org.eclipse.persistence.core</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>org.eclipse.persistence.jpa</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>org.eclipse.persistence.asm</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>org.eclipse.persistence.antlr</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>javax.persistence</artifactId>
-        <version>2.0.3</version>
-      </dependency>
 
       <!-- Spring -->
       <dependency>

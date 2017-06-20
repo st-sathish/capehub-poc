@@ -18,9 +18,9 @@
   <scr:component name="com.capestartproject.kernel.security.OrganizationEndpoint" immediate="true">
     <implementation class="com.capestartproject.kernel.security.OrganizationEndpoint" />
     <property name="service.description" value="Organization listing REST endpoint" />
-    <property name="capestart.service.type" value="com.capestartproject.organization" />
-    <property name="capestart.service.path" value="/org" />
-    <property name="capestart.service.jobproducer" value="false" />
+    <property name="capehub.service.type" value="com.capestartproject.organization" />
+    <property name="capehub.service.path" value="/org" />
+    <property name="capehub.service.jobproducer" value="false" />
     <service>
       <provide interface="com.capestartproject.kernel.security.OrganizationEndpoint" />
     </service>

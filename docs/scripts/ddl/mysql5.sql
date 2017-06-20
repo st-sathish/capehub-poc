@@ -1,3 +1,15 @@
+CREATE TABLE ch_bundleinfo (
+  id BIGINT(20) NOT NULL,
+  bundle_name VARCHAR(128) NOT NULL,
+  build_number VARCHAR(128) DEFAULT NULL,
+  host VARCHAR(128) NOT NULL,
+  bundle_id BIGINT(20) NOT NULL,
+  bundle_version VARCHAR(128) NOT NULL,
+  db_schema_version VARCHAR(128) DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT UNQ_ch_bundleinfo UNIQUE (host, bundle_name, bundle_version)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE ch_organization (
   id VARCHAR(128) NOT NULL,
   anonymous_role VARCHAR(255),
