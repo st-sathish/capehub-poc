@@ -34,7 +34,7 @@ public class OsgiBundleInfoDb extends AbstractBundleInfoDb {
   /** OSGi callback */
   public void activate() {
 		penv = persistenceEnvironment(persistenceProvider, PERSISTENCE_UNIT, persistenceProperties);
-		logger.info("Activated persistence environment");
+		logger.info("Activated persistence environment {}", penv);
   }
 
   public void deactivate() {

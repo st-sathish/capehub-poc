@@ -1,7 +1,7 @@
 package com.capestartproject.kernel.security.persistence;
 
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.util.EqualsUtil;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -15,8 +15,9 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import java.util.HashMap;
-import java.util.Map;
+
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.util.EqualsUtil;
 
 /**
  * JPA-annotated organization object.
@@ -123,17 +124,17 @@ public class JpaOrganization implements Organization {
     this.properties = properties;
   }
 
-  /**
-   * @see org.opencastproject.security.api.Organization#getId()
-   */
+  	/**
+	 * @see com.capestartproject.security.api.Organization#getId()
+	 */
   @Override
   public String getId() {
     return id;
   }
 
-  /**
-   * @see org.opencastproject.security.api.Organization#getAnonymousRole()
-   */
+  	/**
+	 * @see com.capestartproject.security.api.Organization#getAnonymousRole()
+	 */
   public String getAnonymousRole() {
     return anonymousRole;
   }
@@ -142,9 +143,9 @@ public class JpaOrganization implements Organization {
     this.anonymousRole = anonymousRole;
   }
 
-  /**
-   * @see org.opencastproject.security.api.Organization#getAdminRole()
-   */
+  	/**
+	 * @see com.capestartproject.security.api.Organization#getAdminRole()
+	 */
   public String getAdminRole() {
     return adminRole;
   }
@@ -164,9 +165,9 @@ public class JpaOrganization implements Organization {
     this.name = name;
   }
 
-  /**
-   * @see org.opencastproject.security.api.Organization#getProperties()
-   */
+  	/**
+	 * @see com.capestartproject.security.api.Organization#getProperties()
+	 */
   public Map<String, String> getProperties() {
     return properties;
   }
@@ -175,9 +176,9 @@ public class JpaOrganization implements Organization {
     this.properties = properties;
   }
 
-  /**
-   * @see org.opencastproject.security.api.Organization#getServers()
-   */
+  	/**
+	 * @see com.capestartproject.security.api.Organization#getServers()
+	 */
   @Override
   public Map<String, Integer> getServers() {
     return servers;

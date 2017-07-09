@@ -1,11 +1,5 @@
 package com.capestartproject.kernel.security;
 
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.security.api.SecurityService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.security.api.SecurityService;
 
 /**
  * A servlet filter that delegates to the appropriate spring filter chain

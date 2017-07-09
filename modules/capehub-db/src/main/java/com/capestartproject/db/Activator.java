@@ -1,8 +1,15 @@
 
 package com.capestartproject.db;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.DataSources;
+import java.io.File;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.Map;
+
+import javax.sql.DataSource;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
@@ -15,15 +22,8 @@ import org.osgi.framework.ServiceRegistration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Map;
-
-import javax.sql.DataSource;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.mchange.v2.c3p0.DataSources;
 
 /**
  * Registers shared persistence properties as a map. This allows bundles using JPA to obtain persistence properties
@@ -70,8 +70,8 @@ public class Activator implements BundleActivator {
             "org.h2.Driver");
     String jdbcUrl = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.url"), "jdbc:h2:"
             + rootDir);
-    String jdbcUser = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.user"), "capehub");
-    String jdbcPass = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.pass"), "capehub");
+		String jdbcUser = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.user"), "ch");
+		String jdbcPass = getConfigProperty(bundleContext.getProperty("com.capehub.db.jdbc.pass"), "ch");
     pooledDataSource = new ComboPooledDataSource();
     pooledDataSource.setDriverClass(jdbcDriver);
     pooledDataSource.setJdbcUrl(jdbcUrl);
@@ -146,8 +146,8 @@ public class Activator implements BundleActivator {
      */
     @Override
     public void bundleChanged(BundleEvent event) {
-      if (event.getType() != BundleEvent.UPDATED)
-        return;
+			if (event.getType() != BundleEvent.UPDATED)
+				return;
       Bundle updatedBundle = event.getBundle();
       if (updatedBundle.getEntry("/META-INF/persistence.xml") == null)
         return;

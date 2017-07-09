@@ -1,15 +1,15 @@
 
 package com.capestartproject.kernel.security;
 
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 
 /**
  * An {@link AuthenticationEntryPoint} that delegates to a default implementation unless a "X-Requested-Auth" header

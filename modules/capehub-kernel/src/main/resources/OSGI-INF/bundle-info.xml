@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0">
-  <scr:component name="com.capestartproject.kernel.bundleinfo.BundleInfoLogger"
+  <!-- <scr:component name="com.capestartproject.kernel.bundleinfo.BundleInfoLogger"
                  activate="activate" deactivate="deactivate"
                  immediate="true">
     <implementation class="com.capestartproject.kernel.bundleinfo.BundleInfoLogger" />
@@ -10,7 +10,7 @@
                policy="static"
                bind="setDb"
                unbind="unsetDb" />
-  </scr:component>
+  </scr:component> -->
 
   <scr:component name="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoDb" activate="activate" immediate="true" deactivate="deactivate">
     <implementation class="com.capestartproject.kernel.bundleinfo.OsgiBundleInfoDb" />

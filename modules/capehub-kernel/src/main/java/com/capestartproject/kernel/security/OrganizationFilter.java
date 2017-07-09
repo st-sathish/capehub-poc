@@ -1,13 +1,5 @@
 package com.capestartproject.kernel.security;
 
-import com.capestartproject.common.security.api.Organization;
-import com.capestartproject.common.security.api.OrganizationDirectoryService;
-import com.capestartproject.common.security.api.SecurityService;
-import com.capestartproject.common.util.NotFoundException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -20,6 +12,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.capestartproject.common.security.api.Organization;
+import com.capestartproject.common.security.api.OrganizationDirectoryService;
+import com.capestartproject.common.security.api.SecurityService;
+import com.capestartproject.common.util.NotFoundException;
 
 /**
  * Inspects request URLs and sets the organization for the request.

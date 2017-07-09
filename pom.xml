@@ -25,9 +25,7 @@
     	<commons-compress.version>1.12</commons-compress.version>
 	    <httpcomponents-httpcore.version>4.4.1</httpcomponents-httpcore.version>
 	    <httpcomponents-httpclient.version>4.5</httpcomponents-httpclient.version>
-	    <osgi.compendium.version>5.0.0</osgi.compendium.version>
-	    <osgi.core.version>6.0.0</osgi.core.version>
-	    <osgi.enterprise.version>6.0.0</osgi.enterprise.version>
+	    <eclipselink.version>2.6.4</eclipselink.version>
 	    <jackson.version>2.7.0</jackson.version>
   	</properties>
 
@@ -342,7 +340,7 @@
 	      <dependency>
 	        <groupId>org.apache.felix</groupId>
 	        <artifactId>org.apache.felix.fileinstall</artifactId>
-	        <version>3.5.4</version>
+	        <version>3.1.10</version>
 	      </dependency>
 	
 	      <dependency>

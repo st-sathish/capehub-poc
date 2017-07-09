@@ -2,9 +2,6 @@ package com.capestartproject.kernel.rest;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -21,6 +18,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Adds padding to json responses when the 'jsonp' parameter is specified.
@@ -80,7 +80,6 @@ public class JsonpFilter implements Filter {
   @Override
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException,
           ServletException {
-
     // Cast the request and response to HTTP versions
     HttpServletRequest request = (HttpServletRequest) req;
 
@@ -88,7 +87,7 @@ public class JsonpFilter implements Filter {
     String callbackValue = request.getParameter(CALLBACK_PARAM);
     if (callbackValue == null || callbackValue.isEmpty()) {
       logger.debug("No json padding requested from {}", request);
-      chain.doFilter(request, resp);
+			chain.doFilter(request, resp);
     } else {
       logger.debug("Json padding '{}' requested from {}", callbackValue, request);
 

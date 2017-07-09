@@ -2,12 +2,6 @@ package com.capestartproject.kernel.security;
 
 import static com.capestartproject.kernel.security.DelegatingAuthenticationEntryPoint.INITIAL_REQUEST_PATH;
 
-import com.capestartproject.common.security.api.Role;
-import com.capestartproject.common.security.api.SecurityService;
-import com.capestartproject.common.security.api.User;
-
-import org.springframework.security.core.Authentication;
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -15,6 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.security.core.Authentication;
+
+import com.capestartproject.common.security.api.Role;
+import com.capestartproject.common.security.api.SecurityService;
+import com.capestartproject.common.security.api.User;
 
 /**
  * Sends authenticated users to one of the configured welcome pages after login.

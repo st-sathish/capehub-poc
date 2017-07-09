@@ -76,7 +76,7 @@
     <sec:request-cache ref="requestCache" />
 
     <!-- If any URLs are to be exposed to anonymous users, the "sec:anonymous" filter must be present -->
-    <sec:anonymous enabled="false" />
+    <sec:anonymous enabled="true" />
 
     <!-- Enables log out -->
     <sec:logout />

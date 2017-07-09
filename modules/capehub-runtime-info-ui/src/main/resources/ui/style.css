@@ -232,11 +232,10 @@ a:hover {
 #middlebanner ul,
 #middlebanner2 ul,
 #middlebanner3 ul {
-	/*list-style-image:url(/admin/img/bullet_white.png);*/
 	padding: 0 0 16px 16px;
 }
 #bottombanner ul {
-	list-style-image:url(/admin/img/icons/bullet-arrow.png);
+	/* list-style-image:url(/admin/img/icons/bullet-arrow.png); */
 	padding: 0 0 16px 16px;
 	margin-bottom:0
 }

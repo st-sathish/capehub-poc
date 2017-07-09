@@ -12,7 +12,7 @@
   </parent>
   
   <properties>
-    <matterhorn.basedir>${project.basedir}/../..</matterhorn.basedir>
+    <capehub.basedir>${project.basedir}/../..</capehub.basedir>
     <checkstyle.skip>true</checkstyle.skip>
   </properties>
   

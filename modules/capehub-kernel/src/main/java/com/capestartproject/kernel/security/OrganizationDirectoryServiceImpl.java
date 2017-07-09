@@ -73,15 +73,16 @@ public class OrganizationDirectoryServiceImpl implements OrganizationDirectorySe
    */
   private final Organization defaultOrganization = new DefaultOrganization();
 
-  /**
-   * The list of organizations to handle later. This is a hack needed by the capture agent implementation see MH-9363
-   */
+  	/**
+	 * The list of organizations to handle later.
+	 */
   private final Map<String, Dictionary> unhandledOrganizations = new HashMap<String, Dictionary>();
 
   private OrgCache cache;
 
   /** OSGi DI */
   public void setOrgPersistence(OrganizationDatabase setOrgPersistence) {
+		logger.debug("setOrgPersistence() {}", setOrgPersistence);
     this.persistence = setOrgPersistence;
     this.cache = new OrgCache(60000, persistence);
     for (Entry<String, Dictionary> entry : unhandledOrganizations.entrySet()) {
@@ -156,7 +157,7 @@ public class OrganizationDirectoryServiceImpl implements OrganizationDirectorySe
     return PID;
   }
 
-  @Override
+	@Override
   @SuppressWarnings("rawtypes")
   public void updated(String pid, Dictionary properties) throws ConfigurationException {
     if (persistence == null) {
@@ -193,25 +194,25 @@ public class OrganizationDirectoryServiceImpl implements OrganizationDirectorySe
     }
 
     // Load the existing organization or create a new one
-    try {
-      JpaOrganization org;
-      try {
-        org = (JpaOrganization) persistence.getOrganization(id);
-        org.setName(name);
-        org.addServer(server, port);
-        org.setAdminRole(adminRole);
-        org.setAnonymousRole(anonRole);
-        org.setProperties(orgProperties);
-        logger.info("Registering organization '{}'", id);
-      } catch (NotFoundException e) {
-        org = new JpaOrganization(id, name, server, port, adminRole, anonRole, orgProperties);
-        logger.info("Updating organization '{}'", id);
-      }
-      persistence.storeOrganization(org);
-      cache.invalidate();
-    } catch (OrganizationDatabaseException e) {
-      logger.error("Unable to register organization '{}': {}", id, e);
-    }
+		try {
+			JpaOrganization org;
+			try {
+				org = (JpaOrganization) persistence.getOrganization(id);
+				org.setName(name);
+				org.addServer(server, port);
+				org.setAdminRole(adminRole);
+				org.setAnonymousRole(anonRole);
+				org.setProperties(orgProperties);
+				logger.info("Registering organization '{}'", id);
+			} catch (NotFoundException e) {
+				org = new JpaOrganization(id, name, server, port, adminRole, anonRole, orgProperties);
+				logger.info("Updating organization '{}'", id);
+			}
+			persistence.storeOrganization(org);
+			cache.invalidate();
+		} catch (OrganizationDatabaseException e) {
+			logger.error("Unable to register organization '{}': {}", id, e);
+		}
   }
 
   @Override

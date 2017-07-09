@@ -47,6 +47,7 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
     logger.info("Activating persistence manager for kernel");
 		try {
 			emf = persistenceProvider.createEntityManagerFactory("com.capestartproject.kernel", persistenceProperties);
+			logger.debug("Kernel Entity manager factory created {}", emf);
 			logger.info("Kernel Entity manager factory created");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +93,9 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
     this.securityService = securityService;
   }
 
-  /**
-   * @see org.opencastproject.kernel.security.persistence.OrganizationDatabase#deleteOrganization(java.lang.String)
-   */
+  	/**
+	 * @see com.capestartproject.kernel.security.persistence.OrganizationDatabase#deleteOrganization(java.lang.String)
+	 */
   @Override
   public void deleteOrganization(String orgId) throws OrganizationDatabaseException, NotFoundException {
     EntityManager em = null;
@@ -123,9 +124,9 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
     }
   }
 
-  /**
-   * @see org.opencastproject.kernel.security.persistence.OrganizationDatabase#storeOrganization(org.opencastproject.security.api.Organization)
-   */
+  	/**
+	 * @see com.capestartproject.kernel.security.persistence.OrganizationDatabase#storeOrganization(org.opencastproject.security.api.Organization)
+	 */
   @Override
   public void storeOrganization(Organization org) throws OrganizationDatabaseException {
     EntityManager em = null;
@@ -163,13 +164,14 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
     }
   }
 
-  /**
-   * @see org.opencastproject.kernel.security.persistence.OrganizationDatabase#getOrganization(java.lang.String)
-   */
+  	/**
+	 * @see com.capestartproject.kernel.security.persistence.OrganizationDatabase#getOrganization(java.lang.String)
+	 */
   @Override
   public Organization getOrganization(String id) throws NotFoundException, OrganizationDatabaseException {
     EntityManager em = null;
     try {
+			logger.debug("getOrganization() entity manager factory created {}", emf);
       em = emf.createEntityManager();
       JpaOrganization entity = getOrganizationEntity(id, em);
       if (entity == null)
@@ -181,9 +183,9 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
     }
   }
 
-  /**
-   * @see org.opencastproject.kernel.security.persistence.OrganizationDatabase#countOrganizations()
-   */
+  	/**
+	 * @see com.capestartproject.kernel.security.persistence.OrganizationDatabase#countOrganizations()
+	 */
   @Override
   public int countOrganizations() throws OrganizationDatabaseException {
     EntityManager em = null;
@@ -240,9 +242,9 @@ public class OrganizationDatabaseImpl implements OrganizationDatabase {
     }
   }
 
-  /**
-   * @see org.opencastproject.kernel.security.persistence.OrganizationDatabase#containsOrganization(String)
-   */
+  	/**
+	 * @see com.capestartproject.kernel.security.persistence.OrganizationDatabase#containsOrganization(String)
+	 */
   @Override
   public boolean containsOrganization(String orgId) throws OrganizationDatabaseException {
     EntityManager em = null;
