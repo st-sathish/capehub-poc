@@ -1,19 +1,19 @@
 package com.capestartproject.common.security.api;
 
-import com.capestartproject.common.util.EqualsUtil;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.capestartproject.common.util.EqualsUtil;
+
 /**
  * A simple user model.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "role", namespace = "http://com.capestartproject.security")
-@XmlRootElement(name = "role", namespace = "http://com.capestartproject.security")
+@XmlType(name = "role", namespace = "http://com.capestart.security")
+@XmlRootElement(name = "role", namespace = "http://com.capestart.security")
 public final class JaxbRole implements Role {
 
   /** The role name */

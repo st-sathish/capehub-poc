@@ -2,6 +2,19 @@ package com.capestartproject.kernel.userdirectory;
 
 import static com.capestartproject.common.security.api.SecurityConstants.GLOBAL_ADMIN_ROLE;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+import org.osgi.service.component.ComponentContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.capestartproject.common.security.api.JaxbOrganization;
 import com.capestartproject.common.security.api.JaxbRole;
 import com.capestartproject.common.security.api.JaxbUser;
@@ -14,19 +27,6 @@ import com.capestartproject.common.security.api.User;
 import com.capestartproject.common.security.api.UserProvider;
 import com.capestartproject.common.util.PasswordEncoder;
 
-import org.apache.commons.lang.StringUtils;
-import org.osgi.service.component.ComponentContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
-
 /**
  * An in-memory user directory containing the users and roles used by the system.
  */
@@ -35,8 +35,8 @@ public class InMemoryUserAndRoleProvider implements UserProvider, RoleProvider {
   /** The logger */
   private static final Logger logger = LoggerFactory.getLogger(InMemoryUserAndRoleProvider.class);
 
-  /** The roles associated with the matterhorn system account */
-  public static final String[] MH_SYSTEM_ROLES = new String[] { GLOBAL_ADMIN_ROLE };
+	/** The roles associated with the capestart system account */
+	public static final String[] CS_SYSTEM_ROLES = new String[] { GLOBAL_ADMIN_ROLE };
 
   protected OrganizationDirectoryService orgDirectoryService;
 
@@ -75,14 +75,14 @@ public class InMemoryUserAndRoleProvider implements UserProvider, RoleProvider {
    *          the declarative services component context
    */
   protected void activate(ComponentContext cc) {
-    digestUsername = cc.getBundleContext().getProperty("org.opencastproject.security.digest.user");
-    digestUserPass = cc.getBundleContext().getProperty("org.opencastproject.security.digest.pass");
+		digestUsername = cc.getBundleContext().getProperty("com.capehub.security.digest.user");
+		digestUserPass = cc.getBundleContext().getProperty("com.capehub.security.digest.pass");
     adminUsername = StringUtils
-            .trimToNull(cc.getBundleContext().getProperty("org.opencastproject.security.admin.user"));
+				.trimToNull(cc.getBundleContext().getProperty("com.capehub.security.admin.user"));
     adminUserPass = StringUtils
-            .trimToNull(cc.getBundleContext().getProperty("org.opencastproject.security.admin.pass"));
+				.trimToNull(cc.getBundleContext().getProperty("com.capehub.security.admin.pass"));
     adminUserRoles = StringUtils.trimToNull(cc.getBundleContext().getProperty(
-            "org.opencastproject.security.admin.roles"));
+				"com.capehub.security.admin.roles"));
   }
 
   private List<User> getAdminUsers(Organization org) {
@@ -96,7 +96,7 @@ public class InMemoryUserAndRoleProvider implements UserProvider, RoleProvider {
     Set<JaxbRole> roleList = new HashSet<JaxbRole>();
     roleList.add(orgAdminRole);
     roleList.add(orgAnonymousRole);
-    for (String roleName : MH_SYSTEM_ROLES) {
+		for (String roleName : CS_SYSTEM_ROLES) {
       roleList.add(new JaxbRole(roleName, organization));
     }
 
@@ -128,11 +128,11 @@ public class InMemoryUserAndRoleProvider implements UserProvider, RoleProvider {
     return getAdminUsers(securityService.getOrganization()).iterator();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.security.api.RoleProvider#getRoles()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestart.security.api.RoleProvider#getRoles()
+	 */
   @Override
   public Iterator<Role> getRoles() {
     Set<Role> roles = new HashSet<Role>();
@@ -142,11 +142,11 @@ public class InMemoryUserAndRoleProvider implements UserProvider, RoleProvider {
     return roles.iterator();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.security.api.UserProvider#loadUser(java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestart.security.api.UserProvider#loadUser(java.lang.String)
+	 */
   @Override
   public User loadUser(String userName) {
     for (User user : getAdminUsers(securityService.getOrganization())) {
@@ -166,21 +166,21 @@ public class InMemoryUserAndRoleProvider implements UserProvider, RoleProvider {
     return getClass().getName();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.security.api.UserProvider#getOrganization()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestart.security.api.UserProvider#getOrganization()
+	 */
   @Override
   public String getOrganization() {
     return ALL_ORGANIZATIONS;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.security.api.RoleProvider#getRolesForUser(String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestart.security.api.RoleProvider#getRolesForUser(String)
+	 */
   @Override
   public List<Role> getRolesForUser(String userName) {
     return Collections.emptyList();

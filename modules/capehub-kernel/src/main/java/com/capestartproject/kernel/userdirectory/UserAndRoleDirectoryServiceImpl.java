@@ -3,6 +3,23 @@ package com.capestartproject.kernel.userdirectory;
 import static com.capestartproject.common.security.api.UserProvider.ALL_ORGANIZATIONS;
 import static com.capestartproject.common.util.data.Tuple.tuple;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.collections.IteratorUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import com.capestartproject.common.security.api.JaxbOrganization;
 import com.capestartproject.common.security.api.JaxbRole;
 import com.capestartproject.common.security.api.JaxbUser;
@@ -16,25 +33,7 @@ import com.capestartproject.common.security.api.UserDirectoryService;
 import com.capestartproject.common.security.api.UserProvider;
 import com.capestartproject.common.util.data.Function;
 import com.capestartproject.common.util.data.Tuple;
-
 import com.google.common.collect.MapMaker;
-
-import org.apache.commons.collections.IteratorUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Federates user and role providers, and exposes a spring UserDetailsService so user lookups can be used by spring
@@ -118,7 +117,7 @@ public class UserAndRoleDirectoryServiceImpl implements UserDirectoryService, Us
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.UserDirectoryService#getUsers()
+   * @see com.capestart.security.api.UserDirectoryService#getUsers()
    */
   @Override
   @SuppressWarnings("unchecked")
@@ -143,7 +142,7 @@ public class UserAndRoleDirectoryServiceImpl implements UserDirectoryService, Us
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.RoleDirectoryService#getRoles()
+   * @see com.capestart.security.api.RoleDirectoryService#getRoles()
    */
   @Override
   @SuppressWarnings("unchecked")
@@ -165,7 +164,7 @@ public class UserAndRoleDirectoryServiceImpl implements UserDirectoryService, Us
   /**
    * {@inheritDoc}
    *
-   * @see org.opencastproject.security.api.UserDirectoryService#loadUser(java.lang.String)
+   * @see com.capestart.security.api.UserDirectoryService#loadUser(java.lang.String)
    */
   @Override
   public User loadUser(String userName) throws IllegalStateException {
