@@ -56,7 +56,7 @@ public class RuntimeInfo {
 
   /** Configuration properties id */
   private static final String ADMIN_URL_PROPERTY = "com.capehub.admin.ui.url";
-  private static final String ENGAGE_URL_PROPERTY = "com.capehub.engage.ui.url";
+	private static final String USER_URL_PROPERTY = "com.capehub.engage.ui.url";
 
   /**
    * The rest publisher looks for any non-servlet with the 'capestart.service.path' property
@@ -102,21 +102,21 @@ public class RuntimeInfo {
     String targetScheme = request.getScheme();
 
     // Create the engage target URL
-    URL targetEngageBaseUrl = null;
-    String orgEngageBaseUrl = organization.getProperties().get(ENGAGE_URL_PROPERTY);
+		URL targetUserBaseUrl = null;
+		String orgEngageBaseUrl = organization.getProperties().get(USER_URL_PROPERTY);
     if (StringUtils.isNotBlank(orgEngageBaseUrl)) {
       try {
-        targetEngageBaseUrl = new URL(orgEngageBaseUrl);
+				targetUserBaseUrl = new URL(orgEngageBaseUrl);
       } catch (MalformedURLException e) {
         logger.warn("Engage url '{}' of organization '{}' is malformed", orgEngageBaseUrl, organization.getId());
       }
     }
 
-    if (targetEngageBaseUrl == null) {
+		if (targetUserBaseUrl == null) {
       logger.debug(
-              "Using 'org.opencastproject.server.url' as a fallback for the non-existing organization level key '{}' for the components.json response",
-              ENGAGE_URL_PROPERTY);
-      targetEngageBaseUrl = new URL(targetScheme, serverUrl.getHost(), serverUrl.getPort(), serverUrl.getFile());
+					"Using 'com.capestartproject.server.url' as a fallback for the non-existing organization level key '{}' for the components.json response",
+					USER_URL_PROPERTY);
+			targetUserBaseUrl = new URL(targetScheme, serverUrl.getHost(), serverUrl.getPort(), serverUrl.getFile());
     }
 
     // Create the admin target URL
@@ -138,7 +138,7 @@ public class RuntimeInfo {
     }
 
     JSONObject json = new JSONObject();
-    json.put("engage", targetEngageBaseUrl.toString());
+		json.put("user", targetUserBaseUrl.toString());
     json.put("admin", targetAdminBaseUrl.toString());
     json.put("rest", getRestEndpointsAsJson(request));
     json.put("ui", getUserInterfacesAsJson());

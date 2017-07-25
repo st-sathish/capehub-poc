@@ -122,7 +122,7 @@
     <property name="securityService" ref="securityService" />
     <property name="welcomePages">
       <map>
-        <entry key="ROLE_ADMIN" value="/dashboard.html" />
+        <entry key="ROLE_ADMIN" value="/welcome.html" />
         <entry key="ROLE_USER" value="/engage/ui/index.html" />
         <entry key="*" value="/engage/ui/index.html" /> <!-- Any role not listed explicitly will redirect here -->
       </map>

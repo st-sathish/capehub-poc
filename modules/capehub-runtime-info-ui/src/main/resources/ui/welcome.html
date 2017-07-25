@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Capehub Welcome page</title>
+
+    <script type="text/javascript" src="js/jquery/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $.getJSON("/info/components.json", function(data) {
+        $.each(data, function(section) {
+            if("rest" == section) {
+               $.each(data.rest, function(i) {
+                  var col = $('#docs1');
+                  var pathToDocs = data.rest[i].docs.replace(/^.*\/\/[^\/]+/, '');
+                  col.append("<li>" + data.rest[i].description + " <a href='" + pathToDocs + "'>Docs</a></li>");
+               })
+            } else if("user" == section) {
+               $('#userlink').attr('href', data.engage + '/engage/ui');
+            } else if("admin" == section) {
+               $('#adminlink').attr('href', data.admin + '/admin/');
+            }
+          });
+        });
+      });
+    </script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="middlebanner">
+        <div id="col1m">
+          <img src="img/welcome/clock_icon.png" width="70" height="70" />
+          <h2>Administrative Tools</h2>
+          <p>These tools used to manage the Employee, HR, and TimeSheet Management:</p>
+          <ul>
+            <li>Create user and assign their role</li>
+          </ul>
+          <br />
+          <a class="redbutton" id="adminlink">Go to Admin Tools</a>
+        </div>
+        <div id="col2m">
+          <img src="img/welcome/computer_icon.png" width="85" height="59" />
+          <h2>User Tools</h2>
+          <br />
+          <a class="redbutton" id="userlink">Go to User Tools</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

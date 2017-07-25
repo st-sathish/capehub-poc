@@ -208,7 +208,7 @@
             </Service-Component>
             <Http-Alias>/</Http-Alias>
             <Http-Classpath>/ui</Http-Classpath>
-            <Http-Welcome>dashboard.html</Http-Welcome>
+            <Http-Welcome>welcome.html</Http-Welcome>
           </instructions>
         </configuration>
       </plugin>

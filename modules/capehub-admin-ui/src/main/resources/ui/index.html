@@ -4,8 +4,198 @@
     <title>Capehub</title>
     <link rel="shortcut icon" href="/admin/img/favicon.ico" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="/admin/css/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/admin/css/jquery-ui/jquery-ui-admin.css" />
+    <link rel="stylesheet" type="text/css" href="/admin/css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/admin/css/metrics.css" />
+    <!-- media package editor -->
+    <link rel="stylesheet" type="text/css" href="../mediapackage-editor/style/mediapackageeditor.css" />
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="/admin/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery/plugins/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery/plugins/jquery.i18n.properties-min.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.jqote2.js"></script>
+    <script type="text/javascript" src="/admin/js/ext/underscore.min.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.ui.searchbox.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.utils.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.admin.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.address-1.4.min.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
+    <script type="text/javascript" language="javascript" src="/admin/js/js-class.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.xmlns.js"></script>
+        
+    <!-- JMX Metrics -->
+  	<script type="text/javascript" src="/admin/js/json2.js"></script>
+  	<script type="text/javascript" src="/admin/js/jolokia-min.js"></script>
+  	<script type="text/javascript" src="/admin/js/jolokia-simple-min.js"></script>
+  	
+    <!-- media package editor -->
+    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.mpeditor.js"></script>
+    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.boundinput.js"></script>
+    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.statistics.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.scheduler.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.workflow.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.upload.new.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.security.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.episode.acl-manager.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.series.acl-manager.js"></script>
+    <script type="text/javascript" src="/admin/js/oc.users.js"></script>
+
+    <!-- define all possible tabs here -->
+    <script type="text/x-jqote-template" id="tabs-template">
+      <ul id="tabs">
+        <li>
+          <a href="#users" title="Users" id="i18n_tab_users">Users</a>
+        </li>
+        <li>
+          <a href="#security" title="Security" id="i18n_tab_security">Security</a>
+        </li>
+      </ul>
+    </script>
+
+    <script type="text/javascript">
+      var meJsonUrl = "/info/me.json", // path to the RuntimeInfo REST endpoint
+          linkSelector = "#tabsWrapper ul:first a",
+          capehub = " | Capehub",
+          ////
+          // define routing here
+          //
+          routing = {
+            "/upload": {
+              init: function() {
+                ocUpload.init();
+                document.title = "Upload" + matterhorn;
+              },
+              tab: "i18n_tab_recording"
+            },
+            "/users": {
+                init: function() {
+                    document.title = "Users" + matterhorn;
+                    ocUsers.init();
+                  },
+                tab: "i18n_tab_users"
+              },
+            "/security": {
+              init: function() {
+                ocSecurity.init();
+                document.title = "Security" + matterhorn;
+              },
+              tab: "i18n_tab_security"
+            }
+      };
+      
+      // --
+
+      /** Run the init code for the tab corresponding to the current path.
+       *  @param path -- current path
+       *  @param enabledTabIds -- all enabled tabs
+       *  @return the (html) id of the associated main tab
+       */
+      function setupTabFor(path, enabledTabIds) {
+        var mapping = routing[path];
+        if (mapping && ocUtils.contains(enabledTabIds, mapping.tab)) {
+          mapping.init();
+          return mapping.tab;
+        }
+      }
+
+      /** Get a list of all enabled tabs.
+       *  @param $html -- tab html (jQuery object)
+       *  @return deferred([id])
+       */
+      function getEnabledTabs($html) {
+        var deferred = $.Deferred();
+        var allTabIds = $("a", $html).map(function() {return this.id}).toArray();
+        $.getJSON(meJsonUrl, function(data) {
+          var enabledTabIds = _.filter(allTabIds, function(id) {
+            // todo test codejquery remove 
+            var enabled = data.org.properties["adminui." + id + ".enable"];
+            return enabled == "true" || enabled == true || typeof enabled === "undefined";
+          });
+          deferred.resolve(enabledTabIds);
+        });
+        return deferred;
+      }
+
+      /** Remove all tabs not in enabledTabIds from $html.
+       *  @param $html -- tab html (jQuery object)
+       *  @param enabledTabIds -- [id]
+       *  @return html
+       */
+      function removeDisabledTabs($html, enabledTabIds) {
+        $("a", $html).each(function() {
+          if (!ocUtils.contains(enabledTabIds, $(this).attr("id"))) {
+            $(this).remove();
+          }
+        });
+        return $html;
+      }
+
+      /** DOM ready
+       */
+      $(document).ready(function() {
+        var $tabsHtml = $($("#tabs-template").jqote());
+
+        if ($.address.value() == '/') {
+          $.address.value(defaultPath);
+        }
+        var path = $.address.value();
+
+        // Address handler
+        $.address
+            .init(function(event) {
+              getEnabledTabs($tabsHtml).done(function(enabledTabIds) {
+                // inject tabs
+                $("#tabsWrapper").append(removeDisabledTabs($tabsHtml, enabledTabIds));
+
+                // Tabs setup
+                var selectedTabId = setupTabFor($.address.path(), enabledTabIds);
+                var selectedTabNr = $("a", "#tabs").map(
+                    function(i) {
+                      return this.id == selectedTabId ? i : -1
+                    }).toArray().sort().pop();
+
+                $('#tabsWrapper')
+                    .tabs({
+                      selected: selectedTabNr
+                    })
+                    .css('display', 'block');
+                $('#' + selectedTabId).parent().removeClass('ui-tabs-selected');
+                // Enables the plugin for all the tab links
+                $(linkSelector).address();
+              })
+            })
+            .change(function(event) {
+              if ($.address.value() != path) {
+                location.hash = "#" + $.address.value();
+                location.reload();
+              }
+            })
+            .externalChange(function(event) {
+              if ($.address.value() != path) {
+                location.hash = "#" + $.address.value();
+                location.reload();
+              }
+            })
+            .history(true);
+      });
+
+    </script>
   </head>
   <body>
+    <!-- VERSION AND LOGOUT BAR -->
+    <div class="layout-page-header oc-ui-version-bar ui-helper-clearfix">
+      <div id="pageHeader">
+        <span id="currentVersion"></span>
+        <a href="/j_spring_security_logout">Log out</a>
+        <div class="clear"></div>
+      </div>
+
       <!-- notification that javaScript is disabled -->
       <noscript>
         <div style="border:1px solid red;width:530px;margin:20px;margin-left:auto;margin-right:auto;">
@@ -21,8 +211,25 @@
           </div>
         </div>
       </noscript>
-	<div>
-		<span>Hello I'm Capehub Admin</span>
-	</div>
+
+      <div id="wrapper">
+        <div id="header">
+          <a href="http://www.capestart.com" id="oc-logo">
+            <img src="/admin/img/ch_logos/CaphubLogo.png" width="143" height="38" alt="Capehub Project" title="Capehub Project" />
+          </a>
+          <div class="clear"></div>
+        </div>
+      </div>
+
+      <!-- PAGE TABS -->
+      <div class="layout-page-header recordings-page" id="page-header">
+        <div id="tabsWrapper" class="ui-tabs ui-widget ui-widget-content ui-corner-all"></div>
+        <div id="addHeader"></div>
+        <div id="holdActionStage" style="display:none">
+          <input type="hidden" id="holdWorkflowId" value="" />
+          <iframe id="holdActionUI" border="0" frameborder="0" style="height:640px;overflow: hidden;"></iframe>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
