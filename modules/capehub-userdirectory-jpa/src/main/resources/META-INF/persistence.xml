@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" 
+  xmlns="http://java.sun.com/xml/ns/persistence"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="com.capestartproject.userdirectory" transaction-type="RESOURCE_LOCAL">
+    <class>com.capestartproject.userdirectory.JpaUser</class>
+    <class>com.capestartproject.userdirectory.JpaGroup</class>
+    <class>com.capestartproject.userdirectory.JpaRole</class>
+    <class>com.capestartproject.userdirectory.JpaUserReference</class>
+    <class>com.capestartproject.kernel.security.persistence.JpaOrganization</class>
+    <properties>
+      <property name="eclipselink.create-ddl-jdbc-file-name" value="create-capehub-userdirectory-jpa.jdbc"/>
+      <property name="eclipselink.drop-ddl-jdbc-file-name" value="drop-capehub-userdirectory-jpa.jdbc"/>
+    </properties>
+  </persistence-unit>
+</persistence>

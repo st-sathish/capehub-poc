@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.capestartproject.userdirectory.endpoint.UserEndpoint" immediate="true">
+  <implementation class="com.capestartproject.userdirectory.endpoint.UserEndpoint" />
+  <property name="service.description" value="User REST endpoint" />
+  <property name="capehub.service.type" value="com.capestartproject.userdirectory.endpoint.UserEndpoint" />
+  <property name="capehub.service.path" value="/user-utils" />
+  <property name="capehub.service.jobproducer" value="false" />
+  <service>
+    <provide interface="com.capestartproject.userdirectory.endpoint.UserEndpoint" />
+  </service>
+  <reference name="JpaUserAndRoleProvider" interface="com.capestartproject.userdirectory.JpaUserAndRoleProvider"
+    cardinality="1..1" policy="static" bind="setJpaUserAndRoleProvider" />
+  <reference name="securityService" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+</scr:component>

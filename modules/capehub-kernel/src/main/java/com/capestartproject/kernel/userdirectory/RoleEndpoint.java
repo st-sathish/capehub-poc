@@ -1,5 +1,12 @@
 package com.capestartproject.kernel.userdirectory;
 
+import java.util.Iterator;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.capestartproject.common.security.api.JaxbRoleList;
 import com.capestartproject.common.security.api.OrganizationDirectoryService;
 import com.capestartproject.common.security.api.Role;
@@ -7,13 +14,6 @@ import com.capestartproject.common.security.api.RoleDirectoryService;
 import com.capestartproject.common.util.doc.rest.RestQuery;
 import com.capestartproject.common.util.doc.rest.RestResponse;
 import com.capestartproject.common.util.doc.rest.RestService;
-
-import java.util.Iterator;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Provides a sorted set of known roles

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+  name="com.capestartproject.userdirectory.JpaUserReferenceProvider"
+  immediate="true" activate="activate" deactivate="deactivate">
+  <implementation class="com.capestartproject.userdirectory.JpaUserReferenceProvider" />
+  <property name="service.description" value="Provides a user reference directory" />
+
+  <service>
+    <provide interface="com.capestartproject.common.security.api.UserProvider" />
+    <provide interface="com.capestartproject.common.security.api.RoleProvider" />
+    <provide interface="com.capestartproject.userdirectory.JpaUserReferenceProvider" />
+  </service>
+  <reference name="security-service" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+  <reference name="persistence" interface="javax.persistence.spi.PersistenceProvider"
+    cardinality="1..1" policy="static" bind="setPersistenceProvider" />
+  <reference name="props" interface="java.util.Map"
+    cardinality="1..1" policy="static" target="(type=persistence)" bind="setPersistenceProperties" />
+</scr:component>

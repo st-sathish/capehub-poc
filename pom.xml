@@ -41,8 +41,8 @@
         <module>modules/capehub-runtime-info-ui</module>
         <module>modules/capehub-json</module>
         <!-- <module>modules/capehub-workflow-service-api</module>
-        <module>modules/capehub-workflow-service-impl</module>
-        <module>modules/capehub-userdirectory-jpa</module> -->
+        <module>modules/capehub-workflow-service-impl</module> -->
+        <module>modules/capehub-userdirectory-jpa</module>
 	</modules>
 
 	<build>

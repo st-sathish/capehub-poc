@@ -79,7 +79,7 @@ SET CAPEHUB_LOGDIR=%FELIX_HOME%\logs
 REM # To enable the debugger on the vm, enable all of the following options
 SET DEBUG_PORT=8000
 SET DEBUG_SUSPEND=n
-REM SET DEBUG_OPTS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=%DEBUG_PORT%,server=y,suspend=%DEBUG_SUSPEND%
+SET DEBUG_OPTS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=%DEBUG_PORT%,server=y,suspend=%DEBUG_SUSPEND%
 
 REM ##
 REM # Only change the lines below if you know what you are doing

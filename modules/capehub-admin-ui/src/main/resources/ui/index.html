@@ -9,8 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/admin/css/jquery-ui/jquery-ui-admin.css" />
     <link rel="stylesheet" type="text/css" href="/admin/css/admin.css" />
     <link rel="stylesheet" type="text/css" href="/admin/css/metrics.css" />
-    <!-- media package editor -->
-    <link rel="stylesheet" type="text/css" href="../mediapackage-editor/style/mediapackageeditor.css" />
     <!-- SCRIPTS -->
     <script type="text/javascript" src="/admin/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="/admin/js/jquery/jquery-ui.js"></script>
@@ -20,8 +18,8 @@
     <script type="text/javascript" src="/admin/js/jquery.jqote2.js"></script>
     <script type="text/javascript" src="/admin/js/ext/underscore.min.js"></script>
     <script type="text/javascript" src="/admin/js/jquery.ui.searchbox.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.utils.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.admin.js"></script>
+    <script type="text/javascript" src="/admin/js/ch.utils.js"></script>
+    <script type="text/javascript" src="/admin/js/ch.admin.js"></script>
     <script type="text/javascript" src="/admin/js/jquery.address-1.4.min.js"></script>
     <script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
     <script type="text/javascript" language="javascript" src="/admin/js/js-class.js"></script>
@@ -31,20 +29,9 @@
   	<script type="text/javascript" src="/admin/js/json2.js"></script>
   	<script type="text/javascript" src="/admin/js/jolokia-min.js"></script>
   	<script type="text/javascript" src="/admin/js/jolokia-simple-min.js"></script>
-  	
-    <!-- media package editor -->
-    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.mpeditor.js"></script>
-    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.tmpl.min.js"></script>
-    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.boundinput.js"></script>
-    <script type="text/javascript" src="../mediapackage-editor/scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.statistics.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.scheduler.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.workflow.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.upload.new.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.security.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.episode.acl-manager.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.series.acl-manager.js"></script>
-    <script type="text/javascript" src="/admin/js/oc.users.js"></script>
+
+    <script type="text/javascript" src="/admin/js/ch.security.js"></script>
+    <script type="text/javascript" src="/admin/js/ch.users.js"></script>
 
     <!-- define all possible tabs here -->
     <script type="text/x-jqote-template" id="tabs-template">
@@ -68,22 +55,22 @@
           routing = {
             "/upload": {
               init: function() {
-                ocUpload.init();
-                document.title = "Upload" + matterhorn;
+                chUpload.init();
+                document.title = "Upload" + capehub;
               },
               tab: "i18n_tab_recording"
             },
             "/users": {
                 init: function() {
-                    document.title = "Users" + matterhorn;
-                    ocUsers.init();
+                    document.title = "Users" + capehub;
+                    chUsers.init();
                   },
                 tab: "i18n_tab_users"
               },
             "/security": {
               init: function() {
-                ocSecurity.init();
-                document.title = "Security" + matterhorn;
+                chSecurity.init();
+                document.title = "Security" + capehub;
               },
               tab: "i18n_tab_security"
             }
@@ -98,7 +85,7 @@
        */
       function setupTabFor(path, enabledTabIds) {
         var mapping = routing[path];
-        if (mapping && ocUtils.contains(enabledTabIds, mapping.tab)) {
+        if (mapping && chUtils.contains(enabledTabIds, mapping.tab)) {
           mapping.init();
           return mapping.tab;
         }
@@ -129,7 +116,7 @@
        */
       function removeDisabledTabs($html, enabledTabIds) {
         $("a", $html).each(function() {
-          if (!ocUtils.contains(enabledTabIds, $(this).attr("id"))) {
+          if (!chUtils.contains(enabledTabIds, $(this).attr("id"))) {
             $(this).remove();
           }
         });
@@ -140,10 +127,7 @@
        */
       $(document).ready(function() {
         var $tabsHtml = $($("#tabs-template").jqote());
-
-        if ($.address.value() == '/') {
-          $.address.value(defaultPath);
-        }
+        
         var path = $.address.value();
 
         // Address handler
@@ -215,7 +199,7 @@
       <div id="wrapper">
         <div id="header">
           <a href="http://www.capestart.com" id="oc-logo">
-            <img src="/admin/img/ch_logos/CaphubLogo.png" width="143" height="38" alt="Capehub Project" title="Capehub Project" />
+            <img src="/admin/img/ch_logos/CaphubLogo.png" width="143" height="38" alt="Capestart" title="Capehub Project" />
           </a>
           <div class="clear"></div>
         </div>

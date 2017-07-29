@@ -34,9 +34,9 @@
   <scr:component name="com.capestartproject.kernel.userdirectory.RoleEndpoint" immediate="true">
     <implementation class="com.capestartproject.kernel.userdirectory.RoleEndpoint" />
     <property name="service.description" value="Role listing REST endpoint" />
-    <property name="capestart.service.type" value="com.capestartproject.common.userdirectory.roles" />
-    <property name="capestart.service.path" value="/roles" />
-    <property name="capestart.service.jobproducer" value="false" />
+    <property name="capehub.service.type" value="com.capestartproject.common.userdirectory.roles" />
+    <property name="capehub.service.path" value="/roles" />
+    <property name="capehub.service.jobproducer" value="false" />
     <service>
       <provide interface="com.capestartproject.kernel.userdirectory.RoleEndpoint" />
     </service>
@@ -49,9 +49,9 @@
   <scr:component name="com.capestartproject.kernel.userdirectory.UserEndpoint" immediate="true">
     <implementation class="com.capestartproject.kernel.userdirectory.UserEndpoint" />
     <property name="service.description" value="User listing REST endpoint" />
-    <property name="capestart.service.type" value="com.capestartproject.common.userdirectory.users" />
-    <property name="capestart.service.path" value="/users" />
-    <property name="capestart.service.jobproducer" value="false" />
+    <property name="capehub.service.type" value="com.capestartproject.common.userdirectory.users" />
+    <property name="capehub.service.path" value="/users" />
+    <property name="capehub.service.jobproducer" value="false" />
     <service>
       <provide interface="com.capestartproject.kernel.userdirectory.UserEndpoint" />
     </service>

@@ -103,8 +103,8 @@ CREATE TABLE ch_group (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE ch_group_member (
-  group_id bigint(20) NOT NULL,
-  member varchar(255) DEFAULT NULL
+  JpaGroup_id bigint(20) NOT NULL,
+  MEMBERS varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE ch_group_role (
