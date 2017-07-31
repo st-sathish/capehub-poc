@@ -30,7 +30,7 @@
   	</properties>
 
 	<modules>
-	<!-- <module>modules/capehub-user-ui</module> -->
+		<module>modules/capehub-user-ui</module>
         <module>modules/capehub-admin-ui</module>
 		<module>modules/capehub-common</module>
         <module>modules/capehub-kernel</module>
