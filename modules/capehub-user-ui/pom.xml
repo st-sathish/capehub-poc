@@ -65,9 +65,9 @@
               <outputDirectory>${basedir}/target/classes/ui/</outputDirectory>
               <resources>
                 <resource>
-                  <directory>../../shared-resources/</directory>
+                  <directory>../../shared-resources/js/jquery/</directory>
                   <includes>
-                    <include>js/jquery/**</include>
+                    <include>**/**</include>
                   </includes>
                   <filtering>false</filtering>
                 </resource>

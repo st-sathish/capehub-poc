@@ -5,13 +5,150 @@
     <link rel="shortcut icon" href="/user/ui/img/favicon.ico" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="/user/ui/css/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/user/ui/css/jquery-ui/jquery-ui-admin.css" />
+    <link rel="stylesheet" type="text/css" href="/user/ui/css/user.css" />
+    <link rel="stylesheet" type="text/css" href="/user/ui/css/metrics.css" />
     <!-- SCRIPTS -->
     <script type="text/javascript" src="/user/ui/js/jquery/jquery.js"></script>
-    <script type="text/javascript" src="/user/ui/jquery/jquery-ui.js"></script>
-
+    <script type="text/javascript" src="/user/ui/js/jquery/jquery-ui.js"></script>
+	<script type="text/javascript" src="/user/ui/js/ch.utils.js"></script>
+	<script type="text/javascript" src="/user/ui/js/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="/user/ui/js/jquery/plugins/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/user/ui/js/jquery/plugins/jquery.i18n.properties-min.js"></script>
+    <script type="text/javascript" src="/user/ui/js/jquery.jqote2.js"></script>
+    <script type="text/javascript" src="/user/ui/js/ext/underscore.min.js"></script>
+    <script type="text/javascript" src="/user/ui/js/jquery.ui.searchbox.js"></script>
+    <script type="text/javascript" src="/user/ui/js/jquery.address-1.4.min.js"></script>
+    <script type="text/javascript" src="/user/ui/js/jquery.cookie.js"></script>
+    
+    <!-- JMX Metrics -->
+  	<script type="text/javascript" src="/user/ui/js/json2.js"></script>
+  	<script type="text/javascript" src="/user/ui/js/jolokia-min.js"></script>
+  	<script type="text/javascript" src="/user/ui/js/jolokia-simple-min.js"></script>
+  	
+	<script type="text/x-jqote-template" id="tabs-template">
+      <ul id="tabs">
+		<li>
+			<a href="#timesheet" title="Time Sheet" id="i18n_tab_timesheet">Time Sheet</a>
+		</li>
+		<li>
+		  <a href="#discussion" title="Discussion" id="i18n_tab_discussion">Discussion</a>
+		</li>
+        <li>
+          <a href="#account" title="Account" id="i18n_tab_account">Account</a>
+        </li>
+        <li>
+          <a href="#settings" title="Setting" id="i18n_tab_settings">Settings</a>
+        </li>
+      </ul>
+    </script>
+    <script type="text/javascript">
+ 
+    var linkSelector = "#tabsWrapper ul:first a",
+        capehub = " | Capehub",
+        ////
+        // define routing here
+        //
+        routing = {
+          "/timesheet": {
+            init: function() {
+              document.title = "Time Sheet" + capehub;
+            },
+            tab: "i18n_tab_timesheet"
+          },
+          "/discussion": {
+              init: function() {
+                  document.title = "Discussion" + capehub;
+                },
+              tab: "i18n_tab_discussion"
+            },
+          "/account": {
+            init: function() {
+              document.title = "Account" + capehub;
+            },
+            tab: "i18n_tab_account"
+          },
+          "/settings": {
+        	  init: function() {
+        		  document.title = "Settings" + capehub;
+        	  },
+        	  tab: 'i18n_tab_settings'
+          }
+    };
+    
+    /** Get a list of all enabled tabs.
+     *  @param $html -- tab html (jQuery object)
+     *  @return deferred([id])
+     */
+    function getEnabledTabs($html) {
+      var deferred = $.Deferred();
+      var allTabIds = $("a", $html).map(function() {return this.id}).toArray();
+      var enabledTabIds = _.filter(allTabIds, function(id) {
+          return true;
+       });
+      deferred.resolve(enabledTabIds);
+      return deferred;
+    }
+    
+    /** Run the init code for the tab corresponding to the current path.
+     *  @param path -- current path
+     *  @param enabledTabIds -- all enabled tabs
+     *  @return the (html) id of the associated main tab
+     */
+    function setupTabFor(path, enabledTabIds) {
+      var mapping = routing[path];
+      if (mapping && chUtils.contains(enabledTabIds, mapping.tab)) {
+        mapping.init();
+        return mapping.tab;
+      }
+    }
+    
+    /** DOM ready
+     */
+    $(document).ready(function() {
+      var $tabsHtml = $($("#tabs-template").jqote());
+      var path = $.address.value();
+      		// Address handler
+       $.address.init(function(event) {
+	   getEnabledTabs($tabsHtml).done(function(enabledTabIds) {
+    		  // inject tabs
+	          $("#tabsWrapper").append($tabsHtml);
+	
+	          // Tabs setup
+	          var selectedTabId = setupTabFor($.address.path(), enabledTabIds);
+	          var selectedTabNr = $("a", "#tabs").map(
+	              function(i) {
+	                return this.id == selectedTabId ? i : -1
+	              }).toArray().sort().pop();
+	
+	          $('#tabsWrapper')
+	              .tabs({
+	                selected: selectedTabNr
+	              })
+	              .css('display', 'block');
+	          $('#' + selectedTabId).parent().removeClass('ui-tabs-selected');
+	          // Enables the plugin for all the tab links
+	          $(linkSelector).address();
+	    	 })
+          })
+          .change(function(event) {
+            if ($.address.value() != path) {
+              location.hash = "#" + $.address.value();
+              location.reload();
+            }
+          })
+          .externalChange(function(event) {
+            if ($.address.value() != path) {
+              location.hash = "#" + $.address.value();
+              location.reload();
+            }
+          })
+          .history(true);
+    });
+    </script>
     </head>
   <body>
-  	<div>User UI</div>
     <!-- VERSION AND LOGOUT BAR -->
     <div class="layout-page-header oc-ui-version-bar ui-helper-clearfix">
       <div id="pageHeader">
@@ -39,14 +176,21 @@
       <div id="wrapper">
         <div id="header">
           <a href="http://www.capestart.com" id="oc-logo">
-            <img src="/admin/img/ch_logos/CaphubLogo.png" width="143" height="38" alt="Capestart" title="Capehub Project" />
+            <img src="/user/ui/img/ch_logos/CaphubLogo.png" width="143" height="38" alt="Capestart" title="Capehub Project" />
           </a>
           <div class="clear"></div>
         </div>
       </div>
 
       <!-- PAGE TABS -->
-      
+      <div class="layout-page-header recordings-page" id="page-header">
+        <div id="tabsWrapper" class="ui-tabs ui-widget ui-widget-content ui-corner-all"></div>
+        <div id="addHeader"></div>
+        <div id="holdActionStage" style="display:none">
+          <input type="hidden" id="holdWorkflowId" value="" />
+          <iframe id="holdActionUI" border="0" frameborder="0" style="height:640px;overflow: hidden;"></iframe>
+        </div>
+      </div>
     </div>
   </body>
 </html>
