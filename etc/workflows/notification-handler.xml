@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition xmlns="http://workflow.capestart.com">
+	<id>notification-handler</id>
+	<title>Notify</title>
+	<tags>
+		<tag>notification-handler</tag>
+	</tags>
+	<description>
+		Notify the user in 3 different ways. Email, SMS or Both. Usually this operation would be based on user selection
+	</description>
+	<configuration_panel>
+		<![CDATA[
+			<div id="notification-workflow-configuration">
+		        <fieldset>
+		          <legend>Notify Through:</legend>
+		            <ul>
+		              <li>
+		                <span>
+		                  <input id="notifyThroughEmail" name="notifyThroughEmail" type="checkbox" checked="checked" class="configField" value="true" />
+		                  <span>&nbsp;Email</span>
+		                </span>
+		              </li>
+		              <li>
+		                <span>
+		                  <input id="notifyThroughSMS" name="notifyThroughSMS" type="checkbox" class="configField" value="true" />
+		                  <span>&nbsp;SMS</span>
+		                </span>
+		              </li>
+		              <li>
+		                <span>
+		                  <input id="notifyThroughEmailAndSMS" name="notifyThroughEmailAndSMS" type="checkbox" class="configField" value="true" />
+		                  <span>&nbsp;Email & SMS</span>
+		                </span>
+		              </li>
+		          </ul>
+		        </fieldset>
+      		</div>
+		]]>
+	</configuration_panel>
+	<operations>
+		<opeartion id="send-email"
+			description="Send Email"
+			fail-on-error="true"
+			exception-handler-workflow="error">
+		
+		</opeartion>
+		<operation id="send-sms"
+			description="Send SMS"
+			fail-on-error="true"
+			exception-handler-workflow="error">
+		
+		</operation>
+		<opeartion id="send-email-sms"
+			description="Send Email and SMS"
+			fail-on-error="true"
+			exception-handler-workflow="error">
+			
+		</opeartion>
+	</operations>
+</definition>

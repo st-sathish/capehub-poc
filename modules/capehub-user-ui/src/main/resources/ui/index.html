@@ -33,13 +33,13 @@
 			<a href="#timesheet" title="Time Sheet" id="i18n_tab_timesheet">Time Sheet</a>
 		</li>
 		<li>
-		  <a href="#discussion" title="Discussion" id="i18n_tab_discussion">Discussion</a>
+		   <a href="#discussion" title="Discussion" id="i18n_tab_discussion">Discussion</a>
 		</li>
         <li>
-          <a href="#account" title="Account" id="i18n_tab_account">Account</a>
+           <a href="#account" title="Account" id="i18n_tab_account">Account</a>
         </li>
         <li>
-          <a href="#settings" title="Setting" id="i18n_tab_settings">Settings</a>
+           <a href="#settings" title="Setting" id="i18n_tab_settings">Settings</a>
         </li>
       </ul>
     </script>
@@ -74,6 +74,13 @@
         		  document.title = "Settings" + capehub;
         	  },
         	  tab: 'i18n_tab_settings'
+          },
+          "/users": {
+        	  init: function() {
+        		  chUser.init();
+        		  document.title = "Users" + capehub;
+        	  },
+        	  tab: 'i18n_tab_users'
           }
     };
     
@@ -172,15 +179,6 @@
           </div>
         </div>
       </noscript>
-
-      <div id="wrapper">
-        <div id="header">
-          <a href="http://www.capestart.com" id="oc-logo">
-            <img src="/user/ui/img/ch_logos/CaphubLogo.png" width="143" height="38" alt="Capestart" title="Capehub Project" />
-          </a>
-          <div class="clear"></div>
-        </div>
-      </div>
 
       <!-- PAGE TABS -->
       <div class="layout-page-header recordings-page" id="page-header">

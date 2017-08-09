@@ -132,7 +132,7 @@ public class RuntimeInfo {
 
     if (targetAdminBaseUrl == null) {
       logger.debug(
-              "Using 'org.opencastproject.server.url' as a fallback for the non-existing organization level key '{}' for the components.json response",
+					"Using 'com.capestartproject.server.url' as a fallback for the non-existing organization level key '{}' for the components.json response",
               ADMIN_URL_PROPERTY);
       targetAdminBaseUrl = new URL(targetScheme, serverUrl.getHost(), serverUrl.getPort(), serverUrl.getFile());
     }

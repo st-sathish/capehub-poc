@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definition xmlns="http://workflow.capestartproject.com">
+<definition xmlns="http://workflow.capestart.com">
   <id>email-error</id>
   <description>Notifies the logs and via email that an error occurred</description>
   <operations>
