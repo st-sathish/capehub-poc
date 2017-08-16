@@ -6,35 +6,46 @@
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
-  <artifactId>capehub-workflow-service-api</artifactId>
-  <name>capehub-workflow-service-api</name>
+  <artifactId>capehub-conductor</artifactId>
+  <name>capehub-conductor</name>
   <packaging>bundle</packaging>
+  
   <properties>
     <capehub.basedir>${project.basedir}/../..</capehub.basedir>
     <checkstyle.skip>true</checkstyle.skip>
   </properties>
   
   <dependencies>
-    <dependency>
+  	<dependency>
       <groupId>com.capestartproject</groupId>
       <artifactId>capehub-common</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
+      <groupId>com.capestartproject</groupId>
+      <artifactId>capehub-kernel</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>com.capestartproject</groupId>
+      <artifactId>capehub-workflow-service-api</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
     </dependency>
     <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+    </dependency>
+    <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>jsr311-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
@@ -44,7 +55,22 @@
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.compendium</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.fileinstall</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.compendium</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>
@@ -53,8 +79,9 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName> ${project.artifactId} </Bundle-SymbolicName>
-            <Export-Package>com.capestartproject.workflow.api;version=${project.version} </Export-Package>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Build-Number>${buildNumber}</Build-Number>
+            <Export-Package>com.capestartproject.workflow.handler;version=${project.version} </Export-Package>
           </instructions>
         </configuration>
       </plugin>

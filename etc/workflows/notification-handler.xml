@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definition xmlns="http://workflow.capestart.com">
+<definition xmlns="http://workflow.capestartproject.com">
 	<id>notification-handler</id>
-	<title>Notify</title>
+	<title>Notify All</title>
 	<tags>
-		<tag>notification-handler</tag>
+		<tag>sms</tag>
+		<tag>email</tag>
 	</tags>
 	<description>
 		Notify the user in 3 different ways. Email, SMS or Both. Usually this operation would be based on user selection
@@ -38,23 +39,23 @@
 		]]>
 	</configuration_panel>
 	<operations>
-		<opeartion id="send-email"
+		<operation id="send-email"
 			description="Send Email"
 			fail-on-error="true"
 			exception-handler-workflow="error">
 		
-		</opeartion>
+		</operation>
 		<operation id="send-sms"
 			description="Send SMS"
 			fail-on-error="true"
 			exception-handler-workflow="error">
 		
 		</operation>
-		<opeartion id="send-email-sms"
+		<operation id="send-email-sms"
 			description="Send Email and SMS"
 			fail-on-error="true"
 			exception-handler-workflow="error">
 			
-		</opeartion>
+		</operation>
 	</operations>
 </definition>

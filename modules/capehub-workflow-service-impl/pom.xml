@@ -9,10 +9,12 @@
   <artifactId>capehub-workflow-service-impl</artifactId>
   <name>capehub-workflow-service-impl</name>
   <packaging>bundle</packaging>
+  
   <properties>
-    <matterhorn.basedir>${project.basedir}/../..</matterhorn.basedir>
-    <checkstyle.skip>false</checkstyle.skip>
+    <capehub.basedir>${project.basedir}/../..</capehub.basedir>
+    <checkstyle.skip>true</checkstyle.skip>
   </properties>
+  
   <dependencies>
     <dependency>
       <groupId>com.capestartproject</groupId>
@@ -23,10 +25,6 @@
       <groupId>com.capestartproject</groupId>
       <artifactId>capehub-kernel</artifactId>
       <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.entwinemedia.common</groupId>
-      <artifactId>functional</artifactId>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
@@ -80,6 +78,7 @@
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
+      <version>3.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
