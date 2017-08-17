@@ -8,8 +8,9 @@ import com.capestartproject.workflow.api.AbstractWorkflowOperationHandler;
 import com.capestartproject.workflow.api.WorkflowInstance;
 import com.capestartproject.workflow.api.WorkflowOperationException;
 import com.capestartproject.workflow.api.WorkflowOperationResult;
+
 /**
- * @author CS39
+ * @author S T
  *
  */
 public class EmailWorkflowOperationHandler extends AbstractWorkflowOperationHandler {

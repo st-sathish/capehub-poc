@@ -44,6 +44,7 @@
         <module>modules/capehub-workflow-service-impl</module>
         <module>modules/capehub-userdirectory-jpa</module>
         <module>modules/capehub-conductor</module>
+        <module>modules/capehub-userdirectory-google</module>
 	</modules>
 
 	<build>
