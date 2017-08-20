@@ -34,13 +34,11 @@ import com.capestartproject.common.security.api.SecurityService;
 import com.capestartproject.common.security.api.UnauthorizedException;
 import com.capestartproject.common.security.api.User;
 import com.capestartproject.common.security.api.UserDirectoryService;
-import com.capestartproject.common.serviceregistry.api.ServiceRegistry;
 import com.capestartproject.common.serviceregistry.api.ServiceRegistryException;
 import com.capestartproject.common.serviceregistry.api.UndispatchableJobException;
 import com.capestartproject.common.util.Log;
 import com.capestartproject.common.util.MultiResourceLock;
 import com.capestartproject.common.util.NotFoundException;
-import com.capestartproject.common.util.jmx.JmxUtil;
 import com.capestartproject.workflow.api.WorkflowDatabaseException;
 import com.capestartproject.workflow.api.WorkflowDefinition;
 import com.capestartproject.workflow.api.WorkflowException;
@@ -142,7 +140,7 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
 	// protected Workspace workspace = null;
 
   /** The service registry */
-  protected ServiceRegistry serviceRegistry = null;
+	// protected ServiceRegistry serviceRegistry = null;
 
   /** The security service */
   protected SecurityService securityService = null;
@@ -175,13 +173,12 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
 	 * @param registry
 	 *            the service registry
 	 */
-	protected void setServiceRegistry(ServiceRegistry registry) {
-		this.serviceRegistry = registry;
-	}
-
-	public ServiceRegistry getServiceRegistry() {
-		return serviceRegistry;
-	}
+	/*
+	 * protected void setServiceRegistry(ServiceRegistry registry) {
+	 * this.serviceRegistry = registry; }
+	 * 
+	 * public ServiceRegistry getServiceRegistry() { return serviceRegistry; }
+	 */
 
 	/**
 	 * Callback for setting the security service.
@@ -214,6 +211,16 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
 	}
 
 	/**
+	 * Callback to set the workflow definition scanner
+	 *
+	 * @param scanner
+	 *            the workflow definition scanner
+	 */
+	protected void addWorkflowDefinitionScanner(WorkflowDefinitionScanner scanner) {
+		workflowDefinitionScanner = scanner;
+	}
+
+	/**
 	 * Constructs a new workflow service impl, with a priority-sorted map of
 	 * metadata services
 	 */
@@ -229,22 +236,22 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
    */
   public void activate(ComponentContext componentContext) {
     this.componentContext = componentContext;
-    executorService = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-    try {
-      logger.info("Generating JMX workflow statistics");
-      workflowsStatistics = new WorkflowsStatistics(getBeanStatistics(), getHoldWorkflows());
-      jmxBeans.add(JmxUtil.registerMXBean(workflowsStatistics, JMX_WORKFLOWS_STATISTICS_TYPE));
-    } catch (WorkflowDatabaseException e) {
-      logger.error("Error registarting JMX statistic beans {}", e);
-    }
-
+		executorService = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+		/*
+		 * try { logger.info("Generating JMX workflow statistics");
+		 * workflowsStatistics = new WorkflowsStatistics(getBeanStatistics(),
+		 * getHoldWorkflows());
+		 * jmxBeans.add(JmxUtil.registerMXBean(workflowsStatistics,
+		 * JMX_WORKFLOWS_STATISTICS_TYPE)); } catch (WorkflowDatabaseException
+		 * e) { logger.error("Error registarting JMX statistic beans {}", e); }
+		 */
     logger.info("Activate Workflow service");
   }
 
   public void deactivate() {
-    for (ObjectInstance mxbean : jmxBeans) {
-      JmxUtil.unregisterMXBean(mxbean);
-    }
+		// for (ObjectInstance mxbean : jmxBeans) {
+		// JmxUtil.unregisterMXBean(mxbean);
+		// }
   }
 
 	private WorkflowStatistics getBeanStatistics() throws WorkflowDatabaseException {
@@ -982,13 +989,13 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
 		public Void call() throws Exception {
 			Organization jobOrganization = organizationDirectoryService.getOrganization(job.getOrganization());
 			try {
-				serviceRegistry.setCurrentJob(currentJob);
+				// serviceRegistry.setCurrentJob(currentJob);
 				securityService.setOrganization(jobOrganization);
 				User jobUser = userDirectoryService.loadUser(job.getCreator());
 				securityService.setUser(jobUser);
 				// process(job);
 			} finally {
-				serviceRegistry.setCurrentJob(null);
+				// serviceRegistry.setCurrentJob(null);
 				securityService.setUser(null);
 				securityService.setOrganization(null);
 			}

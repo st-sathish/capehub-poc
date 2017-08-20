@@ -46,6 +46,9 @@
 				<button id="createAccount" type="button">Create Account</button><button id="cancelAccount" type="button">Cancel</button>
 			</li>
           </ul>
+          
+          <!-- Processing Instructions -->
+      	  <div id="processingRecording"></div>
         </form>
       </div>
  </div>

@@ -29,7 +29,7 @@ public class OsgiWorkflowCleanupScheduler extends AbstractWorkflowCleanupSchedul
   private WorkflowService workflowService;
 
   /** Reference to the service registry */
-  private ServiceRegistry serviceRegistry;
+	// private ServiceRegistry serviceRegistry;
 
   /** Reference to the security service */
   private SecurityService securityService;
@@ -38,7 +38,7 @@ public class OsgiWorkflowCleanupScheduler extends AbstractWorkflowCleanupSchedul
   private OrganizationDirectoryService directoryService;
 
   /** The logging facility */
-  private static final Logger logger = LoggerFactory.getLogger(OsgiWorkflowCleanupScheduler.class);
+	private static final Logger logger = LoggerFactory.getLogger(OsgiWorkflowCleanupScheduler.class);
 
   private static final String PARAM_KEY_ENABLED = "enabled";
   private static final String PARAM_KEY_CRON_EXPR = "cron-expression";
@@ -118,11 +118,12 @@ public class OsgiWorkflowCleanupScheduler extends AbstractWorkflowCleanupSchedul
 
   @Override
   public ServiceRegistry getServiceRegistry() {
-    return this.serviceRegistry;
+		return null;// this.serviceRegistry;
   }
 
   /** OSGi component activate callback */
   protected void activate(ComponentContext cc) {
+	  logger.info("OsgiWorkflowCleanupSchedular component activated");
     systemUserName = cc.getBundleContext().getProperty(SecurityUtil.PROPERTY_KEY_SYS_USER);
   }
 
@@ -146,8 +147,9 @@ public class OsgiWorkflowCleanupScheduler extends AbstractWorkflowCleanupSchedul
     this.securityService = securityService;
   }
 
-  protected void bindServiceRegistry(ServiceRegistry serviceRegistry) {
-    this.serviceRegistry = serviceRegistry;
-  }
+	/*
+	 * protected void bindServiceRegistry(ServiceRegistry serviceRegistry) {
+	 * this.serviceRegistry = serviceRegistry; }
+	 */
 
 }

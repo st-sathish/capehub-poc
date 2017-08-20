@@ -3,8 +3,8 @@
 	<id>notification-handler</id>
 	<title>Notify All</title>
 	<tags>
-		<tag>sms</tag>
 		<tag>email</tag>
+		<tag>sms</tag>
 	</tags>
 	<description>
 		Notify the user in 3 different ways. Email, SMS or Both. Usually this operation would be based on user selection

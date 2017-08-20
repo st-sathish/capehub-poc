@@ -94,6 +94,9 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
+            <Import-Package>
+              *;resolution:=optional
+            </Import-Package>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Build-Number>${buildNumber}</Build-Number>
             <Export-Package>com.capestartproject.google.*;version=${project.version} </Export-Package>

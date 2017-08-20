@@ -76,34 +76,38 @@ import com.capestartproject.workflow.impl.WorkflowServiceImpl.HandlerRegistratio
 		"If the service is down or not working it will return a status 503, this means the the underlying service is "
 				+ "not working and is either restarting or has failed",
 		"A status code 500 means a general failure has occurred which is not recoverable and was not anticipated. In "
-				+ "other words, there is a bug! You should file an error report with your server logs from the time when the "
-				+ "error occurred: <a href=\"https://opencast.jira.com\">Opencast Issue Tracker</a>" })
+				+ "other words, there is a bug! You should file an error report with your server logs" })
 public class WorkflowRestService extends AbstractJobProducerEndpoint {
 
 	/** The default number of results returned */
 	private static final int DEFAULT_LIMIT = 20;
+
 	/**
 	 * The constant used to negate a querystring parameter. This is only
 	 * supported on some parameters.
 	 */
 	public static final String NEGATE_PREFIX = "-";
+
 	/**
 	 * The constant used to switch the direction of the sorting querystring
 	 * parameter.
 	 */
 	public static final String DESCENDING_SUFFIX = "_DESC";
+
 	/** The logger */
 	private static final Logger logger = LoggerFactory.getLogger(WorkflowRestService.class);
+
 	/** The default server URL */
 	protected String serverUrl = UrlSupport.DEFAULT_BASE_URL;
+
 	/** The default service URL */
 	protected String serviceUrl = serverUrl + "/workflow";
+
 	/** The workflow service instance */
 	private WorkflowService service;
+
 	/** The service registry */
-	protected ServiceRegistry serviceRegistry = null;
-	/** The workspace */
-	// private Workspace workspace;
+	// protected ServiceRegistry serviceRegistry = null;
 
 	/** Resource lock */
 	private final MultiResourceLock lock = new MultiResourceLock();
@@ -114,9 +118,10 @@ public class WorkflowRestService extends AbstractJobProducerEndpoint {
 	 * @param serviceRegistry
 	 *            the service registry
 	 */
-	protected void setServiceRegistry(ServiceRegistry serviceRegistry) {
-		this.serviceRegistry = serviceRegistry;
-	}
+	/*
+	 * protected void setServiceRegistry(ServiceRegistry serviceRegistry) {
+	 * this.serviceRegistry = serviceRegistry; }
+	 */
 
 	/**
 	 * Sets the workflow service
@@ -503,6 +508,6 @@ public class WorkflowRestService extends AbstractJobProducerEndpoint {
 	 */
 	@Override
 	public ServiceRegistry getServiceRegistry() {
-		return serviceRegistry;
+		return null;// serviceRegistry;
 	}
 }

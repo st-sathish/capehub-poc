@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.capestartproject.common.job.api.Incident.Severity;
 import com.capestartproject.common.security.api.UnauthorizedException;
 import com.capestartproject.common.util.JobCanceledException;
 import com.capestartproject.workflow.api.ResumableWorkflowOperationHandler;
@@ -148,7 +147,8 @@ final class WorkflowOperationWorker {
         logger.error("Workflow operation '" + operation + "' failed", e);
       }
       // the associated job shares operation's id
-      service.getServiceRegistry().incident().unhandledException(operation.getId(), Severity.FAILURE, e);
+			// service.getServiceRegistry().incident().unhandledException(operation.getId(),
+			// Severity.FAILURE, e);
       try {
         workflow = service.handleOperationException(workflow, operation);
       } catch (Exception e2) {

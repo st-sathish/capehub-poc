@@ -771,6 +771,8 @@ chSecurity = new (function() {
         return self._refresh();
       };
       self.refresh();
+      //set workflow
+      chWorkflow.init($('#workflowSelector'), $('#workflowConfigContainer'), ['email']);
   };
   
   return this;

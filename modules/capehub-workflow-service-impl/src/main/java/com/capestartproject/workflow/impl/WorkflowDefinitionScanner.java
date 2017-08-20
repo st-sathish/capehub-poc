@@ -57,6 +57,7 @@ public class WorkflowDefinitionScanner implements ArtifactInstaller {
    *          the bundle context
    */
   void activate(BundleContext ctx) {
+		logger.info("Workflow scanner component activated");
     this.bundleCtx = ctx;
   }
 

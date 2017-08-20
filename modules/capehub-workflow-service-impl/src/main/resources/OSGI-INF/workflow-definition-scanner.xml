@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+ name="com.capestartproject.workflow.impl.WorkflowDefinitionScanner" immediate="true" activate="activate">
+  <implementation class="com.capestartproject.workflow.impl.WorkflowDefinitionScanner" />
+  <property name="service.description" value="Workflow Definition Scanner" />
+  <service>
+    <provide interface="org.apache.felix.fileinstall.ArtifactInstaller" />
+    <provide interface="com.capestartproject.workflow.impl.WorkflowDefinitionScanner" />
+  </service>
+</scr:component>

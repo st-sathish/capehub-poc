@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.capestartproject.workflow.impl.WorkflowServiceImpl"
+  immediate="true" activate="activate" deactivate="deactivate">
+  <implementation class="com.capestartproject.workflow.impl.WorkflowServiceImpl" />
+  <property name="service.description" value="Workflow Service" />
+  <service>
+    <provide interface="org.osgi.service.cm.ManagedService" />
+    <provide interface="com.capestartproject.workflow.api.WorkflowService" />
+    <provide interface="com.capestartproject.workflow.impl.WorkflowServiceImpl" />
+  </service>
+  <!-- <reference name="serviceRegistry" interface="com.capstartproject.common.serviceregistry.api.ServiceRegistry"
+    cardinality="1..1" policy="static" bind="setServiceRegistry" /> -->
+  <reference name="user-directory" interface="com.capestartproject.common.security.api.UserDirectoryService"
+    cardinality="1..1" policy="static" bind="setUserDirectoryService" />
+  <reference name="security" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+  <reference name="orgDirectory" interface="com.capestartproject.common.security.api.OrganizationDirectoryService"
+    cardinality="1..1" policy="static" bind="setOrganizationDirectoryService" />
+  <reference name="scanner" interface="com.capestartproject.workflow.impl.WorkflowDefinitionScanner"
+    cardinality="1..1" policy="static" bind="addWorkflowDefinitionScanner" />
+ <!-- <reference name="profilesReadyIndicator" policy="static" cardinality="1..1"
+      interface="com.capestartproject.common.util.ReadinessIndicator" target="(artifact=workflowdefinition)" /> -->
+</scr:component>

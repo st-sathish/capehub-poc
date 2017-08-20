@@ -27,6 +27,11 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.capestartproject</groupId>
+      <artifactId>capehub-json</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
     </dependency>
@@ -107,6 +112,22 @@
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Build-Number>${buildNumber}</Build-Number>
+            <Import-Package>
+              com.capestartproject.workflow.api;version=${project.version},
+              com.capestartproject.common.rest;version=${project.version},
+              com.capestartproject.common.emppackage;version=${project.version},
+              *;resolution:=optional
+            </Import-Package>
+            <Export-Package>
+              com.capestartproject.workflow.impl;version=${project.version},
+              com.capestartproject.workflow.endpoint;version=${project.version}
+            </Export-Package>
+            <Service-Component>
+              <!-- OSGI-INF/workflow-cleanup-scheduler-service.xml, -->
+              OSGI-INF/workflow-definition-scanner.xml,
+              OSGI-INF/workflow-service.xml,
+              OSGI-INF/workflow-service-rest.xml
+            </Service-Component>
           </instructions>
         </configuration>
       </plugin>
