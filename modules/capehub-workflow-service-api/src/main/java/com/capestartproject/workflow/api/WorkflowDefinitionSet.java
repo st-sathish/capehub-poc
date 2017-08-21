@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * A collection of workflow definitions.
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name = "definitions", namespace = "http://workflow.capestartproject.org")
+@XmlRootElement(name = "definitions", namespace = "http://workflow.capestartproject.com")
 public class WorkflowDefinitionSet {
 
   @XmlElement(name = "definition")

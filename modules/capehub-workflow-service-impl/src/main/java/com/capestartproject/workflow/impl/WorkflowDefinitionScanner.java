@@ -66,6 +66,7 @@ public class WorkflowDefinitionScanner implements ArtifactInstaller {
    *
    * @see org.apache.felix.fileinstall.ArtifactInstaller#install(java.io.File)
    */
+	@Override
   public void install(File artifact) throws Exception {
     WorkflowDefinition def = currentWFD;
 
@@ -73,7 +74,6 @@ public class WorkflowDefinitionScanner implements ArtifactInstaller {
     if (def == null) {
       // ... so we have to load the definition first
       def = parseWorkflowDefinitionFile(artifact);
-
       if (def == null) {
         logger.warn("Unable to install workflow from {}", artifact.getAbsolutePath());
         artifactsWithError.add(artifact);
@@ -111,6 +111,7 @@ public class WorkflowDefinitionScanner implements ArtifactInstaller {
    *
    * @see org.apache.felix.fileinstall.ArtifactInstaller#uninstall(java.io.File)
    */
+	@Override
   public void uninstall(File artifact) throws Exception {
     // Since the artifact is gone, we can't open it to read its ID. So we look in the local map.
     String id = artifactIds.remove(artifact);
@@ -125,6 +126,7 @@ public class WorkflowDefinitionScanner implements ArtifactInstaller {
    *
    * @see org.apache.felix.fileinstall.ArtifactInstaller#update(java.io.File)
    */
+	@Override
   public void update(File artifact) throws Exception {
     currentWFD = parseWorkflowDefinitionFile(artifact);
 
@@ -205,6 +207,7 @@ public class WorkflowDefinitionScanner implements ArtifactInstaller {
    *
    * @see org.apache.felix.fileinstall.ArtifactListener#canHandle(java.io.File)
    */
+	@Override
   public boolean canHandle(File artifact) {
     return "workflows".equals(artifact.getParentFile().getName()) && artifact.getName().endsWith(".xml");
   }

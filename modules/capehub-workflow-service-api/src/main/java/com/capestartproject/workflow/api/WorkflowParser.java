@@ -26,11 +26,13 @@ public final class WorkflowParser {
 
   static {
     StringBuilder sb = new StringBuilder();
-		sb.append("com.capestartproject.employeepackage");
-		sb.append(":com.capestartproject.workflow.api");
+		// sb.append("com.capestartproject.common.emppackage");
+		// sb.append(":com.capestartproject.workflow.api");
+		sb.append("com.capestartproject.workflow.api");
     try {
       jaxbContext = JAXBContext.newInstance(sb.toString(), WorkflowParser.class.getClassLoader());
     } catch (JAXBException e) {
+			e.printStackTrace();
       throw new IllegalStateException(e);
     }
   }
@@ -74,7 +76,7 @@ public final class WorkflowParser {
   public static WorkflowDefinition parseWorkflowDefinition(InputStream in) throws WorkflowParsingException {
     try {
       Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-      return unmarshaller.unmarshal(new StreamSource(in), WorkflowDefinitionImpl.class).getValue();
+			return unmarshaller.unmarshal(new StreamSource(in), WorkflowDefinitionImpl.class).getValue();
     } catch (Exception e) {
       throw new WorkflowParsingException(e);
     } finally {
