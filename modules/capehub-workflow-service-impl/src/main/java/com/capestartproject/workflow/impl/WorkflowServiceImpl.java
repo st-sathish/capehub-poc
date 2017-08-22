@@ -573,8 +573,10 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
 	 */
 	@Override
 	public WorkflowDefinition getWorkflowDefinitionById(String id) throws WorkflowDatabaseException, NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		WorkflowDefinition def = workflowDefinitionScanner.getWorkflowDefinition(id);
+		if (def == null)
+			throw new NotFoundException("Workflow definition '" + id + "' not found");
+		return def;
 	}
 
 	/*
@@ -586,7 +588,6 @@ public class WorkflowServiceImpl implements WorkflowService, JobProducer, Manage
 	@Override
 	public WorkflowInstance getWorkflowById(long workflowId)
 			throws WorkflowDatabaseException, NotFoundException, UnauthorizedException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
