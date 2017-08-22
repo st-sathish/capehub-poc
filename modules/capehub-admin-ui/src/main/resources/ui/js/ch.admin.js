@@ -1,11 +1,11 @@
 /* @namespace Holds functions and properites related to all Admin UIs. */
 var ocAdmin = (function() {
   var admin = {};
-  var DC_CATALOG_ROOT_NS    = 'http://www.opencastproject.org/xsd/1.0/dublincore/';
+  var DC_CATALOG_ROOT_NS    = 'http://www.capestartproject.com/xsd/1.0/dublincore/';
   var DC_CATALOG_ROOT_EL    = 'dublincore';
   var DUBLINCORE_NS_URI     = 'http://purl.org/dc/terms/';
   var DUBLINCORE_NS_PREFIX  = 'dcterms';
-  var OC_NS_URI             = 'http://www.opencastproject.org/oc';
+  var OC_NS_URI             = 'http://www.capestartproject.com/oc';
   var OC_NS_PREFIX          = 'oc';
   
   /* @class The Component class is a collection of form elements and associated functions for use

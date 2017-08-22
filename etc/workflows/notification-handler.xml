@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definition xmlns="http://workflow.capestartproject.com">
-	<id>notification-handler</id>
-	<title>Notify All</title>
+	<id>notify</id>
+	<title>Notify</title>
 	<tags>
 		<tag>email</tag>
 		<tag>sms</tag>
@@ -11,31 +11,50 @@
 	</description>
 	<configuration_panel>
 		<![CDATA[
-			<div id="notification-workflow-configuration">
-		        <fieldset>
-		          <legend>Notify Through:</legend>
-		            <ul>
-		              <li>
-		                <span>
-		                  <input id="notifyThroughEmail" name="notifyThroughEmail" type="checkbox" checked="checked" class="configField" value="true" />
-		                  <span>&nbsp;Email</span>
-		                </span>
-		              </li>
-		              <li>
-		                <span>
-		                  <input id="notifyThroughSMS" name="notifyThroughSMS" type="checkbox" class="configField" value="true" />
-		                  <span>&nbsp;SMS</span>
-		                </span>
-		              </li>
-		              <li>
-		                <span>
-		                  <input id="notifyThroughEmailAndSMS" name="notifyThroughEmailAndSMS" type="checkbox" class="configField" value="true" />
-		                  <span>&nbsp;Email & SMS</span>
-		                </span>
-		              </li>
-		          </ul>
-		        </fieldset>
-      		</div>
+	        <fieldset>
+	          <legend>Notify Through:</legend>
+	            <ul>
+	              <li>
+	                <span>
+	                  <input id="email" name="email" type="checkbox" checked="checked" class="configField" value="true" />
+	                  <span>&nbsp;Email</span>
+	                </span>
+	              </li>
+	              <li>
+	                <span>
+	                  <input id="sms" name="sms" type="checkbox" class="configField" value="true" />
+	                  <span>&nbsp;SMS</span>
+	                </span>
+	              </li>
+	          </ul>
+	        </fieldset>
+	        <script type="text/javascript">
+		      var ocWorkflowPanel = ocWorkflowPanel || {};
+		      ocWorkflowPanel.registerComponents = function(components){
+		        /* components with keys that begin with 'com.capestartproject.workflow.config' will be passed
+		         * into the workflow. The new ocAdmin.Component key must match the components array key.
+		         *
+		         * Example:'com.capestartproject.workflow.config.myProperty' will be availible at ${my.property}
+		         */
+		        components['com.capestartproject.workflow.config.email'] = new ocAdmin.Component(
+		          ['email'],
+			      {key: 'com.capestartproject.workflow.config.email'},
+		          {getValue: function(){ return this.fields.email.is(":checked"); }
+		          }
+		        );
+		        components['com.capestartproject.workflow.config.sms'] = new ocAdmin.Component(
+		          ['sms'],
+			      {key: 'com.capestartproject.workflow.config.sms'},
+		          {getValue: function(){ return this.fields.sms.is(":checked"); }
+		          }
+		        );
+		        //etc...
+		      }
+		      ocWorkflowPanel.setComponentValues = function(values, components){
+		        components['com.capestartproject.workflow.config.email'].setValue(values['com.capestartproject.workflow.config.email']);
+		        components['com.capestartproject.workflow.config.sms'].setValue(values['com.capestartproject.workflow.config.sms']);
+		      }
+   			</script>
 		]]>
 	</configuration_panel>
 	<operations>
@@ -50,12 +69,6 @@
 			fail-on-error="true"
 			exception-handler-workflow="error">
 		
-		</operation>
-		<operation id="send-email-sms"
-			description="Send Email and SMS"
-			fail-on-error="true"
-			exception-handler-workflow="error">
-			
 		</operation>
 	</operations>
 </definition>

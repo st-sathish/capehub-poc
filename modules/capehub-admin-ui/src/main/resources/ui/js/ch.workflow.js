@@ -34,7 +34,7 @@ chWorkflow.loadDefinitions = function(selector, container, tags) {
         var option = document.createElement("option");
         option.setAttribute("value", wfDefinitions[i].id);
         option.innerHTML = wfDefinitions[i].title || wfDefinitions[i].id;
-        if (wfDefinitions[i].id == "full") {
+        if (wfDefinitions[i].id == "notify") {
         	option.setAttribute("selected", "true");
         }
         $(selector).append(option);

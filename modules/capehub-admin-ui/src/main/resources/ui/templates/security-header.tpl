@@ -42,13 +42,10 @@
             	<label for="mobile" id="mobileLabel"><span>Mobile Number</span><span class="schedular-required-text"> *</span>:</label>
             	<input type="text" class="oc-ui-form-field" name="mobile" id="mobile" maxlength="255" />
             </li>
-            <li>
-				<button id="createAccount" type="button">Create Account</button><button id="cancelAccount" type="button">Cancel</button>
-			</li>
           </ul>
-          
-          <!-- Processing Instructions -->
-      	  <div id="processingRecording"></div>
         </form>
       </div>
  </div>
+<!-- Processing Instructions -->
+ <div id="processingNotification"></div>
+ <button id="createAccount" type="button">Create Account</button><button id="cancelAccount" type="button">Cancel</button>
