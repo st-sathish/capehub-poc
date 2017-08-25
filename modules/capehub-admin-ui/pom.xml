@@ -198,7 +198,7 @@
                 <resource>
                   <directory>../../shared-resources/templates/</directory>
                   <includes>
-                    <include>*tpl</include>
+                    <include> **/** </include>
                   </includes>
                   <filtering>false</filtering>
                 </resource>

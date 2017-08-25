@@ -771,9 +771,6 @@ chSecurity = new (function() {
         return self._refresh();
       };
       self.refresh();
-      //set workflow
-      $('#processingNotification').jqotesubtpl('templates/processing-instructions.tpl', {});
-      chWorkflow.init($('#workflowSelector'), $('#workflowConfigContainer'), ['email']);
   };
   
   return this;

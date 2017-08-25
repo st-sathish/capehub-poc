@@ -1,0 +1,13 @@
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.capestartproject.google.endpoint.UserDirectoryGoogleRestEndpoint" 
+	immediate="true" activate="activate" deactivate="deactivate">
+  <implementation class="com.capestartproject.google.endpoint.UserDirectoryGoogleRestEndpoint" />
+  <property name="service.description" value="User REST endpoint" />
+  <property name="capehub.service.type" value="com.capestartproject.google.endpoint.UserDirectoryGoogleRestEndpoint" />
+  <property name="capehub.service.path" value="/google-user-manager" />
+  <property name="capehub.service.jobproducer" value="false" />
+  <service>
+    <provide interface="com.capestartproject.google.endpoint.UserDirectoryGoogleRestEndpoint" />
+  </service>
+  <reference name="securityService" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+</scr:component>

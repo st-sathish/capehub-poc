@@ -99,8 +99,14 @@
             </Import-Package>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Build-Number>${buildNumber}</Build-Number>
-            <Export-Package>com.capestartproject.google.*;version=${project.version} </Export-Package>
+            <Export-Package>
+            	com.capestartproject.google.endpoint;version=${project.version},
+            	com.capestartproject.google.security;version=${project.version}
+            </Export-Package>
           </instructions>
+          <Service-Component>
+          	OSGI-INF/user-and-role-google-endpoint.xml
+          </Service-Component>
         </configuration>
       </plugin>
     </plugins>
