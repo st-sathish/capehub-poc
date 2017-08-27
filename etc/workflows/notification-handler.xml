@@ -29,8 +29,8 @@
 	          </ul>
 	        </fieldset>
 	        <script type="text/javascript">
-		      var ocWorkflowPanel = ocWorkflowPanel || {};
-		      ocWorkflowPanel.registerComponents = function(components){
+		      var chWorkflowPanel = chWorkflowPanel || {};
+		      chWorkflowPanel.registerComponents = function(components){
 		        /* components with keys that begin with 'com.capestartproject.workflow.config' will be passed
 		         * into the workflow. The new ocAdmin.Component key must match the components array key.
 		         *
@@ -50,7 +50,7 @@
 		        );
 		        //etc...
 		      }
-		      ocWorkflowPanel.setComponentValues = function(values, components){
+		      chWorkflowPanel.setComponentValues = function(values, components){
 		        components['com.capestartproject.workflow.config.email'].setValue(values['com.capestartproject.workflow.config.email']);
 		        components['com.capestartproject.workflow.config.sms'].setValue(values['com.capestartproject.workflow.config.sms']);
 		      }

@@ -43,13 +43,16 @@ chSecurityGoogle = new (function() {
 	/** 
 	 * Create new user in the google user directory
 	 */
-	self.createUser = function(user, roles) {
+	self.createUser = function(fname, lname, email, mnumber, roles) {
 		$.ajax({
 			type: 'POST',
 			url: '/google-user-manager/users',
 			data: {
-				user: user,
-				roles: roles,
+				firstName: fname,
+				lastName: lname,
+				email: email,
+				mobileNumber: mnumber,
+				roles: roles
 			},
 			success: function() {
 
@@ -159,14 +162,8 @@ chSecurityGoogle = new (function() {
 		  var createAccBtn = $("#user-form button#createAccount");
 		  var cancelBtn = $("#user-form button#cancel");
 		  createAccBtn.button().click(function(event) {
-			  var u = {
-				'firstName':firstName.val(),
-				'lastName': lastName.val(),
-				'email': email.val(),
-				'mobileNumber': mobileNumber.val()
-			  };
 			  var roles = [];
-			  self.createUser(u, roles);
+			  self.createUser(firstName.val(), lastName.val(), email.val(), mobileNumber.val(), roles);
 		  });
 		  cancelBtn.button().click(function(event) {
 			  

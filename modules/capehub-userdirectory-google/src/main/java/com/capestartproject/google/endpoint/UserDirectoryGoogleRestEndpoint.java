@@ -43,21 +43,26 @@ public class UserDirectoryGoogleRestEndpoint {
 		this.securityService = securityService;
 	}
 
-	/** OSGI callback deactivate */
-	public void deactivate() {
-		logger.info("Deactivated users directory google endpoint");
-	}
-
 	@POST
 	@Path("/users")
 	@RestQuery(name = "createUser", description = "Create a user in google user directory", returnDescription = "The location of the new ressource", restParameters = {
-			@RestParameter(name = "user", type = STRING, isRequired = false, description = "The user as a json object, for example: [\"firstName:capehub\", \"lastName:capehub2\"]"),
+			@RestParameter(name = "firstName", type = STRING, isRequired = true, description = "The user as a json object, for example: [\"firstName:capehub\"]"),
+			@RestParameter(name = "lastName", type = STRING, isRequired = true, description = "The user last name, for example: [\"lastName:capehub\"]"),
+			@RestParameter(name = "email", type = STRING, isRequired = true, description = "The user email, for example: [\"email:sathish@capestart.com\"]"),
+			@RestParameter(name = "mobileNumber", type = STRING, isRequired = true, description = "The user mobile number, for example: [\"mobileNumber:9944717544\"]"),
 			@RestParameter(name = "roles", type = STRING, isRequired = false, description = "The user roles as a json array, for example: [\"ROLE_USER\", \"ROLE_ADMIN\"]") }, reponses = {
 					@RestResponse(responseCode = SC_CREATED, description = "User has been created."),
 					@RestResponse(responseCode = SC_CONFLICT, description = "An user with this email already exist.") })
-	public Response createUser(@FormParam("user") String user, @FormParam("roles") String roles)
+	public Response createUser(@FormParam("firstName") String fName, @FormParam("lastName") String lName,
+			@FormParam("email") String email, @FormParam("mobileNumber") String mNumber,
+			@FormParam("roles") String roles)
 			throws NotFoundException {
-		logger.info("Creating new user in google user directory {}", user);
+		logger.info("Creating new user in google user directory {}", fName);
 		return Response.ok().build();
+	}
+
+	/** OSGI callback deactivate */
+	public void deactivate() {
+		logger.info("Deactivated users directory google endpoint");
 	}
 }
