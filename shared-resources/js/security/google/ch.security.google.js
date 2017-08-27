@@ -210,9 +210,8 @@ chSecurityGoogle = new (function() {
 		   self.refresh();
 		   
 	      //set workflow
-	      //$('#processingNotification').jqotesubtpl('templates/processing-instructions.tpl', {});
-	      //chWorkflow.init($('#workflowSelector'), $('#workflowConfigContainer'), ['email']);
+	      $('#processingNotification').jqotesubtpl('templates/processing-instructions.tpl', {});
+	      chWorkflow.init($('#workflowSelector'), $('#workflowConfigContainer'), ['email']);
 	  };
-	  
 	  return this;
 })();

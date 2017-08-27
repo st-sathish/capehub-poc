@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
   <parent>
     <groupId>com.capestartproject</groupId>
     <artifactId>capehub</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
+  
   <artifactId>capehub-userdirectory-google</artifactId>
   <name>capehub-userdirectory-google</name>
   <packaging>bundle</packaging>
@@ -18,53 +18,31 @@
   </properties>
   
   <dependencies>
-  	<dependency>
-      <groupId>com.capestartproject</groupId>
-      <artifactId>capehub-common</artifactId>
-      <version>${project.version}</version>
-    </dependency>
     <dependency>
       <groupId>com.capestartproject</groupId>
       <artifactId>capehub-kernel</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-    </dependency>
-    <dependency>
       <groupId>javax.ws.rs</groupId>
       <artifactId>jsr311-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
+      <groupId>com.capestartproject</groupId>
+      <artifactId>capehub-common</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.fileinstall</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>org.osgi.core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>org.osgi.compendium</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
     </dependency>
     
     <!-- https://developers.google.com/admin-sdk/directory/v1/guides/manage-org-units
@@ -84,6 +62,13 @@
     	<artifactId>google-api-services-admin-directory</artifactId>
     	<version>directory_v1-rev84-${google.admin.version}</version>
 	</dependency>
+    
+    <!-- Testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
   <build>
@@ -94,19 +79,17 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Import-Package>
-              *;resolution:=optional
-            </Import-Package>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Build-Number>${buildNumber}</Build-Number>
+            <Import-Package>*;resolution:=optional</Import-Package>
             <Export-Package>
-            	com.capestartproject.google.endpoint;version=${project.version},
-            	com.capestartproject.google.security;version=${project.version}
+              com.capestartproject.google.endpoint;version=${project.version},
+              com.capestartproject.google.security;version=${project.version},
+              com.capestartproject.google.security.utils;version=${project.version}
             </Export-Package>
+            <Service-Component>
+              OSGI-INF/user-and-role-google-endpoint.xml
+            </Service-Component>
           </instructions>
-          <Service-Component>
-          	OSGI-INF/user-and-role-google-endpoint.xml
-          </Service-Component>
         </configuration>
       </plugin>
     </plugins>

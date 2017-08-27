@@ -23,6 +23,10 @@
             	<label for="mobileNumber" id="mobileNumberLabel"><span>Mobile Number</span><span class="required-text"> *</span>:</label>
             	<input type="text" class="oc-ui-form-field" name="mobileNumber" id="mobileNumber" maxlength="255" />
             </li>
+            <li>
+			    <select id="rolesSelect" name="top5" size="5" multiple></select>
+				<button id="removeRole" type="button">Remove Role</button>
+			</li>
           </ul>
       </div>
 	</div>
