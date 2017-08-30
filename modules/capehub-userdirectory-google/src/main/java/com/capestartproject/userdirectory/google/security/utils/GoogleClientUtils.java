@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.capestartproject.google.security.utils;
+package com.capestartproject.userdirectory.google.security.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

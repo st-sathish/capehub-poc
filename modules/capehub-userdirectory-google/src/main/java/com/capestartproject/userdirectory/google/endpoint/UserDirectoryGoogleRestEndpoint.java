@@ -1,4 +1,4 @@
-package com.capestartproject.google.endpoint;
+package com.capestartproject.userdirectory.google.endpoint;
 
 import static com.capestartproject.common.util.doc.rest.RestParameter.Type.STRING;
 import static org.apache.http.HttpStatus.SC_CONFLICT;
@@ -32,7 +32,7 @@ public class UserDirectoryGoogleRestEndpoint {
 
 	/** OSGi callback. */
 	public void activate() {
-		logger.info("Started users directory google endpoint");
+		logger.info("Activated users directory google endpoint");
 	}
 
 	/**

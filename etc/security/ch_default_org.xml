@@ -102,7 +102,8 @@
 
   <!-- Differentiates between "normal" user requests and those requesting digest auth -->
   <bean id="capehubEntryPoint" class="com.capestartproject.kernel.security.DelegatingAuthenticationEntryPoint">
-    <property name="userEntryPoint" ref="userEntryPoint" />
+    <!-- <property name="userEntryPoint" ref="userEntryPoint" /> -->
+    <property name="userEntryPoint" ref="gaEntryPoint" />
     <property name="digestAuthenticationEntryPoint" ref="digestEntryPoint" />
   </bean>
 
@@ -118,6 +119,9 @@
     <property name="nonceValiditySeconds" value="10" />
   </bean>
 
+  <!-- google authentication entry point -->
+  <bean id="gaEntryPoint" class="com.capestartproject.kernel.security.google.GoogleAuthenticationEntryPoint" />
+  
   <bean id="authSuccessHandler" class="com.capestartproject.kernel.security.AuthenticationSuccessHandler">
     <property name="securityService" ref="securityService" />
     <property name="welcomePages">

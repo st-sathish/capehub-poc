@@ -21,7 +21,6 @@
       <artifactId>capehub-common</artifactId>
       <version>${project.version}</version>
     </dependency>
-
 	<dependency>
       <groupId>com.googlecode.guava-osgi</groupId>
       <artifactId>guava-osgi</artifactId>
@@ -296,6 +295,7 @@
               com.capestartproject.kernel.rest;version=${project.version},
               com.capestartproject.kernel.security;version=${project.version},
               com.capestartproject.kernel.security.persistence;version=${project.version},
+              com.capestartproject.kernel.security.google;version=${project.version},
               com.capestartproject.kernel.userdirectory;version=${project.version},
               com.capestartproject.kernel.bundleinfo;version=${project.version},
               org.springframework.security.oauth;version=1.0.0.M1,

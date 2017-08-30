@@ -82,9 +82,9 @@
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Import-Package>*;resolution:=optional</Import-Package>
             <Export-Package>
-              com.capestartproject.google.endpoint;version=${project.version},
-              com.capestartproject.google.security;version=${project.version},
-              com.capestartproject.google.security.utils;version=${project.version}
+              com.capestartproject.userdirectory.google.endpoint;version=${project.version},
+              com.capestartproject.userdirectory.google.security;version=${project.version},
+              com.capestartproject.userdirectory.google.security.utils;version=${project.version}
             </Export-Package>
             <Service-Component>
               OSGI-INF/user-and-role-google-endpoint.xml

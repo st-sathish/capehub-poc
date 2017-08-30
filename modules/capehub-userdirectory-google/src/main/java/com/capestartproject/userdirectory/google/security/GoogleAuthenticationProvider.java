@@ -1,4 +1,4 @@
-package com.capestartproject.google.security;
+package com.capestartproject.userdirectory.google.security;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-import com.capestartproject.google.security.utils.GoogleClientUtils;
+import com.capestartproject.userdirectory.google.security.utils.GoogleClientUtils;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.services.admin.directory.Directory;
 import com.google.api.services.admin.directory.Directory.Users.Get;
