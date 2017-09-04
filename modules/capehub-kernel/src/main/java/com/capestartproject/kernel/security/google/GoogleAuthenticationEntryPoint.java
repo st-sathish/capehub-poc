@@ -32,9 +32,17 @@ public class GoogleAuthenticationEntryPoint implements AuthenticationEntryPoint 
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException arg2)
 			throws IOException, ServletException {
 		final String redirectURI = "http://localhost:8080/oauth2callback";
+
+		/** list of scopes */
+		StringBuilder scopes = new StringBuilder()
+				.append("https://www.googleapis.com/auth/admin.directory.user").append(" ")
+				.append("https://www.googleapis.com/auth/admin.directory.user.alias").append(" ")
+				.append("https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly")
+				.append(" https://www.googleapis.com/auth/userinfo.email");
+
 		StringBuilder sb = new StringBuilder()
 				.append("https://accounts.google.com/o/oauth2/auth?")
-				.append("scope=email")
+				.append("scope=" + scopes.toString())
 				.append("&")
 				.append("redirect_uri=" + redirectURI)
 				.append("&")

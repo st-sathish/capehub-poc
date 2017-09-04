@@ -9,6 +9,4 @@
   <service>
     <provide interface="com.capestartproject.userdirectory.google.endpoint.UserDirectoryGoogleRestEndpoint" />
   </service>
-  <reference name="securityService" interface="com.capestartproject.common.security.api.SecurityService"
-    cardinality="1..1" policy="static" bind="setSecurityService" />
 </scr:component>

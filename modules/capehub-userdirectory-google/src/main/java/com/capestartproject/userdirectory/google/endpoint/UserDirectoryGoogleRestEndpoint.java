@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.capestartproject.common.security.api.SecurityService;
 import com.capestartproject.common.util.NotFoundException;
 import com.capestartproject.common.util.doc.rest.RestParameter;
 import com.capestartproject.common.util.doc.rest.RestQuery;
@@ -28,19 +27,9 @@ public class UserDirectoryGoogleRestEndpoint {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserDirectoryGoogleRestEndpoint.class);
 
-	private SecurityService securityService;
-
 	/** OSGi callback. */
 	public void activate() {
 		logger.info("Activated users directory google endpoint");
-	}
-
-	/**
-	 * @param securityService
-	 *            the securityService to set
-	 */
-	public void setSecurityService(SecurityService securityService) {
-		this.securityService = securityService;
 	}
 
 	@POST

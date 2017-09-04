@@ -45,6 +45,8 @@
         <module>modules/capehub-userdirectory-jpa</module>
         <module>modules/capehub-conductor</module>
         <module>modules/capehub-userdirectory-google</module>
+        <module>modules/capehub-ingest-service-api</module>
+        <module>modules/capehub-ingest-service-impl</module>
 	</modules>
 
 	<build>

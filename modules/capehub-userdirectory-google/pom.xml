@@ -18,19 +18,14 @@
   </properties>
   
   <dependencies>
-    <dependency>
-      <groupId>com.capestartproject</groupId>
-      <artifactId>capehub-kernel</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+  	<dependency>
+  		<groupId>com.capestartproject</groupId>
+  		<artifactId>capehub-common</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
     <dependency>
       <groupId>javax.ws.rs</groupId>
       <artifactId>jsr311-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.capestartproject</groupId>
-      <artifactId>capehub-common</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
     	<groupId>javax.servlet</groupId>
@@ -43,6 +38,21 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>org.springframework.security.core</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>org.springframework.security.web</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security.oauth</groupId>
+      <artifactId>spring-security-oauth</artifactId>
     </dependency>
     
     <!-- https://developers.google.com/admin-sdk/directory/v1/guides/manage-org-units

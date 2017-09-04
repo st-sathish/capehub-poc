@@ -80,6 +80,9 @@
     <!-- Enables log out -->
     <sec:logout />
 
+	<!--  pre-auth custom filter -->
+	<sec:custom-filter position="PRE_AUTH_FILTER" ref="googleFilter" />
+	
   </sec:http>
 
   <!-- ######################################## -->
@@ -102,8 +105,8 @@
 
   <!-- Differentiates between "normal" user requests and those requesting digest auth -->
   <bean id="capehubEntryPoint" class="com.capestartproject.kernel.security.DelegatingAuthenticationEntryPoint">
-    <!-- <property name="userEntryPoint" ref="userEntryPoint" /> -->
-    <property name="userEntryPoint" ref="gaEntryPoint" />
+    <property name="userEntryPoint" ref="userEntryPoint" />
+    <!-- <property name="userEntryPoint" ref="googleEntryPoint" /> -->
     <property name="digestAuthenticationEntryPoint" ref="digestEntryPoint" />
   </bean>
 
@@ -118,9 +121,6 @@
     <property name="key" value="capehub" />
     <property name="nonceValiditySeconds" value="10" />
   </bean>
-
-  <!-- google authentication entry point -->
-  <bean id="gaEntryPoint" class="com.capestartproject.kernel.security.google.GoogleAuthenticationEntryPoint" />
   
   <bean id="authSuccessHandler" class="com.capestartproject.kernel.security.AuthenticationSuccessHandler">
     <property name="securityService" ref="securityService" />
@@ -181,6 +181,20 @@
     </sec:authentication-provider>
   </sec:authentication-manager>
 
+  <!-- ############################## -->
+  <!-- #Google spring security config -->
+  <!-- ############################## -->
+  <!-- google authentication entry point -->
+  <bean id="googleEntryPoint" class="com.capestartproject.kernel.security.google.GoogleAuthenticationEntryPoint" />
+  
+  <!-- Filter bean to setup security context after the user redirect from google oauth service -->
+  <bean id="googleFilter" class="com.capestartproject.kernel.security.google.GoogleAuthenticationFilter">
+  		<property name="authenticationManager" ref="authenticationManager" />
+  </bean>
+  
+  <!-- Authentication manager to make rest call to fetch user details -->
+  <bean id="googleAuthenticationProvider" class="com.capestartproject.kernel.security.google.GoogleAuthenticationProvider" />
+  
   <!-- Do not use a request cache -->
   <bean id="requestCache" class="org.springframework.security.web.savedrequest.NullRequestCache" />
   
