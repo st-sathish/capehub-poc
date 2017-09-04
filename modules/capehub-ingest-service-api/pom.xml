@@ -15,6 +15,19 @@
   	<checkstyle.skip>true</checkstyle.skip>
   </properties>
   
+  <dependencies>
+  	<dependency>
+  		<groupId>com.capestartproject</groupId>
+  		<artifactId>capehub-common</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.capestartproject</groupId>
+  		<artifactId>capehub-workflow-service-api</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  </dependencies>
+  
   <build>
   	<plugins>
   		<plugin>
@@ -24,8 +37,10 @@
   			<configuration>
   				<instructions>
   					<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-  					<Import-Package>*;resolution:=optional</Import-Package>
-  					<Export-Package>com.capestartproject.ingest.api;version=${project.version}</Export-Package>
+  					<Import-Package>*;resolutional:=optional</Import-Package>
+  					<Export-Package>
+  						com.capestartproject.ingest.api;version=${project.version}
+  					</Export-Package>
   				</instructions>
   			</configuration>
   		</plugin>

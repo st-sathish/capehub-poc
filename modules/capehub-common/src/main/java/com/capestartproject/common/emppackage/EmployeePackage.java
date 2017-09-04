@@ -1,5 +1,6 @@
 package com.capestartproject.common.emppackage;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -77,4 +78,77 @@ public interface EmployeePackage extends Cloneable {
    */
   Object clone();
 
+	/**
+	 * Returns an iteration of the media package elements.
+	 *
+	 * @return the employee package elements
+	 */
+	Iterable<EmployeePackageElement> elements();
+
+	/**
+	 * Returns all of the elements.
+	 *
+	 * @return the elements
+	 */
+	EmployeePackageElement[] getElements();
+
+	/**
+	 * Returns the element that is identified by the given identifier or
+	 * <code>null</code> if no such element exists.
+	 *
+	 * @param id
+	 *            the element identifier
+	 * @return the element
+	 */
+	EmployeePackageElement getElementById(String id);
+
+	/**
+	 * Returns the elements that are tagged with the given tag or an empty array
+	 * if no such elements are found.
+	 *
+	 * @param tag
+	 *            the tag
+	 * @return the elements
+	 */
+	EmployeePackageElement[] getElementsByTag(String tag);
+
+	/**
+	 * Returns the elements that are tagged with any of the given tags or an
+	 * empty array if no such elements are found. If any of the tags in the
+	 * <code>tags</code> collection start with a '-' character, any elements
+	 * matching the tag will be excluded from the returned
+	 * EmployeePackageElement[]. If <code>tags</code> is empty or null, all
+	 * elements are returned.
+	 *
+	 * @param tags
+	 *            the tags
+	 * @return the elements
+	 */
+	EmployeePackageElement[] getElementsByTags(Collection<String> tags);
+
+	/**
+	 * Adds an arbitrary {@link EmployeePackageElement} to this employee
+	 * package.
+	 *
+	 * @param element
+	 *            the element
+	 */
+	void add(EmployeePackageElement element);
+
+	/**
+	 * Removes the element with the given identifier from the employeepackage
+	 * and returns it.
+	 *
+	 * @param id
+	 *            the element identifier
+	 */
+	EmployeePackageElement removeElementById(String id);
+
+	/**
+	 * Removes an arbitrary employee package element.
+	 *
+	 * @param element
+	 *            the employee package element
+	 */
+	void remove(EmployeePackageElement element);
 }

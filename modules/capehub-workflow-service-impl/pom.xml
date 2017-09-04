@@ -22,15 +22,20 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+    	<groupId>com.capestartproject</groupId>
+    	<artifactId>capehub-json</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.capestartproject</groupId>
       <artifactId>capehub-kernel</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>com.capestartproject</groupId>
       <artifactId>capehub-json</artifactId>
       <version>${project.version}</version>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>

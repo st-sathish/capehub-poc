@@ -265,4 +265,102 @@ public final class EmployeePackageImpl implements EmployeePackage {
 			return ep;
 		}
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.capestartproject.common.emppackage.EmployeePackage#elements()
+	 */
+	@Override
+	public Iterable<EmployeePackageElement> elements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.capestartproject.common.emppackage.EmployeePackage#getElements()
+	 */
+	@Override
+	public EmployeePackageElement[] getElements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#getElementById(
+	 * java.lang.String)
+	 */
+	@Override
+	public EmployeePackageElement getElementById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#getElementsByTag(
+	 * java.lang.String)
+	 */
+	@Override
+	public EmployeePackageElement[] getElementsByTag(String tag) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#getElementsByTags(
+	 * java.util.Collection)
+	 */
+	@Override
+	public EmployeePackageElement[] getElementsByTags(Collection<String> tags) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.capestartproject.common.emppackage.EmployeePackage#add(com.
+	 * capestartproject.common.emppackage.EmployeePackageElement)
+	 */
+	@Override
+	public void add(EmployeePackageElement element) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#removeElementById(
+	 * java.lang.String)
+	 */
+	@Override
+	public EmployeePackageElement removeElementById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.capestartproject.common.emppackage.EmployeePackage#remove(com.
+	 * capestartproject.common.emppackage.EmployeePackageElement)
+	 */
+	@Override
+	public void remove(EmployeePackageElement element) {
+		// TODO Auto-generated method stub
+
+	}
 }
