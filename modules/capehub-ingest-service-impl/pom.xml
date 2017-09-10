@@ -32,6 +32,11 @@
   		<version>${project.version}</version>
   	</dependency>
   	<dependency>
+      <groupId>com.capestartproject</groupId>
+      <artifactId>capehub-working-file-repository-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  	<dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
     </dependency>

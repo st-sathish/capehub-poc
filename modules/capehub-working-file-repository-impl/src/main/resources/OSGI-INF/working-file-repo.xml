@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+ name="com.capestartproject.workingfilerepository.impl.WorkingFileRepository" immediate="true" activate="activate" deactivate="deactivate">
+
+  <implementation class="com.capestartproject.workingfilerepository.impl.WorkingFileRepositoryRestEndpoint" />
+
+  <property name="service.description" value="Working File Repository REST Endpoint" />
+
+  <property name="capehub.service.type" value="com.capestartproject.files" />
+
+  <property name="capehub.service.path" value="/files" />
+
+  <service>
+    <provide interface="com.capestartproject.workingfilerepository.impl.WorkingFileRepositoryRestEndpoint" />
+    <provide interface="com.capestartproject.workingfilerepository.api.WorkingFileRepository" />
+    <provide interface="com.capestartproject.workingfilerepository.api.PathMappable" />
+  </service>
+
+  <reference name="remoteServiceManager" interface="com.capestartproject.common.serviceregistry.api.ServiceRegistry" cardinality="1..1" policy="static" bind="setRemoteServiceManager" />
+  <reference name="tikaOSGIParser" interface="org.apache.tika.parser.Parser" cardinality="1..1" policy="static" bind="setTikaParser" />
+
+</scr:component>

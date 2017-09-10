@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" immediate="true"
+    name="com.capestartproject.serviceregistry.impl.endpoint.ServiceRegistryEndpoint">
+  <implementation class="com.capestartproject.serviceregistry.impl.endpoint.ServiceRegistryEndpoint" />
+  <property name="service.description" value="Service Registry REST Endpoint" />
+
+  <property name="capehub.service.type" value="com.capestartproject.serviceregistry" />
+  <property name="capehub.service.path" value="/services" />
+
+  <service>
+    <provide interface="com.capestartproject.serviceregistry.impl.endpoint.ServiceRegistryEndpoint" />
+  </service>
+  <reference name="serviceRegistry" interface="com.capestartproject.common.serviceregistry.api.ServiceRegistry"
+    cardinality="1..1" policy="static" bind="setServiceRegistry" />
+</scr:component>

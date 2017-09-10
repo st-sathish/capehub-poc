@@ -3,6 +3,7 @@ package com.capestartproject.workflow.api;
 import java.util.List;
 import java.util.Map;
 
+import com.capestartproject.common.emppackage.EmployeePackage;
 import com.capestartproject.common.security.api.UnauthorizedException;
 import com.capestartproject.common.util.NotFoundException;
 import com.capestartproject.workflow.api.WorkflowInstance.WorkflowState;
@@ -118,6 +119,71 @@ public interface WorkflowService {
    */
   WorkflowSet getWorkflowInstancesForAdministrativeRead(WorkflowQuery q) throws WorkflowDatabaseException,
           UnauthorizedException;
+
+	/**
+	 * Creates a new workflow instance and starts the workflow.
+	 *
+	 * @param workflowDefinition
+	 *            the workflow definition
+	 * @param employeePackage
+	 *            the employeepackage to process
+	 * @param properties
+	 *            any properties to apply to the workflow definition
+	 * @return The new workflow instance
+	 * @throws WorkflowDatabaseException
+	 *             if there is a problem storing the workflow instance in
+	 *             persistence
+	 * @throws WorkflowParsingException
+	 *             if there is a problem parsing or serializing workflow
+	 *             entities
+	 */
+	WorkflowInstance start(WorkflowDefinition workflowDefinition, EmployeePackage employeePackage,
+			Map<String, String> properties) throws WorkflowDatabaseException, WorkflowParsingException;
+
+	/**
+	 * Creates a new workflow instance and starts the workflow.
+	 *
+	 * @param workflowDefinition
+	 *            the workflow definition
+	 * @param employeePackage
+	 *            the employeepackage to process
+	 * @param parentWorkflowId
+	 *            An existing workflow to associate with the new workflow
+	 *            instance
+	 * @param properties
+	 *            any properties to apply to the workflow definition
+	 * @return The new workflow instance
+	 * @throws NotFoundException
+	 *             if the parent workflow does not exist
+	 * @throws WorkflowDatabaseException
+	 *             if there is a problem storing the workflow instance in
+	 *             persistence
+	 * @throws WorkflowParsingException
+	 *             if there is a problem parsing or serializing workflow
+	 *             entities
+	 */
+	WorkflowInstance start(WorkflowDefinition workflowDefinition, EmployeePackage employeePackage,
+			Long parentWorkflowId,
+			Map<String, String> properties)
+			throws WorkflowDatabaseException, WorkflowParsingException, NotFoundException;
+
+	/**
+	 * Creates a new workflow instance and starts the workflow.
+	 *
+	 * @param workflowDefinition
+	 *            the workflow definition
+	 * @param employeePackage
+	 *            the employeepackage to process
+	 * @return The new workflow instance
+	 * @throws WorkflowDatabaseException
+	 *             if there is a problem storing the workflow instance in
+	 *             persistence
+	 * @throws WorkflowParsingException
+	 *             if there is a problem parsing or serializing workflow
+	 *             entities
+	 */
+	WorkflowInstance start(WorkflowDefinition workflowDefinition, EmployeePackage employeePackage)
+			throws WorkflowDatabaseException, WorkflowParsingException;
 
   	/**
 	 * Creates a new workflow instance and starts the workflow.

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import com.capestartproject.common.emppackage.EmployeePackage;
 import com.capestartproject.common.security.api.Organization;
 import com.capestartproject.common.security.api.User;
 
@@ -90,9 +91,9 @@ public interface WorkflowInstance extends Configurable {
    */
   WorkflowOperationInstance getCurrentOperation() throws IllegalStateException;
 
-	// public EmployeePackage getEmployeePackage();
+	public EmployeePackage getEmployeePackage();
 
-	// public void setEmployeePackage(EmployeePackage employeePackage)
+	public void setEmployeePackage(EmployeePackage employeePackage);
 
   /**
    * The current {@link WorkflowState} of this {@link WorkflowInstance}.

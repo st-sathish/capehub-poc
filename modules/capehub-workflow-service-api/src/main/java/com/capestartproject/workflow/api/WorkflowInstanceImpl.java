@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import com.capestartproject.common.emppackage.EmployeePackage;
 import com.capestartproject.common.security.api.JaxbOrganization;
 import com.capestartproject.common.security.api.JaxbUser;
 import com.capestartproject.common.security.api.Organization;
@@ -63,11 +64,8 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 	@XmlElement(name = "organization", namespace = "http://com.capestartproject.security")
   private JaxbOrganization organization;
 
-	/*
-	 * @XmlElement(name = "employeepackage", namespace =
-	 * "http://employeepackage.capestartproject.com") private EmployeePackage
-	 * employeePackage;
-	 */
+	@XmlElement(name = "employeepackage", namespace = "http://employeepackage.capestartproject.com")
+	private EmployeePackage employeePackage;
 
   @XmlElement(name = "operation")
   @XmlElementWrapper(name = "operations")
@@ -103,9 +101,8 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
    * @param properties
    *          the properties
    */
-	public WorkflowInstanceImpl(WorkflowDefinition def, Long parentWorkflowId,
-			User creator,
-          Organization organization, Map<String, String> properties) {
+	public WorkflowInstanceImpl(WorkflowDefinition def, EmployeePackage employeePackage, Long parentWorkflowId,
+			User creator, Organization organization, Map<String, String> properties) {
     this.id = -1; // this should be set by the workflow service once the workflow is persisted
     this.title = def.getTitle();
     this.template = def.getId();
@@ -115,7 +112,7 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
     if (organization != null)
       this.organization = JaxbOrganization.fromOrganization(organization);
     this.state = WorkflowState.INSTANTIATED;
-		// this.employeePackage = employeePackage;
+		this.employeePackage = employeePackage;
     this.operations = new ArrayList<WorkflowOperationInstance>();
     this.configurations = new TreeSet<WorkflowConfiguration>();
     if (properties != null) {
@@ -379,18 +376,21 @@ public class WorkflowInstanceImpl implements WorkflowInstance {
 	 *
 	 * @see com.capestartproject.workflow.api.WorkflowInstance#getEmployeePackage()
 	 */
-	/*
-	 * @Override public EmployeePackage getEmployeePackage() { return
-	 * employeePackage; }
-	 * 
-	 *//**
-		 * {@inheritDoc}
-		 *
-		 * @see com.capestartproject.workflow.api.WorkflowInstance#setEmployeePackage(com.capestartproject.employeepackage.EmployeePackage)
-		 *//*
-		 * @Override public void setEmployeePackage(EmployeePackage
-		 * employeePackage) { this.employeePackage = employeePackage; }
-		 */
+
+	@Override
+	public EmployeePackage getEmployeePackage() {
+		return employeePackage;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.workflow.api.WorkflowInstance#setEmployeePackage(com.capestartproject.employeepackage.EmployeePackage)
+	 */
+	@Override
+	public void setEmployeePackage(EmployeePackage employeePackage) {
+		this.employeePackage = employeePackage;
+	}
 
   	/**
 	 * {@inheritDoc}

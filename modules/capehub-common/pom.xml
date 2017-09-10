@@ -226,6 +226,7 @@
               com.capestartproject.common.serviceregistry.api;version=${project.version},
               com.capestartproject.common.security.api;version=${project.version},
               com.capestartproject.common.systems;version=${project.version},
+              com.capestartproject.common.storage;version=${project.version},
               com.capestartproject.common.security.util;version=${project.version},
               com.capestartproject.common.emppackage.*;version=${project.version}
             </Export-Package>

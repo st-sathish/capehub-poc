@@ -1,0 +1,37 @@
+<html>
+  <head>
+  <script language="JavaScript">
+    function doForm(method) {
+      var testForm = document.getElementById("test_form");
+      var employeePackageId = document.getElementById("employeePackageId").value;
+      var employeePackageElementId = document.getElementById("employeePackageElementId").value;
+
+      if(method == 'POST') {
+        testForm.enctype="multipart/form-data";
+      }
+      testForm.method = method;
+      testForm.action = "./" + employeePackageId + "/" + employeePackageElementId;
+      testForm.submit();
+    }
+  </script>
+  </head>
+  <body>
+    <div>This is the REST endpoint for the working file repository.  Please document me. $Rev$</div>
+    <hr />
+    <form id="test_form" action="" method="">
+      <div>
+        <label for="employeePackageId">Employee Package ID</label><input type="text" name="employeePackageId" id="employeePackageId" />
+        <label for="employeePackageElementId">Element ID</label><input type="text" name="employeePackageElementId" id="employeePackageElementId" />
+      </div>
+      <div>
+        <label for="localPath">Local File Path</label><input type="file" name="localPath" id="localPath" />
+      </div>
+      <hr />
+      <div>
+        <input type="button" value="GET" onclick="doForm('GET')"/>
+        <input type="button" value="DELETE (doesn't work in the browser)" onclick="doForm('DELETE')"/>
+        <input type="button" value="PUT (actually a POST)" onclick="doForm('POST')" />
+      </div>
+    </form>
+  </body>
+</html>
