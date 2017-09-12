@@ -12,7 +12,7 @@
   
   <properties>
   	<capehub.basedir>${project.basedir}/../..</capehub.basedir>
-    <checkstyle.skip>false</checkstyle.skip>
+    <checkstyle.skip>true</checkstyle.skip>
   </properties>
   
   <dependencies>

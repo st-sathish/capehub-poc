@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 
 import javax.management.ObjectInstance;
 
-import org.apache.abdera.model.Workspace;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.ConfigurationException;
@@ -77,6 +76,7 @@ import com.capestartproject.workflow.api.WorkflowSet;
 import com.capestartproject.workflow.api.WorkflowStateException;
 import com.capestartproject.workflow.api.WorkflowStatistics;
 import com.capestartproject.workflow.impl.jmx.WorkflowsStatistics;
+import com.capestartproject.workspace.api.Workspace;
 
 /**
  * Implements WorkflowService with in-memory data structures to hold WorkflowOperations and WorkflowInstances.
