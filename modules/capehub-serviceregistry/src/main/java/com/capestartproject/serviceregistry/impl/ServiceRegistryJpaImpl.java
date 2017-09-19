@@ -97,7 +97,7 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
   public static final String RESUME = "RESUME";
 
   /** Identifier for the workflow service */
-  public static final String TYPE_WORKFLOW = "org.opencastproject.workflow";
+	public static final String TYPE_WORKFLOW = "com.capestartproject.workflow";
 
   static final Logger logger = LoggerFactory.getLogger(ServiceRegistryJpaImpl.class);
 
@@ -126,7 +126,7 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
   private static final ThreadLocal<Job> currentJob = new ThreadLocal<Job>();
 
   /** Configuration key for the maximum load */
-  protected static final String OPT_MAXLOAD = "org.opencastproject.server.maxload";
+	protected static final String OPT_MAXLOAD = "com.capestartproject.server.maxload";
 
   /** Configuration key for the dispatch interval in milliseconds */
   protected static final String OPT_DISPATCHINTERVAL = "dispatchinterval";
@@ -226,7 +226,8 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     logger.debug("activate");
 
     // Set up persistence
-    emf = persistenceProvider.createEntityManagerFactory("org.opencastproject.serviceregistry", persistenceProperties);
+		emf = persistenceProvider.createEntityManagerFactory("com.capestartproject.serviceregistry",
+				persistenceProperties);
 
     // Clean all undispatchable jobs
     cleanUndispatchableJobs();
@@ -252,10 +253,10 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
 
     // Find the jobs URL
-    if (cc == null || StringUtils.isBlank(cc.getBundleContext().getProperty("org.opencastproject.jobs.url"))) {
+		if (cc == null || StringUtils.isBlank(cc.getBundleContext().getProperty("com.capestartproject.jobs.url"))) {
       jobHost = hostName;
     } else {
-      jobHost = cc.getBundleContext().getProperty("org.opencastproject.jobs.url");
+			jobHost = cc.getBundleContext().getProperty("com.capestartproject.jobs.url");
     }
 
     // Register this host
@@ -323,56 +324,58 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String, java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String,
+	 *      java.lang.String)
+	 */
   @Override
   public Job createJob(String type, String operation) throws ServiceRegistryException {
     return createJob(this.hostName, type, operation, null, null, true, getCurrentJob());
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String, java.lang.String,
-   *      java.util.List)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String,
+	 *      java.lang.String, java.util.List)
+	 */
   @Override
   public Job createJob(String type, String operation, List<String> arguments) throws ServiceRegistryException {
     return createJob(this.hostName, type, operation, arguments, null, true, getCurrentJob());
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String, java.lang.String,
-   *      java.util.List, java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String,
+	 *      java.lang.String, java.util.List, java.lang.String)
+	 */
   @Override
   public Job createJob(String type, String operation, List<String> arguments, String payload)
           throws ServiceRegistryException {
     return createJob(this.hostName, type, operation, arguments, payload, true, getCurrentJob());
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String, java.lang.String,
-   *      java.util.List, String, boolean)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#createJob(java.lang.String,
+	 *      java.lang.String, java.util.List, String, boolean)
+	 */
   @Override
   public Job createJob(String type, String operation, List<String> arguments, String payload, boolean dispatchable)
           throws ServiceRegistryException {
     return createJob(this.hostName, type, operation, arguments, payload, dispatchable, getCurrentJob());
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#createJob(String, String, List, String, boolean, Job)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#createJob(String,
+	 *      String, List, String, boolean, Job)
+	 */
   @Override
   public Job createJob(String type, String operation, List<String> arguments, String payload, boolean dispatchable,
           Job parentJob) throws ServiceRegistryException {
@@ -676,11 +679,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getJob(long)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getJob(long)
+	 */
   @Override
   public Job getJob(long id) throws NotFoundException, ServiceRegistryException {
     EntityManager em = null;
@@ -708,31 +711,31 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getCurrentJob()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getCurrentJob()
+	 */
   @Override
   public Job getCurrentJob() {
     return currentJob.get();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#setCurrentJob(Job)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#setCurrentJob(Job)
+	 */
   @Override
   public void setCurrentJob(Job job) {
     currentJob.set(job);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#updateJob(org.opencastproject.job.api.Job)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#updateJob(com.capestartproject.job.api.Job)
+	 */
   @Override
   public Job updateJob(Job job) throws ServiceRegistryException {
     EntityManager em = null;
@@ -742,7 +745,7 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
       Job jpaJob = updateInternal(em, job);
 
       // All WorkflowService Jobs will be ignored
-      if (oldJob.getStatus() != job.getStatus() && !"org.opencastproject.workflow".equals(job.getJobType())) {
+			if (oldJob.getStatus() != job.getStatus() && !"com.capestartproject.workflow".equals(job.getJobType())) {
         updateServiceForFailover(job);
       }
 
@@ -916,11 +919,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#registerHost(java.lang.String, int)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#registerHost(java.lang.String,
+	 *      int)
+	 */
   @Override
   public void registerHost(String host, int maxJobs) throws ServiceRegistryException {
     EntityManager em = null;
@@ -953,11 +957,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#unregisterHost(java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#unregisterHost(java.lang.String)
+	 */
   @Override
   public void unregisterHost(String host) throws ServiceRegistryException {
     EntityManager em = null;
@@ -991,11 +995,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#enableHost(String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#enableHost(String)
+	 */
   @Override
   public void enableHost(String host) throws ServiceRegistryException, NotFoundException {
     EntityManager em = null;
@@ -1036,11 +1040,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#disableHost(String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#disableHost(String)
+	 */
   @Override
   public void disableHost(String host) throws ServiceRegistryException, NotFoundException {
     EntityManager em = null;
@@ -1078,24 +1082,24 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#registerService(java.lang.String, java.lang.String,
-   *      java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#registerService(java.lang.String,
+	 *      java.lang.String, java.lang.String)
+	 */
   @Override
   public ServiceRegistration registerService(String serviceType, String baseUrl, String path)
           throws ServiceRegistryException {
     return registerService(serviceType, baseUrl, path, false);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#registerService(java.lang.String, java.lang.String,
-   *      java.lang.String, boolean)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#registerService(java.lang.String,
+	 *      java.lang.String, java.lang.String, boolean)
+	 */
   @Override
   public ServiceRegistration registerService(String serviceType, String baseUrl, String path, boolean jobProducer)
           throws ServiceRegistryException {
@@ -1180,11 +1184,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#unRegisterService(java.lang.String, java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#unRegisterService(java.lang.String,
+	 *      java.lang.String)
+	 */
   @Override
   public void unRegisterService(String serviceType, String baseUrl) throws ServiceRegistryException {
     logger.info("Unregistering Service " + serviceType + "@" + baseUrl);
@@ -1309,11 +1314,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#setMaintenanceStatus(java.lang.String, boolean)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#setMaintenanceStatus(java.lang.String,
+	 *      boolean)
+	 */
   @Override
   public void setMaintenanceStatus(String baseUrl, boolean maintenance) throws NotFoundException {
     EntityManager em = null;
@@ -1341,11 +1347,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getServiceRegistrations()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getServiceRegistrations()
+	 */
   @Override
   public List<ServiceRegistration> getServiceRegistrations() {
     EntityManager em = null;
@@ -1416,11 +1422,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     return em.createNamedQuery("HostRegistration.getAll").getResultList();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getChildJobs(long)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getChildJobs(long)
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public List<Job> getChildJobs(long id) throws ServiceRegistryException {
@@ -1463,12 +1469,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     return resultJobs;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getJobs(java.lang.String,
-   *      org.opencastproject.job.api.Job.Status)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getJobs(java.lang.String,
+	 *      com.capestartproject.job.api.Job.Status)
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public List<Job> getJobs(String type, Status status) throws ServiceRegistryException {
@@ -1549,12 +1555,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#count(java.lang.String,
-   *      org.opencastproject.job.api.Job.Status)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#count(java.lang.String,
+	 *      com.capestartproject.job.api.Job.Status)
+	 */
   @Override
   public long count(String serviceType, Status status) throws ServiceRegistryException {
     EntityManager em = null;
@@ -1584,12 +1590,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#countByHost(java.lang.String, java.lang.String,
-   *      org.opencastproject.job.api.Job.Status)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#countByHost(java.lang.String,
+	 *      java.lang.String, com.capestartproject.job.api.Job.Status)
+	 */
   @Override
   public long countByHost(String serviceType, String host, Status status) throws ServiceRegistryException {
     EntityManager em = null;
@@ -1609,12 +1615,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#countByOperation(java.lang.String, java.lang.String,
-   *      org.opencastproject.job.api.Job.Status)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#countByOperation(java.lang.String,
+	 *      java.lang.String, com.capestartproject.job.api.Job.Status)
+	 */
   @Override
   public long countByOperation(String serviceType, String operation, Status status) throws ServiceRegistryException {
     EntityManager em = null;
@@ -1634,12 +1640,13 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#count(java.lang.String, java.lang.String,
-   *      java.lang.String, org.opencastproject.job.api.Job.Status)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#count(java.lang.String,
+	 *      java.lang.String, java.lang.String,
+	 *      com.capestartproject.job.api.Job.Status)
+	 */
   @Override
   public long count(String serviceType, String host, String operation, Status status) throws ServiceRegistryException {
     if (StringUtils.isBlank(serviceType) || StringUtils.isBlank(host) || StringUtils.isBlank(operation)
@@ -1663,11 +1670,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getCountOfAbnormalServices()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getCountOfAbnormalServices()
+	 */
   @Override
   public long countOfAbnormalServices() throws ServiceRegistryException {
     EntityManager em = null;
@@ -1684,11 +1691,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getServiceStatistics()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getServiceStatistics()
+	 */
   @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   public List<ServiceStatistics> getServiceStatistics() throws ServiceRegistryException {
@@ -1761,14 +1768,14 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * Do not look at this, it will burn your eyes! This is due to JPA's inability to do a left outer join with join
-   * conditions.
-   *
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getServiceRegistrationsByLoad(java.lang.String)
-   */
+  	/**
+	 * Do not look at this, it will burn your eyes! This is due to JPA's
+	 * inability to do a left outer join with join conditions.
+	 *
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getServiceRegistrationsByLoad(java.lang.String)
+	 */
   @Override
   public List<ServiceRegistration> getServiceRegistrationsByLoad(String serviceType) throws ServiceRegistryException {
     EntityManager em = null;
@@ -1840,11 +1847,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     return loadByHost;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getServiceRegistrationsByType(java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getServiceRegistrationsByType(java.lang.String)
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public List<ServiceRegistration> getServiceRegistrationsByType(String serviceType) throws ServiceRegistryException {
@@ -1859,11 +1866,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getServiceRegistrationsByHost(java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getServiceRegistrationsByHost(java.lang.String)
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public List<ServiceRegistration> getServiceRegistrationsByHost(String host) throws ServiceRegistryException {
@@ -1877,12 +1884,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getServiceRegistration(java.lang.String,
-   *      java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getServiceRegistration(java.lang.String,
+	 *      java.lang.String)
+	 */
   @Override
   public ServiceRegistration getServiceRegistration(String serviceType, String host) {
     EntityManager em = null;
@@ -1970,11 +1977,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getLoad()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getLoad()
+	 */
   @Override
   public SystemLoad getLoad() throws ServiceRegistryException {
     throw new UnsupportedOperationException();
@@ -2267,11 +2274,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
 
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#sanitize(java.lang.String, java.lang.String)
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#sanitize(java.lang.String,
+	 *      java.lang.String)
+	 */
   @Override
   public void sanitize(String serviceType, String host) throws NotFoundException {
     EntityManager em = null;
@@ -2554,11 +2562,11 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     return filteredList;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see org.opencastproject.serviceregistry.api.ServiceRegistry#getMaxConcurrentJobs()
-   */
+  	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.serviceregistry.api.ServiceRegistry#getMaxConcurrentJobs()
+	 */
   @Override
   public int getMaxConcurrentJobs() throws ServiceRegistryException {
     Query query = null;
@@ -2575,10 +2583,12 @@ public class ServiceRegistryJpaImpl implements ServiceRegistry, ManagedService {
     }
   }
 
-  /**
-   * This dispatcher implementation will check for jobs in the QUEUED {@link org.opencastproject.job.api.Job.Status}. If
-   * new jobs are found, the dispatcher will attempt to dispatch each job to the least loaded service.
-   */
+  	/**
+	 * This dispatcher implementation will check for jobs in the QUEUED
+	 * {@link com.capestartproject.job.api.Job.Status}. If new jobs are found,
+	 * the dispatcher will attempt to dispatch each job to the least loaded
+	 * service.
+	 */
   class JobDispatcher implements Runnable {
 
     /**

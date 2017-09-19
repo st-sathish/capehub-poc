@@ -8,24 +8,36 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.capestartproject.common.emppackage.identifier.Id;
 
 /**
- * Interface for a media package, which is a data container moving through the system, containing metadata, tracks and
- * attachments.
+ * Interface for a employee package, which is a data container moving through
+ * the system, containing metadata, and attachments.
  */
 @XmlJavaTypeAdapter(EmployeePackageImpl.Adapter.class)
 public interface EmployeePackage extends Cloneable {
 
-  /**
-   * Returns the media package identifier.
-   *
-   * @return the identifier
-   */
+  	/**
+	 * Returns the employee package identifier.
+	 *
+	 * @return the identifier
+	 */
   Id getIdentifier();
 
   void setIdentifier(Id id);
 
-  void addCreator(String creator);
+	String getFirstName();
 
-  void removeCreator(String creator);
+	void setFirstName();
+
+	void setLastName();
+
+	String getLastName();
+
+	String getMobileNumber();
+
+	void setMobileNumber();
+
+	void setPersonalEmail();
+
+	String getPersonalEmail();
 
   	/**
 	 * Returns the names of the organizations or people who created this
@@ -35,19 +47,11 @@ public interface EmployeePackage extends Cloneable {
 	 */
   String[] getCreators();
 
-  	/**
-	 * Returns the names of the organizations or people who contributed to the
-	 * content within this employeepackage
-	 *
-	 * @return the contributors
-	 */
-  String[] getContributors();
-
   void setLanguage(String language);
 
   	/**
-	 * Returns the language written and/or spoken in the media content of this
-	 * employeepackage
+	 * Returns the language written and/or spoken in the employee content of
+	 * this employeepackage
 	 *
 	 * @return the language
 	 */
@@ -55,31 +59,31 @@ public interface EmployeePackage extends Cloneable {
 
   void setDate(Date date);
 
-  /**
-   * Returns the media package start time.
-   *
-   * @return the start time
-   */
+  	/**
+	 * Returns the employee package start time.
+	 *
+	 * @return the start time
+	 */
   Date getDate();
 
   	/**
 	 * Renames the employee package to the new identifier.
 	 *
 	 * @param identifier
-	 *            the identifier TODO @return <code>true</code> if the media
+	 *            the identifier TODO @return <code>true</code> if the employee
 	 *            package could be renamed
 	 */
   void renameTo(Id identifier);
 
-  /**
-   * Creates a deep copy of the media package.
-   *
-   * @return the cloned media package
-   */
+  	/**
+	 * Creates a deep copy of the employee package.
+	 *
+	 * @return the cloned employee package
+	 */
   Object clone();
 
 	/**
-	 * Returns an iteration of the media package elements.
+	 * Returns an iteration of the employee package elements.
 	 *
 	 * @return the employee package elements
 	 */

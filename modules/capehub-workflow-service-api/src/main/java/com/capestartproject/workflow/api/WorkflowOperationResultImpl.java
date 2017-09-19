@@ -5,7 +5,7 @@ import java.util.Map;
 import com.capestartproject.common.emppackage.EmployeePackage;
 
 public class WorkflowOperationResultImpl implements WorkflowOperationResult {
-	// protected EmployeePackage resultingEmployeePackage;
+	protected EmployeePackage resultingEmployeePackage;
 
   protected Map<String, String> properties;
 
@@ -18,8 +18,6 @@ public class WorkflowOperationResultImpl implements WorkflowOperationResult {
   protected boolean isContinuable;
 
   protected boolean isAbortable;
-
-	protected EmployeePackage resultingEmployeePackage;
 
   /**
    * No arg constructor needed by JAXB
@@ -48,23 +46,25 @@ public class WorkflowOperationResultImpl implements WorkflowOperationResult {
     }
   }
 
-	/*	*//**
-			 * {@inheritDoc}
-			 *
-			 * @see com.capestartproject.workflow.api.WorkflowOperationResult#getMediaPackage()
-			 */
-	/*
-	 * public EmployeePackage getEmployeePackage() { return
-	 * resultingEmployeePackage; }
-	 * 
-	 *//**
-		 * Sets the resulting media package.
-		 *
-		 * @param mediaPackage
-		 *//*
-		 * public void setMediaPackage(EmployeePackage employeePackage) {
-		 * this.resultingEmployeePackage = employeePackage; }
-		 */
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see com.capestartproject.workflow.api.WorkflowOperationResult#getMediaPackage()
+	 */
+	
+	public EmployeePackage getEmployeePackage() {
+		return resultingEmployeePackage;
+	}
+	  
+	 /**
+	 * Sets the resulting media package.
+	 *
+	 * @param mediaPackage
+	 */
+	public void setMediaPackage(EmployeePackage employeePackage) {
+		this.resultingEmployeePackage = employeePackage;
+	}
+
 
   	/**
 	 *

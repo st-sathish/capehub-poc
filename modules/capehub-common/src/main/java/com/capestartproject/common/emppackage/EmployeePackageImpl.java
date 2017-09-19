@@ -25,8 +25,8 @@ import com.capestartproject.common.emppackage.identifier.UUIDIdBuilderImpl;
 /**
  * Default implementation for a media media package.
  */
-@XmlType(name = "employeepackage", namespace = "http://employeepackage.capestartproject.com", propOrder = { "name",
-		"attachments", "creators" })
+@XmlType(name = "employeepackage", namespace = "http://employeepackage.capestartproject.com", propOrder = { "firstName",
+		"lastName" })
 @XmlRootElement(name = "employeepackage", namespace = "http://employeepackage.capestartproject.com")
 @XmlAccessorType(XmlAccessType.NONE)
 public final class EmployeePackageImpl implements EmployeePackage {
@@ -43,8 +43,11 @@ public final class EmployeePackageImpl implements EmployeePackage {
   /** Context for serializing and deserializing */
   static final JAXBContext context;
 
-	@XmlElement(name = "name")
-	private String name = null;
+	@XmlElement(name = "firstName")
+	private String firstName = null;
+
+	@XmlElement(name = "lastName")
+	private String lastName = null;
 
   @XmlElementWrapper(name = "creators")
   @XmlElement(name = "creator")
@@ -118,48 +121,10 @@ public final class EmployeePackageImpl implements EmployeePackage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.capestartproject.common.emppackage.EmployeePackage#addCreator(java.
-	 * lang.String)
-	 */
-	@Override
-	public void addCreator(String creator) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.capestartproject.common.emppackage.EmployeePackage#removeCreator(java
-	 * .lang.String)
-	 */
-	@Override
-	public void removeCreator(String creator) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.capestartproject.common.emppackage.EmployeePackage#getCreators()
 	 */
 	@Override
 	public String[] getCreators() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.capestartproject.common.emppackage.EmployeePackage#getContributors()
-	 */
-	@Override
-	public String[] getContributors() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -247,23 +212,7 @@ public final class EmployeePackageImpl implements EmployeePackage {
 		if (identifier != null)
 			return identifier.toString();
 		else
-			return "Unknown media package";
-	}
-
-	/**
-	 * A JAXB adapter that allows the {@link MediaPackage} interface to be
-	 * un/marshalled
-	 */
-	static class Adapter extends XmlAdapter<EmployeePackageImpl, EmployeePackage> {
-		@Override
-		public EmployeePackageImpl marshal(EmployeePackage ep) throws Exception {
-			return (EmployeePackageImpl) ep;
-		}
-
-		@Override
-		public EmployeePackage unmarshal(EmployeePackageImpl ep) throws Exception {
-			return ep;
-		}
+			return "Unknown employee package";
 	}
 
 	/*
@@ -362,5 +311,115 @@ public final class EmployeePackageImpl implements EmployeePackage {
 	public void remove(EmployeePackageElement element) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#getFirstName()
+	 */
+	@Override
+	public String getFirstName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#setFirstName()
+	 */
+	@Override
+	public void setFirstName() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.capestartproject.common.emppackage.EmployeePackage#setLastName()
+	 */
+	@Override
+	public void setLastName() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.capestartproject.common.emppackage.EmployeePackage#getLastName()
+	 */
+	@Override
+	public String getLastName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#getMobileNumber()
+	 */
+	@Override
+	public String getMobileNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#setMobileNumber()
+	 */
+	@Override
+	public void setMobileNumber() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#setPersonalEmail()
+	 */
+	@Override
+	public void setPersonalEmail() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.capestartproject.common.emppackage.EmployeePackage#getPersonalEmail()
+	 */
+	@Override
+	public String getPersonalEmail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * A JAXB adapter that allows the {@link MediaPackage} interface to be
+	 * un/marshalled
+	 */
+	static class Adapter extends XmlAdapter<EmployeePackageImpl, EmployeePackage> {
+		@Override
+		public EmployeePackageImpl marshal(EmployeePackage ep) throws Exception {
+			return (EmployeePackageImpl) ep;
+		}
+
+		@Override
+		public EmployeePackage unmarshal(EmployeePackageImpl ep) throws Exception {
+			return ep;
+		}
 	}
 }

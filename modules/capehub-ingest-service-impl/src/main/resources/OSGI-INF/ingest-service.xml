@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component
+  xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+  name="com.capestartproject.ingest.impl.IngestServiceImpl"
+  immediate="true" activate="activate" deactivate="deactivate">
+  <implementation class="com.capestartproject.ingest.impl.IngestServiceImpl" />
+  <property name="service.description" value="Ingest Service" />
+  <service>
+    <provide interface="com.capestartproject.ingest.api.IngestService" />    
+  </service>
+  <reference name="authorizationService" interface="com.capestartproject.common.security.api.AuthorizationService"
+    cardinality="1..1" policy="static" bind="setAuthorizationService" />
+  <reference name="workflowService" interface="com.capestartproject.workflow.api.WorkflowService"
+    cardinality="1..1" policy="static" bind="setWorkflowService" />
+  <reference name="workspace" interface="com.capestartproject.workingfilerepository.api.WorkingFileRepository"
+    cardinality="1..1" policy="static" bind="setWorkingFileRepository" />
+  <reference name="trustedHttpClient" interface="com.capestartproject.common.security.api.TrustedHttpClient"
+    cardinality="1..1" policy="static" bind="setHttpClient" />
+  <reference name="serviceregistry" interface="com.capestartproject.common.serviceregistry.api.ServiceRegistry" 
+    cardinality="1..1" policy="static" bind="setServiceRegistry" />
+  <reference name="security-service" interface="com.capestartproject.common.security.api.SecurityService"
+    cardinality="1..1" policy="static" bind="setSecurityService" />
+  <reference name="user-directory" interface="com.capestartproject.common.security.api.UserDirectoryService"
+    cardinality="1..1" policy="static" bind="setUserDirectoryService" />
+  <reference name="orgDirectory" interface="com.capestartproject.common.security.api.OrganizationDirectoryService"
+    cardinality="1..1" policy="static" bind="setOrganizationDirectoryService" />
+</scr:component>

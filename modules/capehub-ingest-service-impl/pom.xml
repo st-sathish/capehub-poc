@@ -41,16 +41,20 @@
       <artifactId>jaxb-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>jsr311-api</artifactId>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
     </dependency>
-     <dependency>
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>commons-fileupload</groupId>
-      <artifactId>commons-fileupload</artifactId>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>jsr311-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
@@ -59,6 +63,114 @@
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.compendium</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <version>3.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.guava-osgi</groupId>
+      <artifactId>guava-osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>javax.persistence</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>org.eclipse.persistence.core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>org.eclipse.persistence.jpa</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>org.eclipse.persistence.asm</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>org.eclipse.persistence.antlr</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>c3p0</groupId>
+      <artifactId>c3p0</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.fileinstall</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.compendium</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jdom</groupId>
+      <artifactId>com.springsource.org.jdom</artifactId>
     </dependency>
   </dependencies>
   
@@ -69,15 +181,32 @@
   			<artifactId>maven-bundle-plugin</artifactId>
   			<extensions>true</extensions>
   			<configuration>
-  				<instructions>
-  					<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-  					<Import-Package>*;resolutional:=optional</Import-Package>
-  					<Export-Package>
-  						com.capestartproject.ingest.impl;version=${project.version},
-  						com.capestartproject.ingest.endpoint;version=${project.version}
-  					</Export-Package>
-  				</instructions>
-  			</configuration>
+	          <instructions>
+	            <Bundle-SymbolicName> ${project.artifactId} </Bundle-SymbolicName>
+	            <Export-Package>
+	              com.capestartproject.ingest.impl;version=${project.version},
+	              com.capestartproject.ingest.impl.jmx;version=${project.version},
+	              com.capestartproject.ingest.endpoint;version=${project.version}
+	            </Export-Package>
+	            <Private-Package>
+	              META-INF.services;-split-package:=merge-first,
+	              de.schlichtherle.*;-split-package:=merge-first
+	            </Private-Package>
+	            <Import-Package>
+	              com.capestartproject.common.rest;version=${project.version},
+	              com.capestartproject.common.util.doc.rest,
+	              javax.persistence,
+	              *;resolution:=optional
+	            </Import-Package>
+	            <Service-Component>
+	              OSGI-INF/ingest-service.xml,
+	              OSGI-INF/ingest-service-rest.xml
+	            </Service-Component>
+	            <JPA-PersistenceUnits>
+	              com.capestartproject.ingest.endpoint
+	            </JPA-PersistenceUnits>
+	          </instructions>
+        	</configuration>
   		</plugin>
   	</plugins>
   </build>

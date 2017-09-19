@@ -2,6 +2,8 @@ package com.capestartproject.workflow.api;
 
 import java.util.Map;
 
+import com.capestartproject.common.emppackage.EmployeePackage;
+
 //import com.capestartproject.common.employeepackage.EmployeePackage;
 
 /**
@@ -16,7 +18,7 @@ public interface WorkflowOperationResult {
 	 * @return The employee package that results from the execution of a
 	 *         workflow operation.
 	 */
-	// EmployeePackage getEmployeePackage();
+	EmployeePackage getEmployeePackage();
 
   /**
    * Operations may optionally set properties on a workflow operation.
