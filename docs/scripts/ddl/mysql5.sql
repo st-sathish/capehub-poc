@@ -1,3 +1,11 @@
+CREATE TABLE SEQUENCE (
+  SEQ_NAME VARCHAR(50) NOT NULL,
+  SEQ_COUNT DECIMAL(38),
+  PRIMARY KEY (SEQ_NAME)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO SEQUENCE(SEQ_NAME, SEQ_COUNT) values ('SEQ_GEN', 0);
+
 CREATE TABLE ch_bundleinfo (
   id BIGINT(20) NOT NULL,
   bundle_name VARCHAR(128) NOT NULL,
@@ -43,15 +51,12 @@ CREATE INDEX IX_ch_organization_property_pk ON ch_organization_property (organiz
 CREATE TABLE ch_host_registration (
   id BIGINT NOT NULL,
   host VARCHAR(255) NOT NULL,
-  address VARCHAR(39) NOT NULL,
-  memory BIGINT NOT NULL,
-  cores INTEGER NOT NULL,
   maintenance TINYINT(1) DEFAULT 0 NOT NULL,
   online TINYINT(1) DEFAULT 1 NOT NULL,
   active TINYINT(1) DEFAULT 1 NOT NULL,
   max_jobs INTEGER NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT UNQ_ch_host_registration UNIQUE (host)
+  CONSTRAINT UNQ_ch_host_registration_0 UNIQUE (host)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX IX_ch_host_registration_online ON ch_host_registration (online);
@@ -187,3 +192,40 @@ CREATE TABLE ch_email_configuration (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX IX_mh_email_configuration_organization ON ch_email_configuration (organization);
+
+CREATE TABLE ch_job (
+  id BIGINT NOT NULL,
+  status INTEGER,
+  payload MEDIUMTEXT,
+  date_started DATETIME,
+  run_time BIGINT,
+  creator TEXT(65535) NOT NULL,
+  instance_version BIGINT,
+  date_completed DATETIME,
+  operation VARCHAR(128),
+  dispatchable TINYINT(1) DEFAULT 1,
+  organization VARCHAR(128) NOT NULL,
+  date_created DATETIME,
+  queue_time BIGINT,
+  creator_service BIGINT,
+  processor_service BIGINT,
+  parent BIGINT,
+  root BIGINT,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_ch_job_creator_service FOREIGN KEY (creator_service) REFERENCES ch_service_registration (id) ON DELETE CASCADE,
+  CONSTRAINT FK_ch_job_processor_service FOREIGN KEY (processor_service) REFERENCES ch_service_registration (id) ON DELETE CASCADE,
+  CONSTRAINT FK_ch_job_parent FOREIGN KEY (parent) REFERENCES ch_job (id) ON DELETE CASCADE,
+  CONSTRAINT FK_ch_job_root FOREIGN KEY (root) REFERENCES ch_job (id) ON DELETE CASCADE,
+  CONSTRAINT FK_ch_job_organization FOREIGN KEY (organization) REFERENCES ch_organization (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE INDEX IX_ch_job_parent ON ch_job (parent);
+CREATE INDEX IX_ch_job_root ON ch_job (root);
+CREATE INDEX IX_ch_job_creator_service ON ch_job (creator_service);
+CREATE INDEX IX_ch_job_processor_service ON ch_job (processor_service);
+CREATE INDEX IX_ch_job_status ON ch_job (status);
+CREATE INDEX IX_ch_job_date_created ON ch_job (date_created);
+CREATE INDEX IX_ch_job_date_completed ON ch_job (date_completed);
+CREATE INDEX IX_ch_job_dispatchable ON ch_job (dispatchable);
+CREATE INDEX IX_ch_job_operation ON ch_job (operation);
+CREATE INDEX IX_ch_job_statistics ON ch_job (processor_service, status, queue_time, run_time);

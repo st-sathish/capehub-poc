@@ -25,12 +25,13 @@ public class WorkflowOperationResultImpl implements WorkflowOperationResult {
   public WorkflowOperationResultImpl() {
   }
 
-  /**
-   * Constructs a new WorkflowOperationResultImpl from a mediapackage and an action.
-   *
-   * @param resultingMediaPackage
-   * @param action
-   */
+  	/**
+	 * Constructs a new WorkflowOperationResultImpl from a employeepackage and
+	 * an action.
+	 *
+	 * @param resultingEmployeePackage
+	 * @param action
+	 */
 	public WorkflowOperationResultImpl(EmployeePackage resultingEmployeePackage, Map<String, String> properties,
 			Action action,
           long timeInQueue) {
