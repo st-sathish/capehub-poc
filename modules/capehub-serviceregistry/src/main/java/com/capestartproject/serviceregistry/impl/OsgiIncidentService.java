@@ -24,7 +24,6 @@ import com.capestartproject.common.serviceregistry.api.ServiceRegistry;
 import com.capestartproject.common.util.persistence.PersistenceEnv;
 import com.capestartproject.common.util.persistence.PersistenceEnvs;
 import com.capestartproject.common.util.persistence.Queries;
-import com.capestartproject.workflow.api.WorkflowService;
 
 public class OsgiIncidentService extends AbstractIncidentService implements BundleListener {
   /** The logging instance */
@@ -41,19 +40,11 @@ public class OsgiIncidentService extends AbstractIncidentService implements Bund
   /** Reference to the receipt service registry */
   private ServiceRegistry serviceRegistry;
 
-  /** Reference to the receipt workflow service */
-  private WorkflowService workflowService;
-
   private PersistenceEnv penv;
 
   @Override
   protected ServiceRegistry getServiceRegistry() {
     return serviceRegistry;
-  }
-
-  @Override
-  protected WorkflowService getWorkflowService() {
-    return workflowService;
   }
 
   @Override
@@ -89,16 +80,6 @@ public class OsgiIncidentService extends AbstractIncidentService implements Bund
    */
   protected void setServiceRegistry(ServiceRegistry serviceRegistry) {
     this.serviceRegistry = serviceRegistry;
-  }
-
-  /**
-   * Sets the workflow service
-   *
-   * @param workflowService
-   *          the workflow service
-   */
-  public void setWorkflowService(WorkflowService workflowService) {
-    this.workflowService = workflowService;
   }
 
   /**

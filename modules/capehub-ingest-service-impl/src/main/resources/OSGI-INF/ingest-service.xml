@@ -8,10 +8,6 @@
   <service>
     <provide interface="com.capestartproject.ingest.api.IngestService" />    
   </service>
-  <reference name="authorizationService" interface="com.capestartproject.common.security.api.AuthorizationService"
-    cardinality="1..1" policy="static" bind="setAuthorizationService" />
-  <reference name="workflowService" interface="com.capestartproject.workflow.api.WorkflowService"
-    cardinality="1..1" policy="static" bind="setWorkflowService" />
   <reference name="workspace" interface="com.capestartproject.workingfilerepository.api.WorkingFileRepository"
     cardinality="1..1" policy="static" bind="setWorkingFileRepository" />
   <reference name="trustedHttpClient" interface="com.capestartproject.common.security.api.TrustedHttpClient"

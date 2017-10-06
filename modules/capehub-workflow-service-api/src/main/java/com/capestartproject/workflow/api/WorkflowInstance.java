@@ -2,9 +2,6 @@ package com.capestartproject.workflow.api;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import com.capestartproject.common.emppackage.EmployeePackage;
 import com.capestartproject.common.security.api.Organization;
 import com.capestartproject.common.security.api.User;
 
@@ -12,7 +9,7 @@ import com.capestartproject.common.security.api.User;
  * An single instance of a running, paused, or stopped workflow. WorkflowInstance objects are snapshots in time for a
  * particular workflow. They are not thread-safe, and will not be updated by other threads.
  */
-@XmlJavaTypeAdapter(WorkflowInstanceImpl.Adapter.class)
+
 public interface WorkflowInstance extends Configurable {
   enum WorkflowState {
     INSTANTIATED, RUNNING, STOPPED, PAUSED, SUCCEEDED, FAILED, FAILING
@@ -90,10 +87,6 @@ public interface WorkflowInstance extends Configurable {
    *           if the workflow instance has no operations
    */
   WorkflowOperationInstance getCurrentOperation() throws IllegalStateException;
-
-	public EmployeePackage getEmployeePackage();
-
-	public void setEmployeePackage(EmployeePackage employeePackage);
 
   /**
    * The current {@link WorkflowState} of this {@link WorkflowInstance}.

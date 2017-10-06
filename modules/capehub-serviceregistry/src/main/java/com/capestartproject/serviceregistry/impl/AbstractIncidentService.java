@@ -35,9 +35,6 @@ import com.capestartproject.common.util.data.functions.Functions;
 import com.capestartproject.common.util.data.functions.Strings;
 import com.capestartproject.common.util.persistence.PersistenceEnv;
 import com.capestartproject.common.util.persistence.Queries;
-import com.capestartproject.workflow.api.WorkflowOperationInstance;
-import com.capestartproject.workflow.api.WorkflowOperationInstance.OperationState;
-import com.capestartproject.workflow.api.WorkflowService;
 
 public abstract class AbstractIncidentService implements IncidentService {
 	public static final String PERSISTENCE_UNIT_NAME = "com.capestartproject.serviceregistry";
@@ -52,7 +49,7 @@ public abstract class AbstractIncidentService implements IncidentService {
 
   protected abstract ServiceRegistry getServiceRegistry();
 
-  protected abstract WorkflowService getWorkflowService();
+	// protected abstract WorkflowService getWorkflowService();
 
   protected abstract PersistenceEnv getPenv();
 
@@ -107,13 +104,7 @@ public abstract class AbstractIncidentService implements IncidentService {
       if (cascade && !"START_WORKFLOW".equals(job.getOperation())) {
         childIncidents = getChildIncidents(jobId);
       } else if (cascade && "START_WORKFLOW".equals(job.getOperation())) {
-        for (WorkflowOperationInstance operation : getWorkflowService().getWorkflowById(jobId).getOperations()) {
-          if (operation.getState().equals(OperationState.INSTANTIATED))
-            continue;
-          IncidentTree operationResult = getIncidentsOfJob(operation.getId(), true);
-          if (hasIncidents(Collections.list(operationResult)))
-            childIncidents.add(operationResult);
-        }
+				// get workflow operations
       }
       return new IncidentTreeImpl(incidents, childIncidents);
     } catch (Exception e) {
